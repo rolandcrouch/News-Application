@@ -8,6 +8,7 @@ from .models import ResetToken
 
 
 def _hash_token(raw: str) -> str:
+    """Hash a raw token using SHA-256 for secure storage."""
     # Store as hex sha256; raw token never persisted
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
 
