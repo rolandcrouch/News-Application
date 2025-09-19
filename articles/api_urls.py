@@ -1,3 +1,10 @@
+"""
+API URL configuration for the articles app.
+
+Defines REST API endpoints for articles, newsletters, publishers,
+journalists, subscriptions, and authentication.
+"""
+
 from django.urls import path
 from rest_framework.authtoken.views import obtain_auth_token
 from . import api_views
