@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  db:
+    image: mysql:8.0
+    container_name: news_app_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: newapp_db
+      MYSQL_USER: newsapp_user
+      MYSQL_PASSWORD: newsapp_password
+      MYSQL_ROOT_PASSWORD: root_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # Django Web Application
+  web:
+    build: .
+    container_name: news_app_web
+    restart: unless-stopped
+    environment:
+      # Database Configuration
+      DB_NAME: newapp_db
+      DB_USER: newsapp_user
+      DB_PASSWORD: newsapp_password
+      DB_HOST: db
+      DB_PORT: 3306
+      
+      # Django Configuration
+      DEBUG: "False"
+      SECRET_KEY: "your-secret-key-change-in-production"
+      ALLOWED_HOSTS: "localhost,127.0.0.1,0.0.0.0"
+      
+      # Twitter API (optional - add your credentials)
+      # TWITTER_CLIENT_ID: "your_twitter_client_id"
+      # TWITTER_CLIENT_SECRET: "your_twitter_client_secret"
+      # TWITTER_REDIRECT_URI: "http://localhost:8000/accounts/twitter/callback/"
+      
+      # Email Configuration (optional - add your credentials)
+      # GMAIL_USER: "your_email@gmail.com"
+      # GMAIL_APP_PASSWORD: "your_gmail_app_password"
+    volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+      - ./var:/app/var
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "
+        echo 'Waiting for database...' &&
+        python manage.py migrate &&
+        python create_test_users.py &&
+        echo 'Starting Django server...' &&
+        python manage.py runserver 0.0.0.0:8000
+      "
+
+volumes:
+  mysql_data:
+  static_volume:
+  media_volume:
+

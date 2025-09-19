@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block content %}
+<section class="na-feed">
+
+  <!-- Header / toolbar -->
+  <div class="na-card" style="padding:.75rem 1rem;">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <h2 style="margin:0;">My News</h2>
+        {% if user.role == 'reader' %}
+          <p class="na-muted" style="margin:0.25rem 0 0; font-size:0.9rem;">
+            Showing independent articles from journalists you follow and articles from publishers you subscribe to
+          </p>
+        {% endif %}
+      </div>
+
+      <div style="display:flex;align-items:center;gap:1rem;">
+        {% if can_create %}
+        <div>
+          <a href="{% url 'article_create' %}" class="btn na-blue pill px-4">
+            + Article
+          </a>
+          <a href="{% url 'newsletter_create' %}" class="btn na-blue pill px-4">
+            + Newsletter
+          </a>
+        </div>
+        {% endif %}
+
+        {% if user.role == 'editor' %}
+        <div style="float:right;clear:both;">
+          {% if twitter_status.is_connected %}
+            <span class="badge bg-success" style="float:right;margin-left:0.5rem;">✓ Twitter Connected</span>
+            <a href="{% url 'twitter_disconnect' %}" class="badge bg-outline-danger text-decoration-none" style="float:right;">
+              Disconnect
+            </a>
+          {% elif twitter_status.has_credentials %}
+            <a href="{% url 'twitter_connect' %}" class="badge bg-warning text-dark" style="float:right;">
+              Connect Twitter
+            </a>
+          {% else %}
+            <span class="badge bg-secondary" title="Twitter credentials not configured" style="float:right;">
+              Twitter Unavailable
+            </span>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Feed list -->
+  {% if page_obj %}
+    {% for item in page_obj %}
+      <article class="na-card">
+        <header class="na-card-header">
+          <div style="display:flex;align-items:center;gap:.5rem;">
+            <div class="na-avatar"></div>
+            <div>
+              <h3 class="na-card-title" style="margin:0;">
+                {% if item.kind == "article" %}
+                  <a class="na-link"
+                     href="{% url 'article_detail' item.pk %}">
+                    {{ item.subject }}
+                  </a>
+                {% else %}
+                  <a class="na-link"
+                     href="{% url 'newsletter_detail' item.pk %}">
+                    {{ item.subject }}
+                  </a>
+                {% endif %}
+              </h3>
+              <div class="na-card-meta">
+                by @{{ item.author.username }}
+                · {{ item.created_at|naturaltime }} ·
+                {% if item.publisher %}
+                  {{ item.publisher.name }}
+                {% else %}
+                  Independent
+                {% endif %}
+                ·
+                {% if item.kind == "article" %}Article{% else %}
+                Newsletter{% endif %}
+              </div>
+            </div>
+          </div>
+
+            {% if item.kind == "article" %}
+              {% if item.publisher %}
+                {% if item.is_approved %}
+                  <span class="badge bg-success" style="font-size: 0.75rem; padding: 0.4rem 0.6rem;">
+                    ✓ Approved
+                  </span>
+                {% else %}
+                  <span class="badge bg-danger" style="font-size: 0.75rem; padding: 0.4rem 0.6rem; opacity: 0.7;">
+                    ✗ Pending Approval
+                  </span>
+                {% endif %}
+              {% else %}
+                <span class="badge bg-secondary" style="font-size: 0.75rem; padding: 0.4rem 0.6rem; opacity: 0.8;">
+                  Independent
+                </span>
+              {% endif %}
+            {% else %}
+              {% if item.publisher %}
+                <span class="badge bg-success" style="font-size: 0.75rem; padding: 0.4rem 0.6rem;">
+                  ✓ Published
+                </span>
+              {% else %}
+                <span class="badge bg-secondary" style="font-size: 0.75rem; padding: 0.4rem 0.6rem; opacity: 0.8;">
+                  Independent
+                </span>
+              {% endif %}
+            {% endif %}
+        </header>
+
+        <div class="na-card-body">
+          {{ item.text|truncatechars:200 }}
+        </div>
+
+        <footer class="na-card-footer">
+          <div class="na-actions">
+            {% if item.kind == "article" %}
+              <a class="na-link"
+                 href="{% url 'article_detail' item.pk %}">Open</a>
+            {% else %}
+              <a class="na-link"
+                 href="{% url 'newsletter_detail' item.pk %}">Open</a>
+            {% endif %}
+
+            {% if user.is_authenticated and user.pk == item.author_id %}
+              {% if item.kind == "article" %}
+                <a class="na-link"
+                   href="{% url 'article_update' item.pk %}">Edit</a>
+                <a class="na-link"
+                   href="{% url 'article_delete' item.pk %}">Delete</a>
+              {% else %}
+                <a class="na-link"
+                   href="{% url 'newsletter_update' item.pk %}">Edit</a>
+                <a class="na-link"
+                   href="{% url 'newsletter_delete' item.pk %}">Delete</a>
+              {% endif %}
+            {% endif %}
+
+            {% if user.is_authenticated and user.role == 'editor' %}
+              {% if item.kind == "article" and item.publisher and user.affiliated_publisher == item.publisher %}
+                {% if item.is_approved %}
+                  <a class="btn btn-outline-danger btn-sm"
+                     href="{% url 'article_unapprove' item.pk %}">
+                    ✗ Unapprove
+                  </a>
+                {% else %}
+                  <a class="btn btn-outline-success btn-sm"
+                     href="{% url 'article_approve' item.pk %}">
+                    ✓ Approve
+                  </a>
+                {% endif %}
+              {% endif %}
+            {% endif %}
+          </div>
+        </footer>
+      </article>
+    {% empty %}
+      <div class="na-card" style="padding:1rem;">
+        {% if user.role == 'reader' %}
+          <p class="na-center na-muted" style="margin:0;">
+            No articles from journalists you follow or publishers you subscribe to yet.
+          </p>
+          <p class="na-center na-muted" style="margin:0.5rem 0 0; font-size:0.9rem;">
+            <a href="{% url 'subscriptions' %}" class="na-link">Follow journalists and subscribe to publishers</a> to see their content here.
+          </p>
+        {% else %}
+          <p class="na-center na-muted" style="margin:0;">
+            Nothing here yet.
+          </p>
+        {% endif %}
+        {% if can_create %}
+        <div class="text-center" style="margin-top:.75rem;">
+          <a href="{% url 'article_create' %}" class="btn na-blue pill px-4">
+            + Article
+          </a>
+          <a href="{% url 'newsletter_create' %}" class="btn na-blue pill px-4">
+            + Newsletter
+          </a>
+        </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <!-- Pagination -->
+  {% if page_obj and page_obj.paginator.num_pages > 1 %}
+    <nav class="na-card" aria-label="Pagination"
+         style="padding:.5rem 1rem;">
+      <div style="display:flex;justify-content:space-between;
+                  align-items:center;">
+        <div class="na-muted">
+          Page {{ page_obj.number }} of
+          {{ page_obj.paginator.num_pages }}
+        </div>
+        <div style="display:flex;gap:.5rem;">
+          {% if page_obj.has_previous %}
+            <a class="na-btn na-btn-secondary"
+               href="?page={{ page_obj.previous_page_number }}">
+              Prev
+            </a>
+          {% else %}
+            <span class="na-btn na-btn-secondary na-muted">Prev</span>
+          {% endif %}
+          {% if page_obj.has_next %}
+            <a class="na-btn na-btn-primary"
+               href="?page={{ page_obj.next_page_number }}">
+              Next
+            </a>
+          {% else %}
+            <span class="na-btn na-btn-secondary na-muted">Next</span>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+  {% endif %}
+
+</section>
+{% endblock %}

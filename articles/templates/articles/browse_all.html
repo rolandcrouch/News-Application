@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Browse All News</h2>
+        <div>
+            <a href="{% url 'newsfeed' %}" class="btn btn-secondary">
+                ← Back to My Feed
+            </a>
+        </div>
+    </div>
+
+    {% if page_obj %}
+        {% for item in page_obj %}
+            <article class="na-card">
+                <header class="na-card-header">
+                    <div style="display:flex;align-items:center;gap:.5rem;">
+                        <div class="na-avatar"></div>
+                        <div>
+                            <h3 class="na-card-title" style="margin:0;">
+                                {% if item.kind == "article" %}
+                                    <a class="na-link" href="{% url 'article_detail' item.pk %}">
+                                        {{ item.title }}
+                                    </a>
+                                {% else %}
+                                    <a class="na-link" href="{% url 'newsletter_detail' item.pk %}">
+                                        {{ item.subject }}
+                                    </a>
+                                {% endif %}
+                            </h3>
+                            <div class="na-card-meta">
+                                by @{{ item.author.username }}
+                                · {{ item.created_at|naturaltime }} ·
+                                {% if item.publisher %}
+                                    {{ item.publisher.name }}
+                                {% else %}
+                                    Independent
+                                {% endif %}
+                                ·
+                                {% if item.kind == "article" %}Article{% else %}Newsletter{% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if item.kind == "article" %}
+                        {% if item.publisher %}
+                            {% if item.is_approved %}
+                                <span class="badge bg-success" style="font-size: 0.75rem; padding: 0.4rem 0.6rem;">
+                                    ✓ Approved
+                                </span>
+                            {% else %}
+                                <span class="badge bg-danger" style="font-size: 0.75rem; padding: 0.4rem 0.6rem; opacity: 0.7;">
+                                    ✗ Pending Approval
+                                </span>
+                            {% endif %}
+                        {% else %}
+                            <span class="badge bg-secondary" style="font-size: 0.75rem; padding: 0.4rem 0.6rem; opacity: 0.8;">
+                                Independent
+                            </span>
+                        {% endif %}
+                    {% else %}
+                        {% if item.publisher %}
+                            <span class="badge bg-success" style="font-size: 0.75rem; padding: 0.4rem 0.6rem;">
+                                ✓ Published
+                            </span>
+                        {% else %}
+                            <span class="badge bg-secondary" style="font-size: 0.75rem; padding: 0.4rem 0.6rem; opacity: 0.8;">
+                                Independent
+                            </span>
+                        {% endif %}
+                    {% endif %}
+                </header>
+
+                <div class="na-card-body">
+                    {{ item.text|truncatechars:200 }}
+                </div>
+
+                <footer class="na-card-footer">
+                    <div class="na-actions">
+                        {% if item.kind == "article" %}
+                            <a class="na-link" href="{% url 'article_detail' item.pk %}">Open</a>
+                        {% else %}
+                            <a class="na-link" href="{% url 'newsletter_detail' item.pk %}">Open</a>
+                        {% endif %}
+                        
+                        <!-- Follow buttons for discovery -->
+                        {% if item.publisher %}
+                            <button class="btn btn-outline-primary btn-sm follow-btn" 
+                                    data-type="publisher" 
+                                    data-id="{{ item.publisher.id }}">
+                                + Follow {{ item.publisher.name }}
+                            </button>
+                        {% else %}
+                            <button class="btn btn-outline-secondary btn-sm follow-btn" 
+                                    data-type="journalist" 
+                                    data-id="{{ item.author.id }}">
+                                + Follow {{ item.author.username }}
+                            </button>
+                        {% endif %}
+                    </div>
+                </footer>
+            </article>
+        {% endfor %}
+
+        <!-- Pagination -->
+        {% if page_obj.has_other_pages %}
+            <nav aria-label="Browse pagination" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                        </li>
+                    {% endif %}
+                    
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ num }}</span>
+                            </li>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+    {% else %}
+        <div class="text-center py-5">
+            <p class="text-muted">No content available to browse.</p>
+            <a href="{% url 'newsfeed' %}" class="btn btn-primary">Go to My Feed</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% load humanize %}
+
+<section class="na-feed stack">
+  <article class="na-card">
+    <header class="na-card-header">
+      <h2 class="na-card-title">
+        {% if obj_type == 'article' %}
+          {{ obj.title }}
+        {% else %}
+          {{ obj.subject }}
+        {% endif %}
+      </h2>
+      <div class="na-card-meta">
+        by @{{ obj.author.username }} · {{ obj.created_at|naturaltime }} ·
+        {% if obj.publisher %}{{ obj.publisher.name }}{% else %}Independent{% endif %}
+      </div>
+      {% if obj_type == 'article' %}
+        {% if obj.publisher %}
+          {% if obj.is_approved %}
+            <span class="badge bg-success" style="font-size: 0.8rem; padding: 0.5rem 0.8rem;">
+              ✓ Approved
+            </span>
+          {% else %}
+            <span class="badge bg-danger" style="font-size: 0.8rem; padding: 0.5rem 0.8rem; opacity: 0.7;">
+              ✗ Pending Approval
+            </span>
+          {% endif %}
+        {% else %}
+          <span class="badge bg-secondary" style="font-size: 0.8rem; padding: 0.5rem 0.8rem; opacity: 0.8;">
+            Independent
+          </span>
+        {% endif %}
+      {% else %}
+        {% if obj.publisher %}
+          <span class="badge bg-success" style="font-size: 0.8rem; padding: 0.5rem 0.8rem;">
+            ✓ Published
+          </span>
+        {% else %}
+          <span class="badge bg-secondary" style="font-size: 0.8rem; padding: 0.5rem 0.8rem; opacity: 0.8;">
+            Independent
+          </span>
+        {% endif %}
+      {% endif %}
+    </header>
+
+    <div class="na-card-body">
+      <p>{{ obj.body }}</p>
+    </div>
+
+    <footer class="na-card-footer" style="display:flex; gap:.5rem;">
+      <a href="{% url 'newsfeed' %}" class="na-btn na-btn-secondary">
+        ← Back
+      </a>
+
+      {% if user.is_authenticated and user.pk == obj.author_id %}
+        {% if obj_type == 'article' %}
+          <a href="{% url 'article_update' obj.pk %}" class="na-btn">Edit</a>
+          <a href="{% url 'article_delete' obj.pk %}" class="na-btn">Delete</a>
+        {% else %}
+          <a href="{% url 'newsletter_update' obj.pk %}" class="na-btn">Edit</a>
+          <a href="{% url 'newsletter_delete' obj.pk %}" class="na-btn">Delete</a>
+        {% endif %}
+      {% endif %}
+
+      {% if user.is_authenticated and user.role == 'editor' and obj_type == 'article' and obj.publisher and user.affiliated_publisher == obj.publisher %}
+        {% if obj.is_approved %}
+          <a href="{% url 'article_unapprove' obj.pk %}" class="btn btn-outline-danger btn-sm">
+            ✗ Unapprove
+          </a>
+        {% else %}
+          <a href="{% url 'article_approve' obj.pk %}" class="btn btn-outline-success btn-sm">
+            ✓ Approve
+          </a>
+        {% endif %}
+      {% endif %}
+    </footer>
+  </article>
+</section>

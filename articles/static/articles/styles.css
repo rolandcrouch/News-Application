@@ -1,0 +1,362 @@
+/* ========== Base Reset ========== */
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #fafafa;
+  color: #111;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, Helvetica, Arial, "Apple Color Emoji",
+               "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.5;
+}
+
+/* ========== Navbar ========== */
+.na-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #fff;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.na-nav-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0.0625rem 1rem;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.na-brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: #111;
+}
+
+.na-nav-links {
+  list-style: none;
+  display: flex;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.na-nav-links a {
+  text-decoration: none;
+  color: #111;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+}
+
+.na-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: nowrap;   /* don't wrap to a new line */
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+.na-btn {
+  font-weight: 600;
+}
+
+.na-btn-primary {
+  background: #0095f6;
+  color: #fff !important;
+}
+
+.na-btn-primary:hover { filter: brightness(0.95); }
+
+.na-btn-secondary {
+  background: #efefef;
+}
+
+.na-btn-secondary:hover { background: #e6e6e6; }
+
+/* ========== Messages ========== */
+.na-messages {
+  max-width: 680px;
+  margin: 1rem auto 0;
+  padding: 0 1rem;
+}
+
+.na-alert {
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.na-success { background: #e6f7ed; color: #0a6b37; }
+.na-info    { background: #e7f3ff; color: #0b5cab; }
+.na-warning { background: #fff7e6; color: #8a5d00; }
+.na-error,
+.na-danger  { background: #ffecec; color: #a40000; }
+
+/* ========== Feed Layout (IG-like) ========== */
+.na-feed {
+  max-width: 680px;     /* narrow, like Instagram’s feed */
+  margin: 1.25rem auto;
+  padding: 0 1rem 3rem;
+}
+
+/* Card (post-like) */
+.na-card {
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.na-card-header,
+.na-card-footer {
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.na-card-header {
+  justify-content: space-between;
+}
+
+.na-card-title {
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.na-card-meta {
+  color: #777;
+  font-size: 0.85rem;
+}
+
+.na-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ddd;
+  flex: 0 0 auto;
+}
+
+.na-card-media {
+  width: 100%;
+  background: #fafafa;
+  aspect-ratio: 4 / 3; /* placeholder; replace with real media */
+}
+
+.na-card-body {
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+}
+
+.na-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.na-link {
+  color: #0095f6;
+  text-decoration: none;
+}
+
+.na-link:hover { text-decoration: underline; }
+
+/* ========== Utilities ========== */
+.na-hidden { display: none !important; }
+.na-center { text-align: center; }
+.na-muted  { color: #777; }
+
+/* ========== Auth Forms (login/register) ========== */
+form.needs-validation input,
+form.needs-validation select,
+form.needs-validation textarea {
+  width: 100%;
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
+  padding: 0.6rem 0.75rem;
+  background: #fff;
+}
+
+form.needs-validation button[type="submit"] {
+  margin-top: 0.25rem;
+  border: none;
+  border-radius: 12px;
+  padding: 0.6rem 0.9rem;
+  cursor: pointer;
+  background: #0095f6;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Profile Avatar Styles */
+.na-profile-icon {
+  text-decoration: none !important;
+  margin: 0 0.5rem;
+}
+
+.na-avatar {
+  width: 40px;                  /* match button height */
+  height: 40px;                 /* match button height */
+  border-radius: 50%;           /* circular profile icon */
+  color: white !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: 600;             /* match login/register buttons */
+  font-size: 14px;
+  line-height: 1 !important;
+  text-align: center !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;                 /* match login/register buttons */
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  text-decoration: none !important;
+  padding: 0 !important;        /* no padding for circular icon */
+  margin: 0 !important;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Role-based avatar colors */
+.na-avatar-reader {
+  background: #2d5016; /* Dark green for readers */
+}
+
+.na-avatar-journalist {
+  background: #1e3a8a; /* Dark blue for journalists */
+}
+
+.na-avatar-editor {
+  background: #7f1d1d; /* Dark red for editors */
+}
+
+.na-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+form.needs-validation button[type="submit"]:hover {
+  filter: brightness(0.95);
+}
+/* Segmented control (button tabs) */
+.na-seg {
+    display: inline-flex;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    border: 1px solid #e6e6e6;
+    border-radius: 999px;
+    background: #f6f6f6;
+  }
+  
+  .na-seg-btn {
+    border: 1px solid transparent;
+    background: transparent;
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: #444;
+  }
+  
+  .na-seg-btn:hover { background: #eee; }
+  
+  .na-seg-btn.active {
+    background: #fff;
+    border-color: #e1e1e1;
+    color: #111;
+    box-shadow: 0 1px 2px rgba(0,0,0,.06);
+  }
+  
+  /* make the control center nicely in narrow feeds */
+  .na-card .na-seg { margin: 0.25rem auto; }
+
+/* Single-button segmented control (same shape/coloring) */
+.na-seg--single {
+    /* same base look as your .na-seg; width: auto and centered */
+    margin: 0.25rem auto;
+  }
+  
+  /* Optional: make the single button stretch full width on small screens */
+  @media (max-width: 520px) {
+    .na-seg--single { width: 100%; }
+    .na-seg--single .na-seg-btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  /*navbar logout*/
+  .na-nav-form { 
+    display: inline; 
+    margin: 0; 
+  }
+  
+  /* Ensure Bootstrap button styles work in navbar */
+  .na-nav-form .btn {
+    border-radius: 0.375rem !important;
+  }
+  
+  /* White text for logout button */
+  .btn-secondary {
+    color: white !important;
+  }
+
+/* Profile Circle - inherits na-btn styling but overrides to be circular */
+.na-profile-circle {
+  border-radius: 50% !important;
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  line-height: 1 !important;
+  color: white !important;
+  font-size: 12px !important;
+}
+
+/* Fallback if display: contents isn't supported */
+@supports not (display: contents) {
+  .na-nav-form { display: inline; margin: 0; }
+}
+
+/* Brand blue */
+.btn.na-blue {
+    background: #0095f6;
+    border-color: #0095f6;
+    color: #fff;
+  }
+  .btn.na-blue:hover { background: #007bd1; border-color: #007bd1; }
+  .btn.na-blue:active { background: #0068b2; border-color: #0068b2; }
+  
+
+ /* Brand color (optional) */
+:root { --na-blue: #0095f6; }
+
+/* One class to rule them all */
+.btn.na-blue.pill,
+.na-btn.na-blue.pill {
+  font-family: inherit;   /* same font as body/nav */
+  font-weight: 600; 
+  background: var(--na-blue);
+  border-color: var(--na-blue);
+  color: #fff;
+  border-radius: 9999px !important;
+  border-top-left-radius:     9999px !important;
+  border-top-right-radius:    9999px !important;
+  border-bottom-right-radius: 9999px !important;
+  border-bottom-left-radius:  9999px !important;
+  padding: 0.5rem 1rem; /* a touch taller = more pill-y */
+}
+.btn.na-blue.pill:hover { filter: brightness(0.95); }
+.btn.na-blue.pill:active { filter: brightness(0.9); }

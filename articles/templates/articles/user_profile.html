@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5" style="max-width: 600px;">
+    <h2 class="mb-4 text-center">Edit Profile</h2>
+
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {% for error in form.non_field_errors %}
+                <div>{{ error }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <form method="post" class="needs-validation">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="id_username" class="form-label">
+                Username
+            </label>
+            {{ form.username }}
+            {% if form.username.errors %}
+                <div class="text-danger">
+                    {{ form.username.errors.0 }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_email" class="form-label">
+                Email
+            </label>
+            {{ form.email }}
+            {% if form.email.errors %}
+                <div class="text-danger">
+                    {{ form.email.errors.0 }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_first_name" class="form-label">
+                First Name
+            </label>
+            {{ form.first_name }}
+            {% if form.first_name.errors %}
+                <div class="text-danger">
+                    {{ form.first_name.errors.0 }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_last_name" class="form-label">
+                Last Name
+            </label>
+            {{ form.last_name }}
+            {% if form.last_name.errors %}
+                <div class="text-danger">
+                    {{ form.last_name.errors.0 }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_affiliated_publisher" class="form-label">
+                Publisher Affiliation
+                {% if user.role == 'editor' %}
+                    <span class="text-danger">*</span>
+                {% endif %}
+            </label>
+            {{ form.affiliated_publisher }}
+            {% if form.affiliated_publisher.errors %}
+                <div class="text-danger" id="publisher_error" style="{% if form.new_publisher_name.value %}display: none;{% endif %}">
+                    {{ form.affiliated_publisher.errors.0 }}
+                </div>
+            {% endif %}
+            <div class="form-text">
+                {% if user.role == 'editor' %}
+                    Select an existing publisher OR enter a new one below. If entering a new publisher name, it will override any selection above.
+                {% elif user.role == 'journalist' %}
+                    Optional - you can affiliate with a publisher or work independently
+                {% else %}
+                    Not applicable for readers
+                {% endif %}
+            </div>
+        </div>
+
+        {% if user.role == 'editor' %}
+        <div class="mb-3">
+            <label for="id_new_publisher_name" class="form-label">
+                Or Create New Publisher
+            </label>
+            {{ form.new_publisher_name }}
+            {% if form.new_publisher_name.errors %}
+                <div class="text-danger">
+                    {{ form.new_publisher_name.errors.0 }}
+                </div>
+            {% endif %}
+            <div class="form-text">Enter a new publisher name. This will override any selection above and create a new publisher.</div>
+        </div>
+        {% endif %}
+
+        <div class="mb-3">
+            <label class="form-label">Current Role</label>
+            <div class="form-control-plaintext">
+                <span class="badge bg-{% if user.role == 'editor' %}primary{% elif user.role == 'journalist' %}success{% else %}secondary{% endif %}">
+                    {{ user.get_role_display }}
+                </span>
+            </div>
+            <div class="form-text">Role cannot be changed after registration</div>
+        </div>
+
+        <table style="border-collapse: separate; border-spacing: 8px 0;">
+            <tr>
+                <td>
+                    <button type="submit" class="btn btn-primary" style="height: 38px; padding: 6px 12px; line-height: 1.42857143;">Update Profile</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-outline-secondary" onclick="window.location.href='{% url 'newsfeed' %}'" style="height: 38px; padding: 6px 12px; line-height: 1.42857143;">Cancel</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+    <div class="mt-4">
+        <h5>Account Information</h5>
+        <div class="card">
+            <div class="card-body">
+                <p><strong>Username:</strong> {{ user.username }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <p><strong>Role:</strong> {{ user.get_role_display }}</p>
+                {% if user.affiliated_publisher %}
+                    <p><strong>Publisher:</strong> {{ user.affiliated_publisher.name }}</p>
+                {% else %}
+                    <p><strong>Publisher:</strong> <em>None</em></p>
+                {% endif %}
+                <p><strong>Member since:</strong> {{ user.date_joined|date:"F j, Y" }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

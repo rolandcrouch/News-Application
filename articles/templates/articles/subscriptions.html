@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="na-feed stack">
+
+  <!-- Header + tabs -->
+  <div class="na-card" style="padding:.75rem 1rem;">
+    <h2 style="margin:0;">Subscriptions</h2>
+    {% if not is_reader %}
+      <p class="na-muted" style="margin:.25rem 0 0;">
+        Only Readers can manage subscriptions. You can still browse.
+      </p>
+    {% endif %}
+  </div>
+
+    <!-- segmented buttons card -->
+  <div class="na-card">
+    <div class="na-card-body" style="display:flex;justify-content:center;">
+      <form method="get"
+            class="na-seg"
+            role="tablist"
+            aria-label="Subscriptions sections">
+        <button type="submit"
+                name="tab"
+                value="journalists"
+                class="na-seg-btn {% if tab == 'journalists' %}active{% endif %}"
+                aria-pressed="{% if tab == 'journalists' %}true{% else %}false{% endif %}">
+          Journalists
+        </button>
+        <button type="submit"
+                name="tab"
+                value="publishers"
+                class="na-seg-btn {% if tab == 'publishers' %}active{% endif %}"
+                aria-pressed="{% if tab == 'publishers' %}true{% else %}false{% endif %}">
+          Publishers
+        </button>
+      </form>
+    </div>
+  </div>
+  
+
+  {% if tab == "journalists" %}
+    <!-- Journalists -->
+    <div class="na-card">
+      <header class="na-card-header">
+        <h3 class="na-card-title">Journalists</h3>
+      </header>
+      <div class="na-card-body">
+        {% if journalists %}
+          <div class="stack">
+            {% for j in journalists %}
+              <div class="hstack" style="justify-content:space-between; align-items: center; padding: 0.75rem 0; {% if not forloop.last %}border-bottom: 1px solid #f0f0f0;{% endif %}">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <div class="na-avatar" style="width: 32px; height: 32px;"></div>
+                  <div>
+                    <strong>@{{ j.username }}</strong>
+                    <div class="na-muted" style="font-size: 0.85rem;">Journalist</div>
+                  </div>
+                </div>
+                <div>
+                  {% if is_reader %}
+                    <form method="post" class="hstack">
+                      {% csrf_token %}
+                      <input type="hidden" name="kind" value="journalist">
+                      <input type="hidden" name="id" value="{{ j.id }}">
+                      <input type="hidden" name="tab" value="{{ tab }}">
+                      {% if j.id in user_jour_ids %}
+                        <input type="hidden" name="action" value="unsubscribe">
+                        <button class="btn btn-outline-secondary btn-sm" type="submit" style="border-radius: 999px; padding: 0.4rem 0.8rem; font-weight: 600;">
+                          ✓ Following
+                        </button>
+                      {% else %}
+                        <input type="hidden" name="action" value="subscribe">
+                        <button class="btn btn-primary btn-sm" type="submit" style="border-radius: 999px; padding: 0.4rem 0.8rem; font-weight: 600;">
+                          + Follow
+                        </button>
+                      {% endif %}
+                    </form>
+                  {% else %}
+                    <button class="btn btn-outline-secondary btn-sm" disabled style="border-radius: 999px; padding: 0.4rem 0.8rem; font-weight: 600;">
+                      Follow
+                    </button>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p class="na-muted">No journalists found.</p>
+        {% endif %}
+      </div>
+    </div>
+  {% else %}
+    <!-- Publishers -->
+    <div class="na-card">
+      <header class="na-card-header">
+        <h3 class="na-card-title">Publishers</h3>
+      </header>
+      <div class="na-card-body">
+        {% if publishers %}
+          <div class="stack">
+            {% for p in publishers %}
+              <div class="hstack" style="justify-content:space-between; align-items: center; padding: 0.75rem 0; {% if not forloop.last %}border-bottom: 1px solid #f0f0f0;{% endif %}">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <div class="na-avatar" style="width: 32px; height: 32px; background: #0095f6;"></div>
+                  <div>
+                    <strong>{{ p.name }}</strong>
+                    <div class="na-muted" style="font-size: 0.85rem;">Publisher</div>
+                  </div>
+                </div>
+                <div>
+                  {% if is_reader %}
+                    <form method="post" class="hstack">
+                      {% csrf_token %}
+                      <input type="hidden" name="kind" value="publisher">
+                      <input type="hidden" name="id" value="{{ p.id }}">
+                      <input type="hidden" name="tab" value="{{ tab }}">
+                      {% if p.id in user_pub_ids %}
+                        <input type="hidden" name="action" value="unsubscribe">
+                        <button class="btn btn-outline-secondary btn-sm" type="submit" style="border-radius: 999px; padding: 0.4rem 0.8rem; font-weight: 600;">
+                          ✓ Subscribed
+                        </button>
+                      {% else %}
+                        <input type="hidden" name="action" value="subscribe">
+                        <button class="btn btn-primary btn-sm" type="submit" style="border-radius: 999px; padding: 0.4rem 0.8rem; font-weight: 600;">
+                          + Subscribe
+                        </button>
+                      {% endif %}
+                    </form>
+                  {% else %}
+                    <button class="btn btn-outline-secondary btn-sm" disabled style="border-radius: 999px; padding: 0.4rem 0.8rem; font-weight: 600;">
+                      Subscribe
+                    </button>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p class="na-muted">No publishers found.</p>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+
+<!-- Back to Newsfeed (segmented-style button) -->
+<div class="na-card">
+    <div class="na-card-body" style="display:flex;justify-content:center;">
+      <form method="get" action="{% url 'newsfeed' %}"
+            class="na-seg na-seg--single">
+        <button type="submit" class="na-seg-btn active">
+          ← Back to Newsfeed
+        </button>
+      </form>
+    </div>
+  </div>
+
+</section>
+{% endblock %}
