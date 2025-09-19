@@ -1,3 +1,10 @@
+"""
+URL configuration for the articles app.
+
+Defines URL patterns for authentication, article/newsletter management,
+subscriptions, Twitter integration, and user profile functionality.
+"""
+
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from .views import (

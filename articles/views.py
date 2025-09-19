@@ -152,6 +152,7 @@ def reset_user_password(request, token: str):
 # ---------- article feed ----------
 
 def article_feed(request):
+    """Redirect to newsfeed view for unified content display."""
     # Redirect to newsfeed instead of using separate article_feed.html
     return redirect(reverse("newsfeed"))
 
@@ -237,6 +238,7 @@ def newsfeed(request):
 
 @login_required
 def browse_all_news(request):
+    """Display all approved articles and newsletters with search and filtering."""
     """Browse all approved articles and newsletters regardless of subscription."""
     if request.user.role != User.Roles.READER:
         # Non-readers should use the regular newsfeed
@@ -312,6 +314,7 @@ def browse_all_news(request):
 
 @login_required
 def subscriptions(request):
+    """Display and manage user subscriptions to publishers and journalists."""
     """
     List publishers and journalists. Readers can subscribe/unsubscribe.
     Tab switch via ?tab=journalists|publishers.
@@ -381,16 +384,20 @@ def subscriptions(request):
 # ---------- Articles ----------
 
 def _is_editor_or_journalist(user: User) -> bool:
+    """Check if user is authenticated and has editor or journalist role."""
     return user.is_authenticated and user.role in (
         User.Roles.EDITOR, User.Roles.JOURNALIST
     )
 
 
 def _is_editor(user: User) -> bool:
+    """Check if user is authenticated and has editor role."""
     return user.is_authenticated and user.role == User.Roles.EDITOR
 
 
 class ArticleCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+    """View for creating new articles by editors and journalists."""
+    
     model = Article
     form_class = ArticleForm
     template_name = "articles/article_form.html"
@@ -407,12 +414,16 @@ class ArticleCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
 
 class ArticleDetailView(DetailView):
+    """View for displaying article details."""
+    
     model = Article
     template_name = "articles/article_detail.html"
     context_object_name = "article"
 
 
 class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """View for updating existing articles by their authors."""
+    
     model = Article
     form_class = ArticleForm
     template_name = "articles/article_form.html"
@@ -429,6 +440,8 @@ class ArticleUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 
 class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    """View for deleting articles by their authors."""
+    
     model = Article
     template_name = "articles/article_confirm_delete.html"
     success_url = reverse_lazy("newsfeed")
@@ -447,6 +460,8 @@ class ArticleDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 class NewsletterCreateView(
     LoginRequiredMixin, UserPassesTestMixin, CreateView
 ):
+    """View for creating new newsletters by editors and journalists."""
+    
     model = Newsletter
     form_class = NewsletterForm
     template_name = "articles/newsletter_form.html"
@@ -462,12 +477,16 @@ class NewsletterCreateView(
     
 
 class NewsletterDetailView(DetailView):
+    """View for displaying newsletter details."""
+    
     model = Newsletter
     template_name = "articles/newsletter_detail.html"
     context_object_name = "newsletter"
 
 
 class NewsletterUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """View for updating existing newsletters by their authors."""
+    
     model = Newsletter
     form_class = NewsletterForm
     template_name = "articles/newsletter_form.html"
@@ -484,6 +503,8 @@ class NewsletterUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 
 class NewsletterDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    """View for deleting newsletters by their authors."""
+    
     model = Newsletter
     template_name = "articles/newsletter_confirm_delete.html"
     success_url = reverse_lazy("newsfeed")
@@ -499,6 +520,7 @@ class NewsletterDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 def _compose_tweet_for_article(a: Article) -> str:
+    """Compose a Twitter-friendly text for an article with title and truncated body."""
     # Journalist display name
     who = a.author.get_full_name() or a.author.username
     # Build the tweet. Leave some headroom for safety (links, emojis, etc.)
@@ -510,6 +532,7 @@ def _compose_tweet_for_article(a: Article) -> str:
 
 
 def _compose_tweet_for_newsletter(n: Newsletter) -> str:
+    """Compose a Twitter-friendly text for a newsletter with subject and truncated content."""
     who = n.author.get_full_name() or n.author.username
     header = f"📣 {who} — {n.subject}\n\n"
     body = Truncator(n.content.strip()).chars(270 - len(header), truncate="…")
@@ -577,6 +600,7 @@ You can manage your subscriptions at: http://127.0.0.1:8000/subscriptions/
 
 
 def approve_and_publish(request, kind: str, pk: int):
+    """Approve and publish an article or newsletter, with optional Twitter posting."""
     """
     Approves an Article OR publishes a Newsletter, then posts to Twitter.
 
@@ -683,6 +707,7 @@ def approve_and_publish(request, kind: str, pk: int):
 @login_required
 @user_passes_test(_is_editor)
 def article_unapprove(request, pk: int):
+    """Unapprove an article, removing its approved status."""
     article = get_object_or_404(Article, pk=pk)
     
     # Publisher affiliation check
@@ -703,6 +728,7 @@ def article_unapprove(request, pk: int):
 
 @login_required
 def user_profile(request):
+    """Display and handle user profile editing form."""
     """View for users to edit their profile details."""
     if request.method == "POST":
         form = UserProfileForm(request.POST, instance=request.user)

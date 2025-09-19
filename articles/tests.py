@@ -1,3 +1,10 @@
+"""
+Comprehensive test suite for the Django News Application.
+
+Tests cover models, views, forms, API endpoints, permissions,
+integrations, and security features.
+"""
+
 from django.test import TestCase, Client
 from django.contrib.auth import get_user_model
 from django.urls import reverse
