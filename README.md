@@ -229,11 +229,35 @@ TWITTER_REDIRECT_URI=http://localhost:8000/accounts/twitter/callback/
 2. Generate an App Password
 3. Add credentials to your `.env` file
 
-## 🚀 API Documentation
+## 📚 Documentation
 
-The application includes a comprehensive REST API. See [API_DOCUMENTATION.md](API_DOCUMENTATION.md) for detailed information.
+The Django News Application includes comprehensive documentation covering all aspects of the system.
 
-### Quick API Start
+### 📖 Complete Documentation (Sphinx)
+
+Access the full documentation with detailed guides, API references, and examples:
+
+```bash
+# Generate and view documentation
+cd docs
+python -m http.server 8080
+# Open http://localhost:8080/_build/html/
+```
+
+**Documentation includes:**
+- **📋 Installation Guide**: Step-by-step setup for all environments
+- **🏗️ Architecture Overview**: System design and user roles
+- **🔗 API Documentation**: Complete REST API reference with examples
+- **📦 Module Documentation**: Auto-generated from code docstrings
+- **🚀 Deployment Guide**: Docker, cloud, and traditional deployments
+- **🧪 Testing Guide**: Comprehensive testing strategies and examples
+- **🐳 Container Guide**: Docker setup and management
+
+### 🚀 API Documentation
+
+The application includes a comprehensive REST API with token-based authentication.
+
+#### Quick API Start
 ```bash
 # Get authentication token
 curl -X POST http://localhost:8000/api/auth/token/ \
@@ -243,7 +267,22 @@ curl -X POST http://localhost:8000/api/auth/token/ \
 # Use token to access protected endpoints
 curl -X GET http://localhost:8000/api/articles/ \
   -H "Authorization: Token your_token_here"
+
+# Get API information
+curl http://localhost:8000/api/info/
 ```
+
+#### Available Endpoints
+- **Authentication**: `/api/auth/token/` - Get authentication token
+- **Articles**: `/api/articles/` - List and retrieve articles
+- **Newsletters**: `/api/newsletters/` - List and retrieve newsletters
+- **Publishers**: `/api/publishers/` - List publishers
+- **Journalists**: `/api/journalists/` - List journalists  
+- **Subscriptions**: `/api/subscriptions/` - Manage user subscriptions
+- **Feed**: `/api/feed/` - Combined content feed
+- **Info**: `/api/info/` - API information and endpoints
+
+For detailed API documentation with examples, see the full documentation or visit `/api/info/` endpoint.
 
 ## 🧪 Testing
 
@@ -367,77 +406,152 @@ When an editor approves content:
 
 ## 🚀 Deployment
 
-### Docker Deployment (Recommended)
+The Django News Application supports multiple deployment methods to suit different environments and requirements.
 
-#### Quick Start with Docker Compose
+### 🐳 Docker Deployment (Recommended)
+
+The application includes comprehensive Docker support with management scripts for both development and production environments.
+
+#### Quick Start - Development with Docker
+
 ```bash
 # Clone and navigate to project
 git clone <repository-url>
-cd news_app
+cd django-news-application
 
-# Start all services (database + web app)
-docker-compose up -d
-
-# View logs
-docker-compose logs -f web
+# Start development environment (one command setup!)
+./scripts/docker-dev.sh start
 
 # Access application
 open http://localhost:8000
 ```
 
-#### Docker Environment Configuration
-Create a `.env` file for Docker deployment:
-```env
-# Twitter API (optional)
-TWITTER_CLIENT_ID=your_twitter_client_id
-TWITTER_CLIENT_SECRET=your_twitter_client_secret
-TWITTER_REDIRECT_URI=http://localhost:8000/accounts/twitter/callback/
+**Default credentials**: `admin` / `admin123`
 
-# Email Configuration (optional)
-GMAIL_USER=your_email@gmail.com
-GMAIL_APP_PASSWORD=your_gmail_app_password
+#### Docker Development Management
 
-# Production Settings (for production deployment)
-SECRET_KEY=your-production-secret-key
-DEBUG=False
-ALLOWED_HOSTS=yourdomain.com,www.yourdomain.com
+Use the development management script for easy Docker operations:
+
+```bash
+# Build environment
+./scripts/docker-dev.sh build
+
+# Start/stop/restart services
+./scripts/docker-dev.sh start
+./scripts/docker-dev.sh stop
+./scripts/docker-dev.sh restart
+
+# View logs
+./scripts/docker-dev.sh logs
+./scripts/docker-dev.sh logs web
+
+# Run Django commands
+./scripts/docker-dev.sh manage makemigrations
+./scripts/docker-dev.sh manage migrate
+./scripts/docker-dev.sh manage createsuperuser
+
+# Access shells
+./scripts/docker-dev.sh shell      # Django shell
+./scripts/docker-dev.sh dbshell    # Database shell
+
+# Run tests
+./scripts/docker-dev.sh test
+
+# Create database backup
+./scripts/docker-dev.sh backup
+
+# Show container status
+./scripts/docker-dev.sh status
+
+# Get help
+./scripts/docker-dev.sh help
 ```
 
-#### Docker Commands
+#### Production Docker Deployment
+
+For production deployment with PostgreSQL, Redis, Nginx, and SSL support:
+
 ```bash
-# Build and start services
-docker-compose up --build -d
+# Configure production environment
+cp env.production.example .env.production
+# Edit .env.production with your settings
 
-# View application logs
+# Start production environment
+./scripts/docker-prod.sh start
+
+# Access at your configured domain
+open https://yourdomain.com
+```
+
+#### Production Management Commands
+
+```bash
+# Build and deploy
+./scripts/docker-prod.sh build
+./scripts/docker-prod.sh start
+
+# Database management
+./scripts/docker-prod.sh backup
+./scripts/docker-prod.sh restore backups/backup_20231219_120000.sql.gz
+
+# Application updates
+./scripts/docker-prod.sh update
+
+# Monitoring and health
+./scripts/docker-prod.sh monitor
+./scripts/docker-prod.sh health
+./scripts/docker-prod.sh ssl-status
+
+# View logs
+./scripts/docker-prod.sh logs nginx
+./scripts/docker-prod.sh logs web
+
+# Django management
+./scripts/docker-prod.sh manage collectstatic
+./scripts/docker-prod.sh manage migrate
+```
+
+#### Docker Architecture
+
+**Development Environment:**
+- **web**: Django application server
+- **db**: MySQL database
+- **volumes**: Persistent data storage
+
+**Production Environment:**
+- **web**: Django with Gunicorn (scalable)
+- **db**: PostgreSQL database
+- **redis**: Redis for caching and sessions
+- **nginx**: Reverse proxy with SSL support
+- **celery**: Background task worker
+- **celery-beat**: Scheduled task scheduler
+
+#### Docker Features
+
+- **✅ Multi-stage builds**: Optimized production images
+- **✅ Security hardening**: Non-root containers, security headers
+- **✅ Auto-setup**: Database migrations and superuser creation
+- **✅ Health checks**: Application and service monitoring
+- **✅ SSL/HTTPS**: Production-ready with Let's Encrypt support
+- **✅ Load balancing**: Nginx reverse proxy with rate limiting
+- **✅ Automated backups**: Database backup with retention policies
+- **✅ Monitoring**: Resource usage and health monitoring
+- **✅ Scalability**: Horizontal scaling support
+
+#### Manual Docker Commands (Alternative)
+
+If you prefer manual Docker commands:
+
+```bash
+# Development
+docker-compose up -d
 docker-compose logs -f web
-
-# View database logs
-docker-compose logs -f db
-
-# Stop services
-docker-compose down
-
-# Stop and remove volumes (WARNING: deletes data)
-docker-compose down -v
-
-# Access Django shell in container
 docker-compose exec web python manage.py shell
 
-# Run migrations manually
-docker-compose exec web python manage.py migrate
-
-# Create superuser
-docker-compose exec web python manage.py createsuperuser
+# Production
+docker-compose -f docker-compose.prod.yml --env-file .env.production up -d
+docker-compose -f docker-compose.prod.yml logs -f web
 ```
-
-#### What Docker Provides
-- **✅ Consistent Environment**: Same setup across development, staging, and production
-- **✅ MySQL Database**: Automatically configured and connected
-- **✅ Dependency Management**: All Python packages pre-installed
-- **✅ Test Data**: Automatically creates test users on startup
-- **✅ Static Files**: Properly collected and served
-- **✅ Health Checks**: Monitors application and database health
-- **✅ Data Persistence**: Database data persists between container restarts
 
 ### Manual Production Deployment
 
@@ -488,18 +602,6 @@ For support and questions:
 - ✅ Added publisher affiliation system for editors
 - ✅ Created comprehensive test suite
 
-## 📈 Future Enhancements
-
-- [ ] Real-time notifications using WebSockets
-- [ ] Advanced content analytics
-- [ ] Multi-language support
-- [ ] Mobile app integration
-- [ ] Advanced search functionality
-- [ ] Content recommendation system
-- [ ] Social media integration (Facebook, LinkedIn)
-- [ ] Advanced reporting and analytics dashboard
 
 ---
-
-**Built with ❤️ using Django and modern web technologies**
 

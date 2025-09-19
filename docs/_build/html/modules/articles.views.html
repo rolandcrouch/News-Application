@@ -1,0 +1,613 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>articles.views module &mdash; Django News Application 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="articles.api_views module" href="articles.api_views.html" />
+    <link rel="prev" title="articles.models module" href="articles.models.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Django News Application
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Application Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#architecture">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#user-roles-and-permissions">User Roles and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#publishers">Publishers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#content-management">Content Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#subscription-system">Subscription System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#content-feeds">Content Feeds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#approval-workflow">Approval Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#integration-features">Integration Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#api-architecture">API Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#security-features">Security Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#development-setup">Development Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#production-setup">Production Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#configuration-options">Configuration Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#testing-the-installation">Testing the Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#getting-help">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#development-tools">Development Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#api-overview">API Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#base-url">Base URL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#available-endpoints">Available Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#response-format">Response Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#http-status-codes">HTTP Status Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#rate-limiting">Rate Limiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#pagination">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#testing-the-api">Testing the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Module Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html#articles-application">Articles Application</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="articles.models.html">articles.models module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">articles.views module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#articles.views.CustomLoginView"><code class="docutils literal notranslate"><span class="pre">CustomLoginView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.CustomLoginView.template_name"><code class="docutils literal notranslate"><span class="pre">CustomLoginView.template_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.views.register"><code class="docutils literal notranslate"><span class="pre">register()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.views.forgot_username"><code class="docutils literal notranslate"><span class="pre">forgot_username()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.views.send_password_reset"><code class="docutils literal notranslate"><span class="pre">send_password_reset()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.views.reset_user_password"><code class="docutils literal notranslate"><span class="pre">reset_user_password()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.views.article_feed"><code class="docutils literal notranslate"><span class="pre">article_feed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.views.newsfeed"><code class="docutils literal notranslate"><span class="pre">newsfeed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.views.browse_all_news"><code class="docutils literal notranslate"><span class="pre">browse_all_news()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.views.subscriptions"><code class="docutils literal notranslate"><span class="pre">subscriptions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.views.ArticleCreateView"><code class="docutils literal notranslate"><span class="pre">ArticleCreateView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.ArticleCreateView.model"><code class="docutils literal notranslate"><span class="pre">ArticleCreateView.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.ArticleCreateView.form_class"><code class="docutils literal notranslate"><span class="pre">ArticleCreateView.form_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.ArticleCreateView.template_name"><code class="docutils literal notranslate"><span class="pre">ArticleCreateView.template_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.ArticleCreateView.success_url"><code class="docutils literal notranslate"><span class="pre">ArticleCreateView.success_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.ArticleCreateView.test_func"><code class="docutils literal notranslate"><span class="pre">ArticleCreateView.test_func()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.ArticleCreateView.form_valid"><code class="docutils literal notranslate"><span class="pre">ArticleCreateView.form_valid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.views.ArticleDetailView"><code class="docutils literal notranslate"><span class="pre">ArticleDetailView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.ArticleDetailView.model"><code class="docutils literal notranslate"><span class="pre">ArticleDetailView.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.ArticleDetailView.template_name"><code class="docutils literal notranslate"><span class="pre">ArticleDetailView.template_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.ArticleDetailView.context_object_name"><code class="docutils literal notranslate"><span class="pre">ArticleDetailView.context_object_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.views.ArticleUpdateView"><code class="docutils literal notranslate"><span class="pre">ArticleUpdateView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.ArticleUpdateView.model"><code class="docutils literal notranslate"><span class="pre">ArticleUpdateView.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.ArticleUpdateView.form_class"><code class="docutils literal notranslate"><span class="pre">ArticleUpdateView.form_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.ArticleUpdateView.template_name"><code class="docutils literal notranslate"><span class="pre">ArticleUpdateView.template_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.ArticleUpdateView.success_url"><code class="docutils literal notranslate"><span class="pre">ArticleUpdateView.success_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.ArticleUpdateView.test_func"><code class="docutils literal notranslate"><span class="pre">ArticleUpdateView.test_func()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.ArticleUpdateView.form_valid"><code class="docutils literal notranslate"><span class="pre">ArticleUpdateView.form_valid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.views.ArticleDeleteView"><code class="docutils literal notranslate"><span class="pre">ArticleDeleteView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.ArticleDeleteView.model"><code class="docutils literal notranslate"><span class="pre">ArticleDeleteView.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.ArticleDeleteView.template_name"><code class="docutils literal notranslate"><span class="pre">ArticleDeleteView.template_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.ArticleDeleteView.success_url"><code class="docutils literal notranslate"><span class="pre">ArticleDeleteView.success_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.ArticleDeleteView.test_func"><code class="docutils literal notranslate"><span class="pre">ArticleDeleteView.test_func()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.ArticleDeleteView.delete"><code class="docutils literal notranslate"><span class="pre">ArticleDeleteView.delete()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.views.NewsletterCreateView"><code class="docutils literal notranslate"><span class="pre">NewsletterCreateView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.NewsletterCreateView.model"><code class="docutils literal notranslate"><span class="pre">NewsletterCreateView.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.NewsletterCreateView.form_class"><code class="docutils literal notranslate"><span class="pre">NewsletterCreateView.form_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.NewsletterCreateView.template_name"><code class="docutils literal notranslate"><span class="pre">NewsletterCreateView.template_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.NewsletterCreateView.success_url"><code class="docutils literal notranslate"><span class="pre">NewsletterCreateView.success_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.NewsletterCreateView.test_func"><code class="docutils literal notranslate"><span class="pre">NewsletterCreateView.test_func()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.NewsletterCreateView.form_valid"><code class="docutils literal notranslate"><span class="pre">NewsletterCreateView.form_valid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.views.NewsletterDetailView"><code class="docutils literal notranslate"><span class="pre">NewsletterDetailView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.NewsletterDetailView.model"><code class="docutils literal notranslate"><span class="pre">NewsletterDetailView.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.NewsletterDetailView.template_name"><code class="docutils literal notranslate"><span class="pre">NewsletterDetailView.template_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.NewsletterDetailView.context_object_name"><code class="docutils literal notranslate"><span class="pre">NewsletterDetailView.context_object_name</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.views.NewsletterUpdateView"><code class="docutils literal notranslate"><span class="pre">NewsletterUpdateView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.NewsletterUpdateView.model"><code class="docutils literal notranslate"><span class="pre">NewsletterUpdateView.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.NewsletterUpdateView.form_class"><code class="docutils literal notranslate"><span class="pre">NewsletterUpdateView.form_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.NewsletterUpdateView.template_name"><code class="docutils literal notranslate"><span class="pre">NewsletterUpdateView.template_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.NewsletterUpdateView.success_url"><code class="docutils literal notranslate"><span class="pre">NewsletterUpdateView.success_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.NewsletterUpdateView.test_func"><code class="docutils literal notranslate"><span class="pre">NewsletterUpdateView.test_func()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.NewsletterUpdateView.form_valid"><code class="docutils literal notranslate"><span class="pre">NewsletterUpdateView.form_valid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.views.NewsletterDeleteView"><code class="docutils literal notranslate"><span class="pre">NewsletterDeleteView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.NewsletterDeleteView.model"><code class="docutils literal notranslate"><span class="pre">NewsletterDeleteView.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.NewsletterDeleteView.template_name"><code class="docutils literal notranslate"><span class="pre">NewsletterDeleteView.template_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.NewsletterDeleteView.success_url"><code class="docutils literal notranslate"><span class="pre">NewsletterDeleteView.success_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.NewsletterDeleteView.test_func"><code class="docutils literal notranslate"><span class="pre">NewsletterDeleteView.test_func()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.views.NewsletterDeleteView.delete"><code class="docutils literal notranslate"><span class="pre">NewsletterDeleteView.delete()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.views.approve_and_publish"><code class="docutils literal notranslate"><span class="pre">approve_and_publish()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.views.article_unapprove"><code class="docutils literal notranslate"><span class="pre">article_unapprove()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.views.user_profile"><code class="docutils literal notranslate"><span class="pre">user_profile()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="articles.api_views.html">articles.api_views module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.forms.html">articles.forms module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.serializers.html">articles.serializers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.admin.html">articles.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.utils.html">articles.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.signals.html">articles.signals module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.functions.html">articles.functions package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#main-project">Main Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#production-deployment">Production Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#cloud-platform-deployment">Cloud Platform Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#monitoring-and-maintenance">Monitoring and Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#security-considerations">Security Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html">Testing Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-suite-overview">Test Suite Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-categories">Test Categories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-data-setup">Test Data Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-configuration">Test Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#mocking-external-services">Mocking External Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-automation">Test Automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#performance-testing">Performance Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#best-practices">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#running-specific-tests">Running Specific Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Django News Application</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module Documentation</a></li>
+      <li class="breadcrumb-item active">articles.views module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/articles.views.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="articles-views-module">
+<h1>articles.views module<a class="headerlink" href="#articles-views-module" title="Link to this heading"></a></h1>
+<dl class="py class" id="module-articles.views">
+<dt class="sig sig-object py" id="articles.views.CustomLoginView">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.views.</span></span><span class="sig-name descname"><span class="pre">CustomLoginView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#CustomLoginView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.CustomLoginView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/topics/auth/default/#django.contrib.auth.views.LoginView" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LoginView</span></code></a></p>
+<p>Use Django’s built-in login with our custom template.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.CustomLoginView.template_name">
+<span class="sig-name descname"><span class="pre">template_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'registration/login.html'</span></em><a class="headerlink" href="#articles.views.CustomLoginView.template_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.views.register">
+<span class="sig-prename descclassname"><span class="pre">articles.views.</span></span><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.register" title="Link to this definition"></a></dt>
+<dd><p>Register a new user and redirect to login on success.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.views.forgot_username">
+<span class="sig-prename descclassname"><span class="pre">articles.views.</span></span><span class="sig-name descname"><span class="pre">forgot_username</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#forgot_username"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.forgot_username" title="Link to this definition"></a></dt>
+<dd><p>Email any usernames associated with the provided address.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">HttpResponse</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.views.send_password_reset">
+<span class="sig-prename descclassname"><span class="pre">articles.views.</span></span><span class="sig-name descname"><span class="pre">send_password_reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#send_password_reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.send_password_reset" title="Link to this definition"></a></dt>
+<dd><p>Neutral response to prevent user enumeration.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.views.reset_user_password">
+<span class="sig-prename descclassname"><span class="pre">articles.views.</span></span><span class="sig-name descname"><span class="pre">reset_user_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#reset_user_password"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.reset_user_password" title="Link to this definition"></a></dt>
+<dd><p>GET: validate token and show form (no consumption).
+POST: on valid form, set password and consume token.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.views.article_feed">
+<span class="sig-prename descclassname"><span class="pre">articles.views.</span></span><span class="sig-name descname"><span class="pre">article_feed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#article_feed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.article_feed" title="Link to this definition"></a></dt>
+<dd><p>Redirect to newsfeed view for unified content display.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.views.newsfeed">
+<span class="sig-prename descclassname"><span class="pre">articles.views.</span></span><span class="sig-name descname"><span class="pre">newsfeed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#newsfeed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.newsfeed" title="Link to this definition"></a></dt>
+<dd><p>Unified feed for Articles + Newsletters, newest first.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.views.browse_all_news">
+<span class="sig-prename descclassname"><span class="pre">articles.views.</span></span><span class="sig-name descname"><span class="pre">browse_all_news</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#browse_all_news"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.browse_all_news" title="Link to this definition"></a></dt>
+<dd><p>Display all approved articles and newsletters with search and filtering.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.views.subscriptions">
+<span class="sig-prename descclassname"><span class="pre">articles.views.</span></span><span class="sig-name descname"><span class="pre">subscriptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#subscriptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.subscriptions" title="Link to this definition"></a></dt>
+<dd><p>Display and manage user subscriptions to publishers and journalists.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.views.ArticleCreateView">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.views.</span></span><span class="sig-name descname"><span class="pre">ArticleCreateView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#ArticleCreateView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.ArticleCreateView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/topics/auth/default/#django.contrib.auth.mixins.LoginRequiredMixin" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LoginRequiredMixin</span></code></a>, <a class="reference external" href="https://docs.djangoproject.com/en/stable/topics/auth/default/#django.contrib.auth.mixins.UserPassesTestMixin" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserPassesTestMixin</span></code></a>, <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/class-based-views/generic-editing/#django.views.generic.edit.CreateView" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CreateView</span></code></a></p>
+<p>View for creating new articles by editors and journalists.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.ArticleCreateView.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#articles.views.ArticleCreateView.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="articles.models.html#articles.models.Article" title="articles.models.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">Article</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.ArticleCreateView.form_class">
+<span class="sig-name descname"><span class="pre">form_class</span></span><a class="headerlink" href="#articles.views.ArticleCreateView.form_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="articles.forms.html#articles.forms.ArticleForm" title="articles.forms.ArticleForm"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArticleForm</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.ArticleCreateView.template_name">
+<span class="sig-name descname"><span class="pre">template_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'articles/article_form.html'</span></em><a class="headerlink" href="#articles.views.ArticleCreateView.template_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.ArticleCreateView.success_url">
+<span class="sig-name descname"><span class="pre">success_url</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/accounts/news/'</span></em><a class="headerlink" href="#articles.views.ArticleCreateView.success_url" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.views.ArticleCreateView.test_func">
+<span class="sig-name descname"><span class="pre">test_func</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#ArticleCreateView.test_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.ArticleCreateView.test_func" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.views.ArticleCreateView.form_valid">
+<span class="sig-name descname"><span class="pre">form_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#ArticleCreateView.form_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.ArticleCreateView.form_valid" title="Link to this definition"></a></dt>
+<dd><p>If the form is valid, save the associated model.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.views.ArticleDetailView">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.views.</span></span><span class="sig-name descname"><span class="pre">ArticleDetailView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#ArticleDetailView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.ArticleDetailView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/class-based-views/generic-display/#django.views.generic.detail.DetailView" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DetailView</span></code></a></p>
+<p>View for displaying article details.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.ArticleDetailView.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#articles.views.ArticleDetailView.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="articles.models.html#articles.models.Article" title="articles.models.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">Article</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.ArticleDetailView.template_name">
+<span class="sig-name descname"><span class="pre">template_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'articles/article_detail.html'</span></em><a class="headerlink" href="#articles.views.ArticleDetailView.template_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.ArticleDetailView.context_object_name">
+<span class="sig-name descname"><span class="pre">context_object_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'article'</span></em><a class="headerlink" href="#articles.views.ArticleDetailView.context_object_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.views.ArticleUpdateView">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.views.</span></span><span class="sig-name descname"><span class="pre">ArticleUpdateView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#ArticleUpdateView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.ArticleUpdateView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/topics/auth/default/#django.contrib.auth.mixins.LoginRequiredMixin" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LoginRequiredMixin</span></code></a>, <a class="reference external" href="https://docs.djangoproject.com/en/stable/topics/auth/default/#django.contrib.auth.mixins.UserPassesTestMixin" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserPassesTestMixin</span></code></a>, <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/class-based-views/generic-editing/#django.views.generic.edit.UpdateView" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateView</span></code></a></p>
+<p>View for updating existing articles by their authors.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.ArticleUpdateView.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#articles.views.ArticleUpdateView.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="articles.models.html#articles.models.Article" title="articles.models.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">Article</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.ArticleUpdateView.form_class">
+<span class="sig-name descname"><span class="pre">form_class</span></span><a class="headerlink" href="#articles.views.ArticleUpdateView.form_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="articles.forms.html#articles.forms.ArticleForm" title="articles.forms.ArticleForm"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArticleForm</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.ArticleUpdateView.template_name">
+<span class="sig-name descname"><span class="pre">template_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'articles/article_form.html'</span></em><a class="headerlink" href="#articles.views.ArticleUpdateView.template_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.ArticleUpdateView.success_url">
+<span class="sig-name descname"><span class="pre">success_url</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/accounts/news/'</span></em><a class="headerlink" href="#articles.views.ArticleUpdateView.success_url" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.views.ArticleUpdateView.test_func">
+<span class="sig-name descname"><span class="pre">test_func</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#ArticleUpdateView.test_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.ArticleUpdateView.test_func" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.views.ArticleUpdateView.form_valid">
+<span class="sig-name descname"><span class="pre">form_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#ArticleUpdateView.form_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.ArticleUpdateView.form_valid" title="Link to this definition"></a></dt>
+<dd><p>If the form is valid, save the associated model.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.views.ArticleDeleteView">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.views.</span></span><span class="sig-name descname"><span class="pre">ArticleDeleteView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#ArticleDeleteView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.ArticleDeleteView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/topics/auth/default/#django.contrib.auth.mixins.LoginRequiredMixin" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LoginRequiredMixin</span></code></a>, <a class="reference external" href="https://docs.djangoproject.com/en/stable/topics/auth/default/#django.contrib.auth.mixins.UserPassesTestMixin" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserPassesTestMixin</span></code></a>, <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/class-based-views/generic-editing/#django.views.generic.edit.DeleteView" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DeleteView</span></code></a></p>
+<p>View for deleting articles by their authors.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.ArticleDeleteView.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#articles.views.ArticleDeleteView.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="articles.models.html#articles.models.Article" title="articles.models.Article"><code class="xref py py-class docutils literal notranslate"><span class="pre">Article</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.ArticleDeleteView.template_name">
+<span class="sig-name descname"><span class="pre">template_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'articles/article_confirm_delete.html'</span></em><a class="headerlink" href="#articles.views.ArticleDeleteView.template_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.ArticleDeleteView.success_url">
+<span class="sig-name descname"><span class="pre">success_url</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/accounts/news/'</span></em><a class="headerlink" href="#articles.views.ArticleDeleteView.success_url" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.views.ArticleDeleteView.test_func">
+<span class="sig-name descname"><span class="pre">test_func</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#ArticleDeleteView.test_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.ArticleDeleteView.test_func" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.views.ArticleDeleteView.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#ArticleDeleteView.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.ArticleDeleteView.delete" title="Link to this definition"></a></dt>
+<dd><p>Call the delete() method on the fetched object and then redirect to the
+success URL.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.views.NewsletterCreateView">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.views.</span></span><span class="sig-name descname"><span class="pre">NewsletterCreateView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#NewsletterCreateView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.NewsletterCreateView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/topics/auth/default/#django.contrib.auth.mixins.LoginRequiredMixin" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LoginRequiredMixin</span></code></a>, <a class="reference external" href="https://docs.djangoproject.com/en/stable/topics/auth/default/#django.contrib.auth.mixins.UserPassesTestMixin" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserPassesTestMixin</span></code></a>, <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/class-based-views/generic-editing/#django.views.generic.edit.CreateView" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CreateView</span></code></a></p>
+<p>View for creating new newsletters by editors and journalists.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.NewsletterCreateView.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#articles.views.NewsletterCreateView.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="articles.models.html#articles.models.Newsletter" title="articles.models.Newsletter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Newsletter</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.NewsletterCreateView.form_class">
+<span class="sig-name descname"><span class="pre">form_class</span></span><a class="headerlink" href="#articles.views.NewsletterCreateView.form_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="articles.forms.html#articles.forms.NewsletterForm" title="articles.forms.NewsletterForm"><code class="xref py py-class docutils literal notranslate"><span class="pre">NewsletterForm</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.NewsletterCreateView.template_name">
+<span class="sig-name descname"><span class="pre">template_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'articles/newsletter_form.html'</span></em><a class="headerlink" href="#articles.views.NewsletterCreateView.template_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.NewsletterCreateView.success_url">
+<span class="sig-name descname"><span class="pre">success_url</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/accounts/news/'</span></em><a class="headerlink" href="#articles.views.NewsletterCreateView.success_url" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.views.NewsletterCreateView.test_func">
+<span class="sig-name descname"><span class="pre">test_func</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#NewsletterCreateView.test_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.NewsletterCreateView.test_func" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.views.NewsletterCreateView.form_valid">
+<span class="sig-name descname"><span class="pre">form_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#NewsletterCreateView.form_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.NewsletterCreateView.form_valid" title="Link to this definition"></a></dt>
+<dd><p>If the form is valid, save the associated model.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.views.NewsletterDetailView">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.views.</span></span><span class="sig-name descname"><span class="pre">NewsletterDetailView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#NewsletterDetailView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.NewsletterDetailView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/class-based-views/generic-display/#django.views.generic.detail.DetailView" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DetailView</span></code></a></p>
+<p>View for displaying newsletter details.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.NewsletterDetailView.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#articles.views.NewsletterDetailView.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="articles.models.html#articles.models.Newsletter" title="articles.models.Newsletter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Newsletter</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.NewsletterDetailView.template_name">
+<span class="sig-name descname"><span class="pre">template_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'articles/newsletter_detail.html'</span></em><a class="headerlink" href="#articles.views.NewsletterDetailView.template_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.NewsletterDetailView.context_object_name">
+<span class="sig-name descname"><span class="pre">context_object_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'newsletter'</span></em><a class="headerlink" href="#articles.views.NewsletterDetailView.context_object_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.views.NewsletterUpdateView">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.views.</span></span><span class="sig-name descname"><span class="pre">NewsletterUpdateView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#NewsletterUpdateView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.NewsletterUpdateView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/topics/auth/default/#django.contrib.auth.mixins.LoginRequiredMixin" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LoginRequiredMixin</span></code></a>, <a class="reference external" href="https://docs.djangoproject.com/en/stable/topics/auth/default/#django.contrib.auth.mixins.UserPassesTestMixin" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserPassesTestMixin</span></code></a>, <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/class-based-views/generic-editing/#django.views.generic.edit.UpdateView" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateView</span></code></a></p>
+<p>View for updating existing newsletters by their authors.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.NewsletterUpdateView.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#articles.views.NewsletterUpdateView.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="articles.models.html#articles.models.Newsletter" title="articles.models.Newsletter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Newsletter</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.NewsletterUpdateView.form_class">
+<span class="sig-name descname"><span class="pre">form_class</span></span><a class="headerlink" href="#articles.views.NewsletterUpdateView.form_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="articles.forms.html#articles.forms.NewsletterForm" title="articles.forms.NewsletterForm"><code class="xref py py-class docutils literal notranslate"><span class="pre">NewsletterForm</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.NewsletterUpdateView.template_name">
+<span class="sig-name descname"><span class="pre">template_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'articles/newsletter_form.html'</span></em><a class="headerlink" href="#articles.views.NewsletterUpdateView.template_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.NewsletterUpdateView.success_url">
+<span class="sig-name descname"><span class="pre">success_url</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/accounts/news/'</span></em><a class="headerlink" href="#articles.views.NewsletterUpdateView.success_url" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.views.NewsletterUpdateView.test_func">
+<span class="sig-name descname"><span class="pre">test_func</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#NewsletterUpdateView.test_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.NewsletterUpdateView.test_func" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.views.NewsletterUpdateView.form_valid">
+<span class="sig-name descname"><span class="pre">form_valid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#NewsletterUpdateView.form_valid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.NewsletterUpdateView.form_valid" title="Link to this definition"></a></dt>
+<dd><p>If the form is valid, save the associated model.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.views.NewsletterDeleteView">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.views.</span></span><span class="sig-name descname"><span class="pre">NewsletterDeleteView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#NewsletterDeleteView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.NewsletterDeleteView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/topics/auth/default/#django.contrib.auth.mixins.LoginRequiredMixin" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LoginRequiredMixin</span></code></a>, <a class="reference external" href="https://docs.djangoproject.com/en/stable/topics/auth/default/#django.contrib.auth.mixins.UserPassesTestMixin" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserPassesTestMixin</span></code></a>, <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/class-based-views/generic-editing/#django.views.generic.edit.DeleteView" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DeleteView</span></code></a></p>
+<p>View for deleting newsletters by their authors.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.NewsletterDeleteView.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#articles.views.NewsletterDeleteView.model" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="articles.models.html#articles.models.Newsletter" title="articles.models.Newsletter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Newsletter</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.NewsletterDeleteView.template_name">
+<span class="sig-name descname"><span class="pre">template_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'articles/newsletter_confirm_delete.html'</span></em><a class="headerlink" href="#articles.views.NewsletterDeleteView.template_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.views.NewsletterDeleteView.success_url">
+<span class="sig-name descname"><span class="pre">success_url</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/accounts/news/'</span></em><a class="headerlink" href="#articles.views.NewsletterDeleteView.success_url" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.views.NewsletterDeleteView.test_func">
+<span class="sig-name descname"><span class="pre">test_func</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#NewsletterDeleteView.test_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.NewsletterDeleteView.test_func" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.views.NewsletterDeleteView.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#NewsletterDeleteView.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.NewsletterDeleteView.delete" title="Link to this definition"></a></dt>
+<dd><p>Call the delete() method on the fetched object and then redirect to the
+success URL.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.views.approve_and_publish">
+<span class="sig-prename descclassname"><span class="pre">articles.views.</span></span><span class="sig-name descname"><span class="pre">approve_and_publish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#approve_and_publish"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.approve_and_publish" title="Link to this definition"></a></dt>
+<dd><p>Approve and publish an article or newsletter, with optional Twitter posting.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.views.article_unapprove">
+<span class="sig-prename descclassname"><span class="pre">articles.views.</span></span><span class="sig-name descname"><span class="pre">article_unapprove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pk</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#article_unapprove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.article_unapprove" title="Link to this definition"></a></dt>
+<dd><p>Unapprove an article, removing its approved status.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.views.user_profile">
+<span class="sig-prename descclassname"><span class="pre">articles.views.</span></span><span class="sig-name descname"><span class="pre">user_profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/views.html#user_profile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.views.user_profile" title="Link to this definition"></a></dt>
+<dd><p>Display and handle user profile editing form.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="articles.models.html" class="btn btn-neutral float-left" title="articles.models module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="articles.api_views.html" class="btn btn-neutral float-right" title="articles.api_views module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, News App Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

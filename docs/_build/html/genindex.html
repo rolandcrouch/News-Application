@@ -1,0 +1,1207 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Index &mdash; Django News Application 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Django News Application
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Application Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#architecture">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#user-roles-and-permissions">User Roles and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#publishers">Publishers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#content-management">Content Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#subscription-system">Subscription System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#content-feeds">Content Feeds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#approval-workflow">Approval Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#integration-features">Integration Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#api-architecture">API Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#security-features">Security Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#development-setup">Development Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#production-setup">Production Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#configuration-options">Configuration Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#testing-the-installation">Testing the Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#getting-help">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#development-tools">Development Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#api-overview">API Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#base-url">Base URL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#available-endpoints">Available Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#response-format">Response Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#http-status-codes">HTTP Status Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#rate-limiting">Rate Limiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#pagination">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#testing-the-api">Testing the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html">Module Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html#articles-application">Articles Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html#main-project">Main Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#production-deployment">Production Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#cloud-platform-deployment">Cloud Platform Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#monitoring-and-maintenance">Monitoring and Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#security-considerations">Security Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-suite-overview">Test Suite Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-categories">Test Categories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-data-setup">Test Data Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-configuration">Test Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#mocking-external-services">Mocking External Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-automation">Test Automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#performance-testing">Performance Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#best-practices">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#running-specific-tests">Running Specific Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Django News Application</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Index</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#_"><strong>_</strong></a>
+ | <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ 
+</div>
+<h2 id="_">_</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.forms.html#articles.forms.UserProfileForm.__init__">__init__() (articles.forms.UserProfileForm method)</a>
+
+      <ul>
+        <li><a href="modules/articles.forms.html#articles.forms.UserRegistrationForm.__init__">(articles.forms.UserRegistrationForm method)</a>
+</li>
+        <li><a href="modules/articles.functions.html#articles.functions.tweet.TwitterAPI.__init__">(articles.functions.tweet.TwitterAPI method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.models.html#articles.models.User.affiliated_publisher">affiliated_publisher (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.affiliated_publisher_id">affiliated_publisher_id (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Publisher.affiliated_users">affiliated_users (articles.models.Publisher attribute)</a>
+</li>
+      <li><a href="modules/articles.api_views.html#articles.api_views.api_info">api_info() (in module articles.api_views)</a>
+</li>
+      <li><a href="modules/articles.views.html#articles.views.approve_and_publish">approve_and_publish() (in module articles.views)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.approved_articles">approved_articles (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Article.approved_by">approved_by (articles.models.Article attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Article.approved_by_id">approved_by_id (articles.models.Article attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Article">Article (class in articles.models)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Article.DoesNotExist">Article.DoesNotExist</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Article.MultipleObjectsReturned">Article.MultipleObjectsReturned</a>
+</li>
+      <li><a href="modules/articles.views.html#articles.views.article_feed">article_feed() (in module articles.views)</a>
+</li>
+      <li><a href="modules/articles.views.html#articles.views.article_unapprove">article_unapprove() (in module articles.views)</a>
+</li>
+      <li><a href="modules/articles.admin.html#articles.admin.ArticleAdmin">ArticleAdmin (class in articles.admin)</a>
+</li>
+      <li><a href="modules/articles.views.html#articles.views.ArticleCreateView">ArticleCreateView (class in articles.views)</a>
+</li>
+      <li><a href="modules/articles.views.html#articles.views.ArticleDeleteView">ArticleDeleteView (class in articles.views)</a>
+</li>
+      <li><a href="modules/articles.api_views.html#articles.api_views.ArticleDetailView">ArticleDetailView (class in articles.api_views)</a>
+
+      <ul>
+        <li><a href="modules/articles.views.html#articles.views.ArticleDetailView">(class in articles.views)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.forms.html#articles.forms.ArticleForm">ArticleForm (class in articles.forms)</a>
+</li>
+      <li><a href="modules/articles.forms.html#articles.forms.ArticleForm.Meta">ArticleForm.Meta (class in articles.forms)</a>
+</li>
+      <li><a href="modules/articles.serializers.html#articles.serializers.ArticleListSerializer">ArticleListSerializer (class in articles.serializers)</a>
+</li>
+      <li><a href="modules/articles.serializers.html#articles.serializers.ArticleListSerializer.Meta">ArticleListSerializer.Meta (class in articles.serializers)</a>
+</li>
+      <li><a href="modules/articles.api_views.html#articles.api_views.ArticleListView">ArticleListView (class in articles.api_views)</a>
+</li>
+      <li>
+    articles
+
+      <ul>
+        <li><a href="modules/articles.html#module-articles">module</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.models.html#articles.models.Publisher.articles">articles (articles.models.Publisher attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.models.html#articles.models.User.articles">(articles.models.User attribute)</a>
+</li>
+      </ul></li>
+      <li>
+    articles.admin
+
+      <ul>
+        <li><a href="modules/articles.admin.html#module-articles.admin">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    articles.api_views
+
+      <ul>
+        <li><a href="modules/articles.api_views.html#module-articles.api_views">module</a>
+</li>
+      </ul></li>
+      <li>
+    articles.forms
+
+      <ul>
+        <li><a href="modules/articles.forms.html#module-articles.forms">module</a>
+</li>
+      </ul></li>
+      <li>
+    articles.functions
+
+      <ul>
+        <li><a href="modules/articles.functions.html#module-articles.functions">module</a>
+</li>
+      </ul></li>
+      <li>
+    articles.functions.tweet
+
+      <ul>
+        <li><a href="modules/articles.functions.html#module-articles.functions.tweet">module</a>
+</li>
+      </ul></li>
+      <li>
+    articles.models
+
+      <ul>
+        <li><a href="modules/articles.models.html#module-articles.models">module</a>
+</li>
+      </ul></li>
+      <li>
+    articles.serializers
+
+      <ul>
+        <li><a href="modules/articles.serializers.html#module-articles.serializers">module</a>
+</li>
+      </ul></li>
+      <li>
+    articles.signals
+
+      <ul>
+        <li><a href="modules/articles.signals.html#module-articles.signals">module</a>
+</li>
+      </ul></li>
+      <li>
+    articles.utils
+
+      <ul>
+        <li><a href="modules/articles.utils.html#module-articles.utils">module</a>
+</li>
+      </ul></li>
+      <li>
+    articles.views
+
+      <ul>
+        <li><a href="modules/articles.views.html#module-articles.views">module</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.serializers.html#articles.serializers.ArticleSerializer">ArticleSerializer (class in articles.serializers)</a>
+</li>
+      <li><a href="modules/articles.serializers.html#articles.serializers.ArticleSerializer.Meta">ArticleSerializer.Meta (class in articles.serializers)</a>
+</li>
+      <li><a href="modules/articles.views.html#articles.views.ArticleUpdateView">ArticleUpdateView (class in articles.views)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.auth_token">auth_token (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Article.author">author (articles.models.Article attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.models.html#articles.models.Newsletter.author">(articles.models.Newsletter attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.models.html#articles.models.Article.author_id">author_id (articles.models.Article attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.models.html#articles.models.Newsletter.author_id">(articles.models.Newsletter attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.admin.html#articles.admin.ArticleAdmin.autocomplete_fields">autocomplete_fields (articles.admin.ArticleAdmin attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.admin.html#articles.admin.NewsletterAdmin.autocomplete_fields">(articles.admin.NewsletterAdmin attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.forms.html#articles.forms.ArticleForm.base_fields">base_fields (articles.forms.ArticleForm attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.forms.html#articles.forms.ForgotUsernameForm.base_fields">(articles.forms.ForgotUsernameForm attribute)</a>
+</li>
+        <li><a href="modules/articles.forms.html#articles.forms.NewsletterForm.base_fields">(articles.forms.NewsletterForm attribute)</a>
+</li>
+        <li><a href="modules/articles.forms.html#articles.forms.PasswordResetRequestForm.base_fields">(articles.forms.PasswordResetRequestForm attribute)</a>
+</li>
+        <li><a href="modules/articles.forms.html#articles.forms.UserProfileForm.base_fields">(articles.forms.UserProfileForm attribute)</a>
+</li>
+        <li><a href="modules/articles.forms.html#articles.forms.UserRegistrationForm.base_fields">(articles.forms.UserRegistrationForm attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.functions.html#articles.functions.tweet.TwitterAPI.begin_oauth">begin_oauth() (articles.functions.tweet.TwitterAPI method)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Article.body">body (articles.models.Article attribute)</a>
+</li>
+      <li><a href="modules/articles.views.html#articles.views.browse_all_news">browse_all_news() (in module articles.views)</a>
+</li>
+      <li><a href="modules/articles.utils.html#articles.utils.build_reset_url">build_reset_url() (in module articles.utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.forms.html#articles.forms.PasswordResetRequestForm.clean">clean() (articles.forms.PasswordResetRequestForm method)</a>
+
+      <ul>
+        <li><a href="modules/articles.forms.html#articles.forms.UserProfileForm.clean">(articles.forms.UserProfileForm method)</a>
+</li>
+        <li><a href="modules/articles.forms.html#articles.forms.UserRegistrationForm.clean">(articles.forms.UserRegistrationForm method)</a>
+</li>
+        <li><a href="modules/articles.models.html#articles.models.User.clean">(articles.models.User method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.utils.html#articles.utils.consume_reset_token">consume_reset_token() (in module articles.utils)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Newsletter.content">content (articles.models.Newsletter attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.views.html#articles.views.ArticleDetailView.context_object_name">context_object_name (articles.views.ArticleDetailView attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterDetailView.context_object_name">(articles.views.NewsletterDetailView attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.utils.html#articles.utils.create_reset_token">create_reset_token() (in module articles.utils)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Article.created_at">created_at (articles.models.Article attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.models.html#articles.models.Newsletter.created_at">(articles.models.Newsletter attribute)</a>
+</li>
+        <li><a href="modules/articles.models.html#articles.models.ResetToken.created_at">(articles.models.ResetToken attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.views.html#articles.views.CustomLoginView">CustomLoginView (class in articles.views)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.models.html#articles.models.User.date_joined">date_joined (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.forms.html#articles.forms.ArticleForm.declared_fields">declared_fields (articles.forms.ArticleForm attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.forms.html#articles.forms.ForgotUsernameForm.declared_fields">(articles.forms.ForgotUsernameForm attribute)</a>
+</li>
+        <li><a href="modules/articles.forms.html#articles.forms.NewsletterForm.declared_fields">(articles.forms.NewsletterForm attribute)</a>
+</li>
+        <li><a href="modules/articles.forms.html#articles.forms.PasswordResetRequestForm.declared_fields">(articles.forms.PasswordResetRequestForm attribute)</a>
+</li>
+        <li><a href="modules/articles.forms.html#articles.forms.UserProfileForm.declared_fields">(articles.forms.UserProfileForm attribute)</a>
+</li>
+        <li><a href="modules/articles.forms.html#articles.forms.UserRegistrationForm.declared_fields">(articles.forms.UserRegistrationForm attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.api_views.html#articles.api_views.UserSubscriptionsView.delete">delete() (articles.api_views.UserSubscriptionsView method)</a>
+
+      <ul>
+        <li><a href="modules/articles.views.html#articles.views.ArticleDeleteView.delete">(articles.views.ArticleDeleteView method)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterDeleteView.delete">(articles.views.NewsletterDeleteView method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.models.html#articles.models.User.editing_publishers">editing_publishers (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.Roles.EDITOR">EDITOR (articles.models.User.Roles attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.models.html#articles.models.Publisher.editors">editors (articles.models.Publisher attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.email">email (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.ResetToken.expires_at">expires_at (articles.models.ResetToken attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.forms.html#articles.forms.ArticleForm.Meta.fields">fields (articles.forms.ArticleForm.Meta attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.forms.html#articles.forms.NewsletterForm.Meta.fields">(articles.forms.NewsletterForm.Meta attribute)</a>
+</li>
+        <li><a href="modules/articles.forms.html#articles.forms.UserProfileForm.Meta.fields">(articles.forms.UserProfileForm.Meta attribute)</a>
+</li>
+        <li><a href="modules/articles.forms.html#articles.forms.UserRegistrationForm.Meta.fields">(articles.forms.UserRegistrationForm.Meta attribute)</a>
+</li>
+        <li><a href="modules/articles.serializers.html#articles.serializers.ArticleListSerializer.Meta.fields">(articles.serializers.ArticleListSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/articles.serializers.html#articles.serializers.ArticleSerializer.Meta.fields">(articles.serializers.ArticleSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/articles.serializers.html#articles.serializers.NewsletterListSerializer.Meta.fields">(articles.serializers.NewsletterListSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/articles.serializers.html#articles.serializers.NewsletterSerializer.Meta.fields">(articles.serializers.NewsletterSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/articles.serializers.html#articles.serializers.PublisherSerializer.Meta.fields">(articles.serializers.PublisherSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/articles.serializers.html#articles.serializers.UserSerializer.Meta.fields">(articles.serializers.UserSerializer.Meta attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.admin.html#articles.admin.UserAdmin.fieldsets">fieldsets (articles.admin.UserAdmin attribute)</a>
+</li>
+      <li><a href="modules/articles.admin.html#articles.admin.PublisherAdmin.filter_horizontal">filter_horizontal (articles.admin.PublisherAdmin attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.functions.html#articles.functions.tweet.TwitterAPI.finish_oauth">finish_oauth() (articles.functions.tweet.TwitterAPI method)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.first_name">first_name (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.followers">followers (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.views.html#articles.views.forgot_username">forgot_username() (in module articles.views)</a>
+</li>
+      <li><a href="modules/articles.forms.html#articles.forms.ForgotUsernameForm">ForgotUsernameForm (class in articles.forms)</a>
+</li>
+      <li><a href="modules/articles.views.html#articles.views.ArticleCreateView.form_class">form_class (articles.views.ArticleCreateView attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.views.html#articles.views.ArticleUpdateView.form_class">(articles.views.ArticleUpdateView attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterCreateView.form_class">(articles.views.NewsletterCreateView attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterUpdateView.form_class">(articles.views.NewsletterUpdateView attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.views.html#articles.views.ArticleCreateView.form_valid">form_valid() (articles.views.ArticleCreateView method)</a>
+
+      <ul>
+        <li><a href="modules/articles.views.html#articles.views.ArticleUpdateView.form_valid">(articles.views.ArticleUpdateView method)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterCreateView.form_valid">(articles.views.NewsletterCreateView method)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterUpdateView.form_valid">(articles.views.NewsletterUpdateView method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.api_views.html#articles.api_views.UserSubscriptionsView.get">get() (articles.api_views.UserSubscriptionsView method)</a>
+</li>
+      <li><a href="modules/articles.serializers.html#articles.serializers.ArticleListSerializer.get_body_preview">get_body_preview() (articles.serializers.ArticleListSerializer method)</a>
+</li>
+      <li><a href="modules/articles.serializers.html#articles.serializers.NewsletterListSerializer.get_content_preview">get_content_preview() (articles.serializers.NewsletterListSerializer method)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.get_independent_articles">get_independent_articles() (articles.models.User method)</a>
+</li>
+      <li><a href="modules/articles.admin.html#articles.admin.UserAdmin.get_independent_articles_count">get_independent_articles_count() (articles.admin.UserAdmin method)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.get_independent_newsletters">get_independent_newsletters() (articles.models.User method)</a>
+</li>
+      <li><a href="modules/articles.admin.html#articles.admin.UserAdmin.get_independent_newsletters_count">get_independent_newsletters_count() (articles.admin.UserAdmin method)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Article.get_is_approved_display">get_is_approved_display() (articles.models.Article method)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Article.get_next_by_created_at">get_next_by_created_at() (articles.models.Article method)</a>
+
+      <ul>
+        <li><a href="modules/articles.models.html#articles.models.Newsletter.get_next_by_created_at">(articles.models.Newsletter method)</a>
+</li>
+        <li><a href="modules/articles.models.html#articles.models.ResetToken.get_next_by_created_at">(articles.models.ResetToken method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.models.html#articles.models.User.get_next_by_date_joined">get_next_by_date_joined() (articles.models.User method)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.ResetToken.get_next_by_expires_at">get_next_by_expires_at() (articles.models.ResetToken method)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Article.get_next_by_updated_at">get_next_by_updated_at() (articles.models.Article method)</a>
+
+      <ul>
+        <li><a href="modules/articles.models.html#articles.models.Newsletter.get_next_by_updated_at">(articles.models.Newsletter method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.models.html#articles.models.Article.get_previous_by_created_at">get_previous_by_created_at() (articles.models.Article method)</a>
+
+      <ul>
+        <li><a href="modules/articles.models.html#articles.models.Newsletter.get_previous_by_created_at">(articles.models.Newsletter method)</a>
+</li>
+        <li><a href="modules/articles.models.html#articles.models.ResetToken.get_previous_by_created_at">(articles.models.ResetToken method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.models.html#articles.models.User.get_previous_by_date_joined">get_previous_by_date_joined() (articles.models.User method)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.ResetToken.get_previous_by_expires_at">get_previous_by_expires_at() (articles.models.ResetToken method)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Article.get_previous_by_updated_at">get_previous_by_updated_at() (articles.models.Article method)</a>
+
+      <ul>
+        <li><a href="modules/articles.models.html#articles.models.Newsletter.get_previous_by_updated_at">(articles.models.Newsletter method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.api_views.html#articles.api_views.ArticleListView.get_queryset">get_queryset() (articles.api_views.ArticleListView method)</a>
+
+      <ul>
+        <li><a href="modules/articles.api_views.html#articles.api_views.NewsletterListView.get_queryset">(articles.api_views.NewsletterListView method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.models.html#articles.models.User.get_role_display">get_role_display() (articles.models.User method)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.get_subscribed_journalists">get_subscribed_journalists() (articles.models.User method)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.get_subscribed_publishers">get_subscribed_publishers() (articles.models.User method)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.groups">groups (articles.models.User attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.models.html#articles.models.Article.id">id (articles.models.Article attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.models.html#articles.models.Newsletter.id">(articles.models.Newsletter attribute)</a>
+</li>
+        <li><a href="modules/articles.models.html#articles.models.Publisher.id">(articles.models.Publisher attribute)</a>
+</li>
+        <li><a href="modules/articles.models.html#articles.models.ResetToken.id">(articles.models.ResetToken attribute)</a>
+</li>
+        <li><a href="modules/articles.models.html#articles.models.User.id">(articles.models.User attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.models.html#articles.models.User.is_active">is_active (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Article.is_approved">is_approved (articles.models.Article attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.ResetToken.is_expired">is_expired() (articles.models.ResetToken method)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.is_staff">is_staff (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.is_superuser">is_superuser (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.ResetToken.is_used">is_used() (articles.models.ResetToken method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.models.html#articles.models.User.Roles.JOURNALIST">JOURNALIST (articles.models.User.Roles attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.journalist_publishers">journalist_publishers (articles.models.User attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.api_views.html#articles.api_views.JournalistListView">JournalistListView (class in articles.api_views)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Publisher.journalists">journalists (articles.models.Publisher attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.forms.html#articles.forms.NewsletterForm.Meta.labels">labels (articles.forms.NewsletterForm.Meta attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.last_login">last_login (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.last_name">last_name (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.admin.html#articles.admin.ArticleAdmin.list_display">list_display (articles.admin.ArticleAdmin attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.admin.html#articles.admin.NewsletterAdmin.list_display">(articles.admin.NewsletterAdmin attribute)</a>
+</li>
+        <li><a href="modules/articles.admin.html#articles.admin.PublisherAdmin.list_display">(articles.admin.PublisherAdmin attribute)</a>
+</li>
+        <li><a href="modules/articles.admin.html#articles.admin.UserAdmin.list_display">(articles.admin.UserAdmin attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.admin.html#articles.admin.ArticleAdmin.list_filter">list_filter (articles.admin.ArticleAdmin attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.admin.html#articles.admin.NewsletterAdmin.list_filter">(articles.admin.NewsletterAdmin attribute)</a>
+</li>
+        <li><a href="modules/articles.admin.html#articles.admin.UserAdmin.list_filter">(articles.admin.UserAdmin attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.models.html#articles.models.User.logentry_set">logentry_set (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.utils.html#articles.utils.lookup_reset_token">lookup_reset_token() (in module articles.utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.admin.html#articles.admin.ArticleAdmin.media">media (articles.admin.ArticleAdmin property)</a>
+
+      <ul>
+        <li><a href="modules/articles.admin.html#articles.admin.NewsletterAdmin.media">(articles.admin.NewsletterAdmin property)</a>
+</li>
+        <li><a href="modules/articles.admin.html#articles.admin.PublisherAdmin.media">(articles.admin.PublisherAdmin property)</a>
+</li>
+        <li><a href="modules/articles.admin.html#articles.admin.UserAdmin.media">(articles.admin.UserAdmin property)</a>
+</li>
+        <li><a href="modules/articles.forms.html#articles.forms.ArticleForm.media">(articles.forms.ArticleForm property)</a>
+</li>
+        <li><a href="modules/articles.forms.html#articles.forms.ForgotUsernameForm.media">(articles.forms.ForgotUsernameForm property)</a>
+</li>
+        <li><a href="modules/articles.forms.html#articles.forms.NewsletterForm.media">(articles.forms.NewsletterForm property)</a>
+</li>
+        <li><a href="modules/articles.forms.html#articles.forms.PasswordResetRequestForm.media">(articles.forms.PasswordResetRequestForm property)</a>
+</li>
+        <li><a href="modules/articles.forms.html#articles.forms.UserProfileForm.media">(articles.forms.UserProfileForm property)</a>
+</li>
+        <li><a href="modules/articles.forms.html#articles.forms.UserRegistrationForm.media">(articles.forms.UserRegistrationForm property)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.forms.html#articles.forms.ArticleForm.Meta.model">model (articles.forms.ArticleForm.Meta attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.forms.html#articles.forms.NewsletterForm.Meta.model">(articles.forms.NewsletterForm.Meta attribute)</a>
+</li>
+        <li><a href="modules/articles.forms.html#articles.forms.UserProfileForm.Meta.model">(articles.forms.UserProfileForm.Meta attribute)</a>
+</li>
+        <li><a href="modules/articles.forms.html#articles.forms.UserRegistrationForm.Meta.model">(articles.forms.UserRegistrationForm.Meta attribute)</a>
+</li>
+        <li><a href="modules/articles.serializers.html#articles.serializers.ArticleListSerializer.Meta.model">(articles.serializers.ArticleListSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/articles.serializers.html#articles.serializers.ArticleSerializer.Meta.model">(articles.serializers.ArticleSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/articles.serializers.html#articles.serializers.NewsletterListSerializer.Meta.model">(articles.serializers.NewsletterListSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/articles.serializers.html#articles.serializers.NewsletterSerializer.Meta.model">(articles.serializers.NewsletterSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/articles.serializers.html#articles.serializers.PublisherSerializer.Meta.model">(articles.serializers.PublisherSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/articles.serializers.html#articles.serializers.UserSerializer.Meta.model">(articles.serializers.UserSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.ArticleCreateView.model">(articles.views.ArticleCreateView attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.ArticleDeleteView.model">(articles.views.ArticleDeleteView attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.ArticleDetailView.model">(articles.views.ArticleDetailView attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.ArticleUpdateView.model">(articles.views.ArticleUpdateView attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterCreateView.model">(articles.views.NewsletterCreateView attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterDeleteView.model">(articles.views.NewsletterDeleteView attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterDetailView.model">(articles.views.NewsletterDetailView attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterUpdateView.model">(articles.views.NewsletterUpdateView attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    module
+
+      <ul>
+        <li><a href="modules/articles.html#module-articles">articles</a>
+</li>
+        <li><a href="modules/articles.admin.html#module-articles.admin">articles.admin</a>
+</li>
+        <li><a href="modules/articles.api_views.html#module-articles.api_views">articles.api_views</a>
+</li>
+        <li><a href="modules/articles.forms.html#module-articles.forms">articles.forms</a>
+</li>
+        <li><a href="modules/articles.functions.html#module-articles.functions">articles.functions</a>
+</li>
+        <li><a href="modules/articles.functions.html#module-articles.functions.tweet">articles.functions.tweet</a>
+</li>
+        <li><a href="modules/articles.models.html#module-articles.models">articles.models</a>
+</li>
+        <li><a href="modules/articles.serializers.html#module-articles.serializers">articles.serializers</a>
+</li>
+        <li><a href="modules/articles.signals.html#module-articles.signals">articles.signals</a>
+</li>
+        <li><a href="modules/articles.utils.html#module-articles.utils">articles.utils</a>
+</li>
+        <li><a href="modules/articles.views.html#module-articles.views">articles.views</a>
+</li>
+        <li><a href="modules/news_app.html#module-news_app">news_app</a>
+</li>
+        <li><a href="modules/news_app.settings.html#module-news_app.settings">news_app.settings</a>
+</li>
+        <li><a href="modules/news_app.urls.html#module-news_app.urls">news_app.urls</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.models.html#articles.models.Publisher.name">name (articles.models.Publisher attribute)</a>
+</li>
+      <li>
+    news_app
+
+      <ul>
+        <li><a href="modules/news_app.html#module-news_app">module</a>
+</li>
+      </ul></li>
+      <li>
+    news_app.settings
+
+      <ul>
+        <li><a href="modules/news_app.settings.html#module-news_app.settings">module</a>
+</li>
+      </ul></li>
+      <li>
+    news_app.urls
+
+      <ul>
+        <li><a href="modules/news_app.urls.html#module-news_app.urls">module</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.views.html#articles.views.newsfeed">newsfeed() (in module articles.views)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Newsletter">Newsletter (class in articles.models)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Newsletter.DoesNotExist">Newsletter.DoesNotExist</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Newsletter.MultipleObjectsReturned">Newsletter.MultipleObjectsReturned</a>
+</li>
+      <li><a href="modules/articles.admin.html#articles.admin.NewsletterAdmin">NewsletterAdmin (class in articles.admin)</a>
+</li>
+      <li><a href="modules/articles.views.html#articles.views.NewsletterCreateView">NewsletterCreateView (class in articles.views)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.views.html#articles.views.NewsletterDeleteView">NewsletterDeleteView (class in articles.views)</a>
+</li>
+      <li><a href="modules/articles.api_views.html#articles.api_views.NewsletterDetailView">NewsletterDetailView (class in articles.api_views)</a>
+
+      <ul>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterDetailView">(class in articles.views)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.forms.html#articles.forms.NewsletterForm">NewsletterForm (class in articles.forms)</a>
+</li>
+      <li><a href="modules/articles.forms.html#articles.forms.NewsletterForm.Meta">NewsletterForm.Meta (class in articles.forms)</a>
+</li>
+      <li><a href="modules/articles.serializers.html#articles.serializers.NewsletterListSerializer">NewsletterListSerializer (class in articles.serializers)</a>
+</li>
+      <li><a href="modules/articles.serializers.html#articles.serializers.NewsletterListSerializer.Meta">NewsletterListSerializer.Meta (class in articles.serializers)</a>
+</li>
+      <li><a href="modules/articles.api_views.html#articles.api_views.NewsletterListView">NewsletterListView (class in articles.api_views)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Publisher.newsletters">newsletters (articles.models.Publisher attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.models.html#articles.models.User.newsletters">(articles.models.User attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.serializers.html#articles.serializers.NewsletterSerializer">NewsletterSerializer (class in articles.serializers)</a>
+</li>
+      <li><a href="modules/articles.serializers.html#articles.serializers.NewsletterSerializer.Meta">NewsletterSerializer.Meta (class in articles.serializers)</a>
+</li>
+      <li><a href="modules/articles.views.html#articles.views.NewsletterUpdateView">NewsletterUpdateView (class in articles.views)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.models.html#articles.models.Article.objects">objects (articles.models.Article attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.models.html#articles.models.Newsletter.objects">(articles.models.Newsletter attribute)</a>
+</li>
+        <li><a href="modules/articles.models.html#articles.models.Publisher.objects">(articles.models.Publisher attribute)</a>
+</li>
+        <li><a href="modules/articles.models.html#articles.models.ResetToken.objects">(articles.models.ResetToken attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.models.html#articles.models.User.password">password (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.forms.html#articles.forms.PasswordResetRequestForm">PasswordResetRequestForm (class in articles.forms)</a>
+</li>
+      <li><a href="modules/articles.api_views.html#articles.api_views.ArticleDetailView.permission_classes">permission_classes (articles.api_views.ArticleDetailView attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.api_views.html#articles.api_views.ArticleListView.permission_classes">(articles.api_views.ArticleListView attribute)</a>
+</li>
+        <li><a href="modules/articles.api_views.html#articles.api_views.JournalistListView.permission_classes">(articles.api_views.JournalistListView attribute)</a>
+</li>
+        <li><a href="modules/articles.api_views.html#articles.api_views.NewsletterDetailView.permission_classes">(articles.api_views.NewsletterDetailView attribute)</a>
+</li>
+        <li><a href="modules/articles.api_views.html#articles.api_views.NewsletterListView.permission_classes">(articles.api_views.NewsletterListView attribute)</a>
+</li>
+        <li><a href="modules/articles.api_views.html#articles.api_views.PublisherDetailView.permission_classes">(articles.api_views.PublisherDetailView attribute)</a>
+</li>
+        <li><a href="modules/articles.api_views.html#articles.api_views.PublisherListView.permission_classes">(articles.api_views.PublisherListView attribute)</a>
+</li>
+        <li><a href="modules/articles.api_views.html#articles.api_views.UserSubscriptionsView.permission_classes">(articles.api_views.UserSubscriptionsView attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.api_views.html#articles.api_views.UserSubscriptionsView.post">post() (articles.api_views.UserSubscriptionsView method)</a>
+</li>
+      <li><a href="modules/articles.functions.html#articles.functions.tweet.TwitterAPI.post_tweet">post_tweet() (articles.functions.tweet.TwitterAPI method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.models.html#articles.models.Article.publisher">publisher (articles.models.Article attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.models.html#articles.models.Newsletter.publisher">(articles.models.Newsletter attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.models.html#articles.models.Publisher">Publisher (class in articles.models)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Publisher.DoesNotExist">Publisher.DoesNotExist</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Publisher.MultipleObjectsReturned">Publisher.MultipleObjectsReturned</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Article.publisher_id">publisher_id (articles.models.Article attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.models.html#articles.models.Newsletter.publisher_id">(articles.models.Newsletter attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.admin.html#articles.admin.PublisherAdmin">PublisherAdmin (class in articles.admin)</a>
+</li>
+      <li><a href="modules/articles.api_views.html#articles.api_views.PublisherDetailView">PublisherDetailView (class in articles.api_views)</a>
+</li>
+      <li><a href="modules/articles.api_views.html#articles.api_views.PublisherListView">PublisherListView (class in articles.api_views)</a>
+</li>
+      <li><a href="modules/articles.serializers.html#articles.serializers.PublisherSerializer">PublisherSerializer (class in articles.serializers)</a>
+</li>
+      <li><a href="modules/articles.serializers.html#articles.serializers.PublisherSerializer.Meta">PublisherSerializer.Meta (class in articles.serializers)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.api_views.html#articles.api_views.ArticleDetailView.queryset">queryset (articles.api_views.ArticleDetailView attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.api_views.html#articles.api_views.JournalistListView.queryset">(articles.api_views.JournalistListView attribute)</a>
+</li>
+        <li><a href="modules/articles.api_views.html#articles.api_views.NewsletterDetailView.queryset">(articles.api_views.NewsletterDetailView attribute)</a>
+</li>
+        <li><a href="modules/articles.api_views.html#articles.api_views.PublisherDetailView.queryset">(articles.api_views.PublisherDetailView attribute)</a>
+</li>
+        <li><a href="modules/articles.api_views.html#articles.api_views.PublisherListView.queryset">(articles.api_views.PublisherListView attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.serializers.html#articles.serializers.ArticleSerializer.Meta.read_only_fields">read_only_fields (articles.serializers.ArticleSerializer.Meta attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.serializers.html#articles.serializers.NewsletterSerializer.Meta.read_only_fields">(articles.serializers.NewsletterSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/articles.serializers.html#articles.serializers.PublisherSerializer.Meta.read_only_fields">(articles.serializers.PublisherSerializer.Meta attribute)</a>
+</li>
+        <li><a href="modules/articles.serializers.html#articles.serializers.UserSerializer.Meta.read_only_fields">(articles.serializers.UserSerializer.Meta attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.models.html#articles.models.User.Roles.READER">READER (articles.models.User.Roles attribute)</a>
+</li>
+      <li><a href="modules/articles.views.html#articles.views.register">register() (in module articles.views)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.models.html#articles.models.User.reset_tokens">reset_tokens (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.views.html#articles.views.reset_user_password">reset_user_password() (in module articles.views)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.ResetToken">ResetToken (class in articles.models)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.ResetToken.DoesNotExist">ResetToken.DoesNotExist</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.ResetToken.MultipleObjectsReturned">ResetToken.MultipleObjectsReturned</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.role">role (articles.models.User attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.functions.html#articles.functions.tweet.safe_text">safe_text() (in module articles.functions.tweet)</a>
+</li>
+      <li><a href="modules/articles.forms.html#articles.forms.UserProfileForm.save">save() (articles.forms.UserProfileForm method)</a>
+
+      <ul>
+        <li><a href="modules/articles.forms.html#articles.forms.UserRegistrationForm.save">(articles.forms.UserRegistrationForm method)</a>
+</li>
+        <li><a href="modules/articles.models.html#articles.models.User.save">(articles.models.User method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.admin.html#articles.admin.ArticleAdmin.search_fields">search_fields (articles.admin.ArticleAdmin attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.admin.html#articles.admin.NewsletterAdmin.search_fields">(articles.admin.NewsletterAdmin attribute)</a>
+</li>
+        <li><a href="modules/articles.admin.html#articles.admin.PublisherAdmin.search_fields">(articles.admin.PublisherAdmin attribute)</a>
+</li>
+        <li><a href="modules/articles.admin.html#articles.admin.UserAdmin.search_fields">(articles.admin.UserAdmin attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.views.html#articles.views.send_password_reset">send_password_reset() (in module articles.views)</a>
+</li>
+      <li><a href="modules/articles.api_views.html#articles.api_views.ArticleDetailView.serializer_class">serializer_class (articles.api_views.ArticleDetailView attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.api_views.html#articles.api_views.ArticleListView.serializer_class">(articles.api_views.ArticleListView attribute)</a>
+</li>
+        <li><a href="modules/articles.api_views.html#articles.api_views.JournalistListView.serializer_class">(articles.api_views.JournalistListView attribute)</a>
+</li>
+        <li><a href="modules/articles.api_views.html#articles.api_views.NewsletterDetailView.serializer_class">(articles.api_views.NewsletterDetailView attribute)</a>
+</li>
+        <li><a href="modules/articles.api_views.html#articles.api_views.NewsletterListView.serializer_class">(articles.api_views.NewsletterListView attribute)</a>
+</li>
+        <li><a href="modules/articles.api_views.html#articles.api_views.PublisherDetailView.serializer_class">(articles.api_views.PublisherDetailView attribute)</a>
+</li>
+        <li><a href="modules/articles.api_views.html#articles.api_views.PublisherListView.serializer_class">(articles.api_views.PublisherListView attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.models.html#articles.models.Newsletter.subject">subject (articles.models.Newsletter attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.Publisher.subscribers">subscribers (articles.models.Publisher attribute)</a>
+</li>
+      <li><a href="modules/articles.views.html#articles.views.subscriptions">subscriptions() (in module articles.views)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.subscriptions_journalists">subscriptions_journalists (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.subscriptions_publishers">subscriptions_publishers (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.serializers.html#articles.serializers.SubscriptionSerializer">SubscriptionSerializer (class in articles.serializers)</a>
+</li>
+      <li><a href="modules/articles.views.html#articles.views.ArticleCreateView.success_url">success_url (articles.views.ArticleCreateView attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.views.html#articles.views.ArticleDeleteView.success_url">(articles.views.ArticleDeleteView attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.ArticleUpdateView.success_url">(articles.views.ArticleUpdateView attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterCreateView.success_url">(articles.views.NewsletterCreateView attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterDeleteView.success_url">(articles.views.NewsletterDeleteView attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterUpdateView.success_url">(articles.views.NewsletterUpdateView attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.views.html#articles.views.ArticleCreateView.template_name">template_name (articles.views.ArticleCreateView attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.views.html#articles.views.ArticleDeleteView.template_name">(articles.views.ArticleDeleteView attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.ArticleDetailView.template_name">(articles.views.ArticleDetailView attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.ArticleUpdateView.template_name">(articles.views.ArticleUpdateView attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.CustomLoginView.template_name">(articles.views.CustomLoginView attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterCreateView.template_name">(articles.views.NewsletterCreateView attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterDeleteView.template_name">(articles.views.NewsletterDeleteView attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterDetailView.template_name">(articles.views.NewsletterDetailView attribute)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterUpdateView.template_name">(articles.views.NewsletterUpdateView attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.views.html#articles.views.ArticleCreateView.test_func">test_func() (articles.views.ArticleCreateView method)</a>
+
+      <ul>
+        <li><a href="modules/articles.views.html#articles.views.ArticleDeleteView.test_func">(articles.views.ArticleDeleteView method)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.ArticleUpdateView.test_func">(articles.views.ArticleUpdateView method)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterCreateView.test_func">(articles.views.NewsletterCreateView method)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterDeleteView.test_func">(articles.views.NewsletterDeleteView method)</a>
+</li>
+        <li><a href="modules/articles.views.html#articles.views.NewsletterUpdateView.test_func">(articles.views.NewsletterUpdateView method)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.models.html#articles.models.Article.title">title (articles.models.Article attribute)</a>
+</li>
+      <li><a href="modules/articles.serializers.html#articles.serializers.SubscriptionSerializer.to_representation">to_representation() (articles.serializers.SubscriptionSerializer method)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.ResetToken.token_hash">token_hash (articles.models.ResetToken attribute)</a>
+</li>
+      <li><a href="modules/articles.functions.html#articles.functions.tweet.TwitterAPI">TwitterAPI (class in articles.functions.tweet)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.models.html#articles.models.Article.updated_at">updated_at (articles.models.Article attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.models.html#articles.models.Newsletter.updated_at">(articles.models.Newsletter attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="modules/articles.functions.html#articles.functions.tweet.TwitterAPI.upload_media">upload_media() (articles.functions.tweet.TwitterAPI method)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.ResetToken.used_at">used_at (articles.models.ResetToken attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.ResetToken.user">user (articles.models.ResetToken attribute)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User">User (class in articles.models)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.DoesNotExist">User.DoesNotExist</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.MultipleObjectsReturned">User.MultipleObjectsReturned</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.Roles">User.Roles (class in articles.models)</a>
+</li>
+      <li><a href="modules/articles.api_views.html#articles.api_views.user_feed">user_feed() (in module articles.api_views)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.ResetToken.user_id">user_id (articles.models.ResetToken attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.models.html#articles.models.User.user_permissions">user_permissions (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.signals.html#articles.signals.user_post_save">user_post_save() (in module articles.signals)</a>
+</li>
+      <li><a href="modules/articles.views.html#articles.views.user_profile">user_profile() (in module articles.views)</a>
+</li>
+      <li><a href="modules/articles.admin.html#articles.admin.UserAdmin">UserAdmin (class in articles.admin)</a>
+</li>
+      <li><a href="modules/articles.models.html#articles.models.User.username">username (articles.models.User attribute)</a>
+</li>
+      <li><a href="modules/articles.forms.html#articles.forms.UserProfileForm">UserProfileForm (class in articles.forms)</a>
+</li>
+      <li><a href="modules/articles.forms.html#articles.forms.UserProfileForm.Meta">UserProfileForm.Meta (class in articles.forms)</a>
+</li>
+      <li><a href="modules/articles.forms.html#articles.forms.UserRegistrationForm">UserRegistrationForm (class in articles.forms)</a>
+</li>
+      <li><a href="modules/articles.forms.html#articles.forms.UserRegistrationForm.Meta">UserRegistrationForm.Meta (class in articles.forms)</a>
+</li>
+      <li><a href="modules/articles.serializers.html#articles.serializers.UserSerializer">UserSerializer (class in articles.serializers)</a>
+</li>
+      <li><a href="modules/articles.serializers.html#articles.serializers.UserSerializer.Meta">UserSerializer.Meta (class in articles.serializers)</a>
+</li>
+      <li><a href="modules/articles.api_views.html#articles.api_views.UserSubscriptionsView">UserSubscriptionsView (class in articles.api_views)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.utils.html#articles.utils.validate_and_consume_token">validate_and_consume_token() (in module articles.utils)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/articles.forms.html#articles.forms.ArticleForm.Meta.widgets">widgets (articles.forms.ArticleForm.Meta attribute)</a>
+
+      <ul>
+        <li><a href="modules/articles.forms.html#articles.forms.NewsletterForm.Meta.widgets">(articles.forms.NewsletterForm.Meta attribute)</a>
+</li>
+        <li><a href="modules/articles.forms.html#articles.forms.UserProfileForm.Meta.widgets">(articles.forms.UserProfileForm.Meta attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/news_app.settings.html#news_app.settings.WSGI_APPLICATION">WSGI_APPLICATION (in module news_app.settings)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, News App Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
