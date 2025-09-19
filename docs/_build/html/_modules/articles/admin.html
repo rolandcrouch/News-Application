@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>articles.admin &mdash; Django News Application 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Django News Application
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Application Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#architecture">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#user-roles-and-permissions">User Roles and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#publishers">Publishers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#content-management">Content Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#subscription-system">Subscription System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#content-feeds">Content Feeds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#approval-workflow">Approval Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#integration-features">Integration Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#api-architecture">API Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#security-features">Security Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#development-setup">Development Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#production-setup">Production Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#configuration-options">Configuration Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#testing-the-installation">Testing the Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#getting-help">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#development-tools">Development Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#api-overview">API Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#base-url">Base URL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#available-endpoints">Available Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#response-format">Response Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#http-status-codes">HTTP Status Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#rate-limiting">Rate Limiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#pagination">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#testing-the-api">Testing the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/index.html">Module Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/index.html#articles-application">Articles Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/index.html#main-project">Main Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html#production-deployment">Production Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html#cloud-platform-deployment">Cloud Platform Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html#monitoring-and-maintenance">Monitoring and Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html#security-considerations">Security Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html">Testing Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#test-suite-overview">Test Suite Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#test-categories">Test Categories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#test-data-setup">Test Data Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#test-configuration">Test Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#mocking-external-services">Mocking External Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#test-automation">Test Automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#performance-testing">Performance Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#best-practices">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#running-specific-tests">Running Specific Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Django News Application</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">articles.admin</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for articles.admin</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Admin setup for User, Publisher, Article, Newsletter.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib</span><span class="w"> </span><span class="kn">import</span> <span class="n">admin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.admin</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserAdmin</span> <span class="k">as</span> <span class="n">DjangoUserAdmin</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">User</span><span class="p">,</span> <span class="n">Publisher</span><span class="p">,</span> <span class="n">Article</span><span class="p">,</span> <span class="n">Newsletter</span>
+
+
+<div class="viewcode-block" id="UserAdmin">
+<a class="viewcode-back" href="../../modules/articles.admin.html#articles.admin.UserAdmin">[docs]</a>
+<span class="nd">@admin</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">User</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">UserAdmin</span><span class="p">(</span><span class="n">DjangoUserAdmin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom admin for the project&#39;s User model.&quot;&quot;&quot;</span>
+
+    <span class="n">fieldsets</span> <span class="o">=</span> <span class="n">DjangoUserAdmin</span><span class="o">.</span><span class="n">fieldsets</span> <span class="o">+</span> <span class="p">(</span>
+        <span class="p">(</span><span class="s2">&quot;Role &amp; Reader Fields&quot;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">&quot;role&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;subscriptions_publishers&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;subscriptions_journalists&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">}),</span>
+        <span class="p">(</span><span class="s2">&quot;Editor Fields&quot;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="s2">&quot;fields&quot;</span><span class="p">:</span> <span class="p">(</span>
+                <span class="s2">&quot;affiliated_publisher&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">}),</span>
+    <span class="p">)</span>
+
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;username&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;email&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;role&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;affiliated_publisher&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;is_staff&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;is_active&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;get_independent_articles_count&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;get_independent_newsletters_count&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<div class="viewcode-block" id="UserAdmin.get_independent_articles_count">
+<a class="viewcode-back" href="../../modules/articles.admin.html#articles.admin.UserAdmin.get_independent_articles_count">[docs]</a>
+    <span class="nd">@admin</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Independent Articles&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_independent_articles_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Display count of independent articles for journalists.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="n">obj</span><span class="o">.</span><span class="n">Roles</span><span class="o">.</span><span class="n">JOURNALIST</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">get_independent_articles</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="k">return</span> <span class="s2">&quot;-&quot;</span></div>
+
+
+<div class="viewcode-block" id="UserAdmin.get_independent_newsletters_count">
+<a class="viewcode-back" href="../../modules/articles.admin.html#articles.admin.UserAdmin.get_independent_newsletters_count">[docs]</a>
+    <span class="nd">@admin</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Independent Newsletters&quot;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_independent_newsletters_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Display count of independent newsletters for journalists.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="n">obj</span><span class="o">.</span><span class="n">Roles</span><span class="o">.</span><span class="n">JOURNALIST</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">get_independent_newsletters</span><span class="p">()</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="k">return</span> <span class="s2">&quot;-&quot;</span></div>
+
+
+    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;role&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;is_staff&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;is_superuser&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;is_active&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;groups&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="PublisherAdmin">
+<a class="viewcode-back" href="../../modules/articles.admin.html#articles.admin.PublisherAdmin">[docs]</a>
+<span class="nd">@admin</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Publisher</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PublisherAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Admin for publishers with editors and journalists.&quot;&quot;&quot;</span>
+
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,)</span>
+    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,)</span>
+    <span class="n">filter_horizontal</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;editors&quot;</span><span class="p">,</span> <span class="s2">&quot;journalists&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="ArticleAdmin">
+<a class="viewcode-back" href="../../modules/articles.admin.html#articles.admin.ArticleAdmin">[docs]</a>
+<span class="nd">@admin</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Article</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ArticleAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Admin for articles, including approval fields.&quot;&quot;&quot;</span>
+
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;author&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;publisher&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;is_approved&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;approved_by&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;created_at&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;is_approved&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;publisher&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;author&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;approved_by&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;created_at&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;author__username&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;publisher__name&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">autocomplete_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;author&quot;</span><span class="p">,</span> <span class="s2">&quot;publisher&quot;</span><span class="p">,</span> <span class="s2">&quot;approved_by&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="NewsletterAdmin">
+<a class="viewcode-back" href="../../modules/articles.admin.html#articles.admin.NewsletterAdmin">[docs]</a>
+<span class="nd">@admin</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Newsletter</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">NewsletterAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Admin for newsletters.&quot;&quot;&quot;</span>
+
+    <span class="n">list_display</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;subject&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;author&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;publisher&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;created_at&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">list_filter</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;publisher&quot;</span><span class="p">,</span> <span class="s2">&quot;author&quot;</span><span class="p">,</span> <span class="s2">&quot;created_at&quot;</span><span class="p">)</span>
+
+    <span class="n">search_fields</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s2">&quot;subject&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;author__username&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;publisher__name&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">autocomplete_fields</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;author&quot;</span><span class="p">,</span> <span class="s2">&quot;publisher&quot;</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, News App Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

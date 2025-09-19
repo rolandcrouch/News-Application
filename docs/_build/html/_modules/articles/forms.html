@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>articles.forms &mdash; Django News Application 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Django News Application
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Application Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#architecture">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#user-roles-and-permissions">User Roles and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#publishers">Publishers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#content-management">Content Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#subscription-system">Subscription System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#content-feeds">Content Feeds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#approval-workflow">Approval Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#integration-features">Integration Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#api-architecture">API Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#security-features">Security Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#development-setup">Development Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#production-setup">Production Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#configuration-options">Configuration Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#testing-the-installation">Testing the Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#getting-help">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#development-tools">Development Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#api-overview">API Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#base-url">Base URL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#available-endpoints">Available Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#response-format">Response Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#http-status-codes">HTTP Status Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#rate-limiting">Rate Limiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#pagination">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#testing-the-api">Testing the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/index.html">Module Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/index.html#articles-application">Articles Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/index.html#main-project">Main Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html#production-deployment">Production Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html#cloud-platform-deployment">Cloud Platform Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html#monitoring-and-maintenance">Monitoring and Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html#security-considerations">Security Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html">Testing Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#test-suite-overview">Test Suite Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#test-categories">Test Categories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#test-data-setup">Test Data Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#test-configuration">Test Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#mocking-external-services">Mocking External Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#test-automation">Test Automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#performance-testing">Performance Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#best-practices">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#running-specific-tests">Running Specific Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Django News Application</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">articles.forms</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for articles.forms</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Forms for user registration and authentication.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">django</span><span class="w"> </span><span class="kn">import</span> <span class="n">forms</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth.forms</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserCreationForm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">User</span><span class="p">,</span> <span class="n">Article</span><span class="p">,</span> <span class="n">Newsletter</span><span class="p">,</span> <span class="n">Publisher</span>
+
+
+<div class="viewcode-block" id="UserRegistrationForm">
+<a class="viewcode-back" href="../../modules/articles.forms.html#articles.forms.UserRegistrationForm">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">UserRegistrationForm</span><span class="p">(</span><span class="n">UserCreationForm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Registration form for creating new users with roles.&quot;&quot;&quot;</span>
+
+    <span class="n">role</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ChoiceField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="n">User</span><span class="o">.</span><span class="n">Roles</span><span class="o">.</span><span class="n">choices</span><span class="p">)</span>
+    <span class="n">affiliated_publisher</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">ModelChoiceField</span><span class="p">(</span>
+        <span class="n">queryset</span><span class="o">=</span><span class="n">Publisher</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">empty_label</span><span class="o">=</span><span class="s2">&quot;Select a publisher (required for editors)&quot;</span><span class="p">,</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;form-select&quot;</span><span class="p">})</span>
+    <span class="p">)</span>
+
+<div class="viewcode-block" id="UserRegistrationForm.Meta">
+<a class="viewcode-back" href="../../modules/articles.forms.html#articles.forms.UserRegistrationForm.Meta">[docs]</a>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;username&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;email&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;role&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;affiliated_publisher&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;password1&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;password2&quot;</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="UserRegistrationForm.__init__">
+<a class="viewcode-back" href="../../modules/articles.forms.html#articles.forms.UserRegistrationForm.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="c1"># Add CSS classes to form fields</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s1">&#39;role&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-select&#39;</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s1">&#39;password1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s1">&#39;password2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">widget</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;form-control&#39;</span><span class="p">})</span></div>
+
+
+<div class="viewcode-block" id="UserRegistrationForm.clean">
+<a class="viewcode-back" href="../../modules/articles.forms.html#articles.forms.UserRegistrationForm.clean">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">cleaned_data</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">clean</span><span class="p">()</span>
+        <span class="n">role</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;role&#39;</span><span class="p">)</span>
+        <span class="n">affiliated_publisher</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;affiliated_publisher&#39;</span><span class="p">)</span>
+        
+        <span class="c1"># Require publisher selection for editors</span>
+        <span class="k">if</span> <span class="n">role</span> <span class="o">==</span> <span class="n">User</span><span class="o">.</span><span class="n">Roles</span><span class="o">.</span><span class="n">EDITOR</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">affiliated_publisher</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">forms</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span><span class="s2">&quot;Editors must select a publisher.&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">cleaned_data</span></div>
+
+
+<div class="viewcode-block" id="UserRegistrationForm.save">
+<a class="viewcode-back" href="../../modules/articles.forms.html#articles.forms.UserRegistrationForm.save">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commit</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save the user with selected role and hashed password.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">commit</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">role</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s2">&quot;role&quot;</span><span class="p">]</span>
+        <span class="n">user</span><span class="o">.</span><span class="n">affiliated_publisher</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;affiliated_publisher&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">commit</span><span class="p">:</span>
+            <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">user</span></div>
+</div>
+
+    
+
+<div class="viewcode-block" id="ForgotUsernameForm">
+<a class="viewcode-back" href="../../modules/articles.forms.html#articles.forms.ForgotUsernameForm">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ForgotUsernameForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Form for users to request their forgotten username via email.&quot;&quot;&quot;</span>
+    
+    <span class="n">email</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">EmailField</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Email address&quot;</span><span class="p">,</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">EmailInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;form-control&quot;</span><span class="p">,</span>      
+            <span class="s2">&quot;placeholder&quot;</span><span class="p">:</span> <span class="s2">&quot;Enter your email&quot;</span>
+        <span class="p">})</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="PasswordResetRequestForm">
+<a class="viewcode-back" href="../../modules/articles.forms.html#articles.forms.PasswordResetRequestForm">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PasswordResetRequestForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">Form</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Form for requesting a password reset with username and email verification.&quot;&quot;&quot;</span>
+    
+    <span class="n">username</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+    <span class="n">email</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">EmailField</span><span class="p">()</span>
+
+<div class="viewcode-block" id="PasswordResetRequestForm.clean">
+<a class="viewcode-back" href="../../modules/articles.forms.html#articles.forms.PasswordResetRequestForm.clean">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate that the username and email combination exists.&quot;&quot;&quot;</span>
+        <span class="n">cleaned</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">clean</span><span class="p">()</span>
+        <span class="n">username</span> <span class="o">=</span> <span class="n">cleaned</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;username&quot;</span><span class="p">)</span>
+        <span class="n">email</span> <span class="o">=</span> <span class="n">cleaned</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;email&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">username</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">email</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">cleaned</span>
+
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">username__iexact</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">email__iexact</span><span class="o">=</span><span class="n">email</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="p">:</span>
+
+            <span class="k">raise</span> <span class="n">forms</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span>
+                <span class="s2">&quot;No account was found with that username and email.&quot;</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">user</span>
+        <span class="k">return</span> <span class="n">cleaned</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ArticleForm">
+<a class="viewcode-back" href="../../modules/articles.forms.html#articles.forms.ArticleForm">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ArticleForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Form for creating and editing articles.&quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="ArticleForm.Meta">
+<a class="viewcode-back" href="../../modules/articles.forms.html#articles.forms.ArticleForm.Meta">[docs]</a>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Article</span>
+        <span class="c1"># Don’t expose is_approved; editors use approve/unapprove actions</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;body&quot;</span><span class="p">,</span> <span class="s2">&quot;publisher&quot;</span><span class="p">]</span>
+        <span class="n">widgets</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;form-control&quot;</span><span class="p">}),</span>
+            <span class="s2">&quot;body&quot;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;form-control&quot;</span><span class="p">,</span> <span class="s2">&quot;rows&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">}),</span>
+            <span class="s2">&quot;publisher&quot;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;form-select&quot;</span><span class="p">}),</span>
+        <span class="p">}</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="NewsletterForm">
+<a class="viewcode-back" href="../../modules/articles.forms.html#articles.forms.NewsletterForm">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">NewsletterForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Form for creating and editing newsletters.&quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="NewsletterForm.Meta">
+<a class="viewcode-back" href="../../modules/articles.forms.html#articles.forms.NewsletterForm.Meta">[docs]</a>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Newsletter</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span> <span class="s2">&quot;publisher&quot;</span><span class="p">]</span> 
+        <span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Content&quot;</span><span class="p">}</span>
+        <span class="n">widgets</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;subject&quot;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;form-control&quot;</span><span class="p">}),</span>
+            <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span>
+                <span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;form-control&quot;</span><span class="p">,</span> <span class="s2">&quot;rows&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">}</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;publisher&quot;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;form-select&quot;</span><span class="p">}),</span>
+        <span class="p">}</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="UserProfileForm">
+<a class="viewcode-back" href="../../modules/articles.forms.html#articles.forms.UserProfileForm">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">UserProfileForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Form for users to edit their profile details.&quot;&quot;&quot;</span>
+    
+    <span class="n">new_publisher_name</span> <span class="o">=</span> <span class="n">forms</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">255</span><span class="p">,</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Or Create New Publisher&quot;</span><span class="p">,</span>
+        <span class="n">widget</span><span class="o">=</span><span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;form-control&quot;</span><span class="p">}),</span>
+        <span class="n">help_text</span><span class="o">=</span><span class="s2">&quot;Enter a new publisher name. This will override any selection above and create a new publisher.&quot;</span>
+    <span class="p">)</span>
+    
+<div class="viewcode-block" id="UserProfileForm.Meta">
+<a class="viewcode-back" href="../../modules/articles.forms.html#articles.forms.UserProfileForm.Meta">[docs]</a>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">User</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="s2">&quot;first_name&quot;</span><span class="p">,</span> <span class="s2">&quot;last_name&quot;</span><span class="p">,</span> <span class="s2">&quot;affiliated_publisher&quot;</span><span class="p">]</span>
+        <span class="n">widgets</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;form-control&quot;</span><span class="p">}),</span>
+            <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">EmailInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;form-control&quot;</span><span class="p">}),</span>
+            <span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;form-control&quot;</span><span class="p">}),</span>
+            <span class="s2">&quot;last_name&quot;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">TextInput</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;form-control&quot;</span><span class="p">}),</span>
+            <span class="s2">&quot;affiliated_publisher&quot;</span><span class="p">:</span> <span class="n">forms</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;form-select&quot;</span><span class="p">}),</span>
+        <span class="p">}</span></div>
+
+    
+<div class="viewcode-block" id="UserProfileForm.__init__">
+<a class="viewcode-back" href="../../modules/articles.forms.html#articles.forms.UserProfileForm.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize form with role-specific field visibility.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="c1"># Only show affiliated_publisher field for editors and journalists</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">instance</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">role</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">User</span><span class="o">.</span><span class="n">Roles</span><span class="o">.</span><span class="n">EDITOR</span><span class="p">,</span> <span class="n">User</span><span class="o">.</span><span class="n">Roles</span><span class="o">.</span><span class="n">JOURNALIST</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;affiliated_publisher&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        
+        <span class="c1"># Only show new_publisher_name field for editors</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">instance</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">role</span> <span class="o">!=</span> <span class="n">User</span><span class="o">.</span><span class="n">Roles</span><span class="o">.</span><span class="n">EDITOR</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;new_publisher_name&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="UserProfileForm.clean">
+<a class="viewcode-back" href="../../modules/articles.forms.html#articles.forms.UserProfileForm.clean">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate new publisher creation and prevent conflicts.&quot;&quot;&quot;</span>
+        <span class="n">cleaned_data</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">clean</span><span class="p">()</span>
+        <span class="n">new_publisher_name</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;new_publisher_name&#39;</span><span class="p">)</span>
+        <span class="n">affiliated_publisher</span> <span class="o">=</span> <span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;affiliated_publisher&#39;</span><span class="p">)</span>
+        
+        <span class="c1"># If creating a new publisher, validate the name</span>
+        <span class="k">if</span> <span class="n">new_publisher_name</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">affiliated_publisher</span><span class="p">:</span>
+                <span class="c1"># Clear the selected publisher if creating a new one</span>
+                <span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;affiliated_publisher&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            
+            <span class="c1"># Check if publisher with this name already exists</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Publisher</span>
+            <span class="k">if</span> <span class="n">Publisher</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">name__iexact</span><span class="o">=</span><span class="n">new_publisher_name</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="n">forms</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;A publisher with the name &#39;</span><span class="si">{</span><span class="n">new_publisher_name</span><span class="si">}</span><span class="s2">&#39; already exists.&quot;</span>
+                <span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">cleaned_data</span></div>
+
+    
+<div class="viewcode-block" id="UserProfileForm.save">
+<a class="viewcode-back" href="../../modules/articles.forms.html#articles.forms.UserProfileForm.save">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">commit</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Save user profile and create new publisher if specified.&quot;&quot;&quot;</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">commit</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">new_publisher_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cleaned_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;new_publisher_name&#39;</span><span class="p">)</span>
+        
+        <span class="c1"># If creating a new publisher, create it and assign to user</span>
+        <span class="k">if</span> <span class="n">new_publisher_name</span> <span class="ow">and</span> <span class="n">user</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="n">User</span><span class="o">.</span><span class="n">Roles</span><span class="o">.</span><span class="n">EDITOR</span><span class="p">:</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Publisher</span>
+            <span class="n">publisher</span> <span class="o">=</span> <span class="n">Publisher</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">new_publisher_name</span><span class="p">)</span>
+            <span class="n">user</span><span class="o">.</span><span class="n">affiliated_publisher</span> <span class="o">=</span> <span class="n">publisher</span>
+        
+        <span class="k">if</span> <span class="n">commit</span><span class="p">:</span>
+            <span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">user</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, News App Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

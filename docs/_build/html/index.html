@@ -1,0 +1,509 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Django News Application Documentation &mdash; Django News Application 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Application Overview" href="overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Django News Application
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Application Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#architecture">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#user-roles-and-permissions">User Roles and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#publishers">Publishers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#content-management">Content Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#subscription-system">Subscription System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#content-feeds">Content Feeds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#approval-workflow">Approval Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#integration-features">Integration Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#api-architecture">API Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#security-features">Security Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#development-setup">Development Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#production-setup">Production Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#configuration-options">Configuration Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#testing-the-installation">Testing the Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#getting-help">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#development-tools">Development Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#api-overview">API Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#base-url">Base URL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#available-endpoints">Available Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#response-format">Response Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#http-status-codes">HTTP Status Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#rate-limiting">Rate Limiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#pagination">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#testing-the-api">Testing the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html">Module Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html#articles-application">Articles Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html#main-project">Main Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#production-deployment">Production Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#cloud-platform-deployment">Cloud Platform Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#monitoring-and-maintenance">Monitoring and Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#security-considerations">Security Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-suite-overview">Test Suite Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-categories">Test Categories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-data-setup">Test Data Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-configuration">Test Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#mocking-external-services">Mocking External Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-automation">Test Automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#performance-testing">Performance Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#best-practices">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#running-specific-tests">Running Specific Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Django News Application</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Django News Application Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="django-news-application-documentation">
+<h1>Django News Application Documentation<a class="headerlink" href="#django-news-application-documentation" title="Link to this heading"></a></h1>
+<p>Welcome to the Django News Application documentation! This comprehensive guide covers
+all aspects of the news application, from installation to API usage.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Application Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#architecture">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#user-roles-and-permissions">User Roles and Permissions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#readers">Readers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#journalists">Journalists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#editors">Editors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#publishers">Publishers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#content-management">Content Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#articles">Articles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#newsletters">Newsletters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#subscription-system">Subscription System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#publisher-subscriptions">Publisher Subscriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#journalist-following">Journalist Following</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#content-feeds">Content Feeds</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#personalized-feeds">Personalized Feeds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#browse-all">Browse All</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#approval-workflow">Approval Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#content-approval-process">Content Approval Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#integration-features">Integration Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#twitter-integration">Twitter Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#email-notifications">Email Notifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#api-architecture">API Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#restful-design">RESTful Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#authentication">Authentication</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#security-features">Security Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#development-setup">Development Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#clone-the-repository">1. Clone the Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#create-virtual-environment">2. Create Virtual Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-dependencies">3. Install Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#environment-configuration">4. Environment Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#database-setup">5. Database Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#run-development-server">6. Run Development Server</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#production-setup">Production Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#docker-deployment">Docker Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#manual-production-setup">Manual Production Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#configuration-options">Configuration Options</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#django-settings">Django Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#twitter-integration">Twitter Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#email-configuration">Email Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#testing-the-installation">Testing the Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#getting-help">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#development-tools">Development Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/authentication.html">API Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/authentication.html#authentication-methods">Authentication Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/authentication.html#getting-a-token">Getting a Token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/authentication.html#using-the-token">Using the Token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/authentication.html#authentication-examples">Authentication Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/authentication.html#role-based-access-control">Role-based Access Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/authentication.html#authentication-errors">Authentication Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/authentication.html#token-management">Token Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/authentication.html#session-authentication">Session Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/authentication.html#testing-authentication">Testing Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/endpoints.html">API Endpoints Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/endpoints.html#authentication-endpoints">Authentication Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/endpoints.html#articles-endpoints">Articles Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/endpoints.html#newsletters-endpoints">Newsletters Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/endpoints.html#publishers-endpoints">Publishers Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/endpoints.html#journalists-endpoints">Journalists Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/endpoints.html#subscriptions-endpoints">Subscriptions Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/endpoints.html#feed-endpoints">Feed Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/endpoints.html#utility-endpoints">Utility Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/endpoints.html#error-responses">Error Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/examples.html">API Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/examples.html#basic-authentication-flow">Basic Authentication Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/examples.html#subscription-management-examples">Subscription Management Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/examples.html#content-discovery-examples">Content Discovery Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/examples.html#building-a-news-reader-application">Building a News Reader Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/examples.html#error-handling-examples">Error Handling Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/examples.html#testing-api-endpoints">Testing API Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/examples.html#performance-considerations">Performance Considerations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#api-overview">API Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#base-url">Base URL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#available-endpoints">Available Endpoints</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#authentication">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#articles">Articles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#newsletters">Newsletters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#publishers">Publishers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#journalists">Journalists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#subscriptions">Subscriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#feed">Feed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#utility">Utility</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#response-format">Response Format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#success-response">Success Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/index.html#error-response">Error Response</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#http-status-codes">HTTP Status Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#rate-limiting">Rate Limiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#pagination">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#testing-the-api">Testing the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html">Module Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/articles.html">Articles Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/news_app.html">news_app package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html#articles-application">Articles Application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/articles.models.html">articles.models module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/articles.views.html">articles.views module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/articles.api_views.html">articles.api_views module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/articles.forms.html">articles.forms module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/articles.serializers.html">articles.serializers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/articles.admin.html">articles.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/articles.utils.html">articles.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/articles.signals.html">articles.signals module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/articles.functions.html">articles.functions package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html#main-project">Main Project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/news_app.settings.html">news_app.settings module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/news_app.urls.html">news_app.urls module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#production-deployment">Production Deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#docker-deployment-recommended">Docker Deployment (Recommended)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#traditional-server-deployment">Traditional Server Deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#cloud-platform-deployment">Cloud Platform Deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#heroku-deployment">Heroku Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#aws-ec2-deployment">AWS EC2 Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#digitalocean-deployment">DigitalOcean Deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#monitoring-and-maintenance">Monitoring and Maintenance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#health-checks">Health Checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#logging-configuration">Logging Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#backup-strategy">Backup Strategy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#performance-optimization">Performance Optimization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#database-optimization">Database Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#caching">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#static-files">Static Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#security-considerations">Security Considerations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#environment-security">Environment Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#django-security">Django Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#regular-updates">Regular Updates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#common-issues">Common Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployment.html#log-files">Log Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-suite-overview">Test Suite Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#running-tests">Running Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#basic-test-execution">Basic Test Execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#test-coverage">Test Coverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#using-django-s-test-runner">Using Django’s Test Runner</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-categories">Test Categories</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#model-tests">Model Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#form-tests">Form Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#view-tests">View Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#api-tests">API Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#integration-tests">Integration Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#security-tests">Security Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-data-setup">Test Data Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#test-users">Test Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#test-content">Test Content</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-configuration">Test Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#test-settings">Test Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#test-database">Test Database</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#mocking-external-services">Mocking External Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#twitter-api-mocking">Twitter API Mocking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#email-service-mocking">Email Service Mocking</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#continuous-integration">Continuous Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#github-actions">GitHub Actions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-automation">Test Automation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#pre-commit-hooks">Pre-commit Hooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#test-reporting">Test Reporting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#performance-testing">Performance Testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#load-testing">Load Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#database-performance">Database Performance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#best-practices">Best Practices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#test-organization">Test Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#test-data">Test Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#assertions">Assertions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#coverage-goals">Coverage Goals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#running-specific-tests">Running Specific Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#test-selection">Test Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html#test-debugging">Test Debugging</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h1>
+<p>The Django News Application is a comprehensive news management system that supports
+multiple user roles (Readers, Editors, Journalists) with features including:</p>
+<ul class="simple">
+<li><p><strong>Multi-role User System</strong>: Readers, Editors, and Journalists with different permissions</p></li>
+<li><p><strong>Content Management</strong>: Articles and newsletters with approval workflows</p></li>
+<li><p><strong>Publisher System</strong>: Publishers can have affiliated editors and journalists</p></li>
+<li><p><strong>Subscription System</strong>: Readers can follow journalists and subscribe to publishers</p></li>
+<li><p><strong>REST API</strong>: Complete API for all functionality</p></li>
+<li><p><strong>Twitter Integration</strong>: OAuth2-based Twitter posting for approved content</p></li>
+<li><p><strong>Email Notifications</strong>: Automated notifications for new content</p></li>
+</ul>
+</section>
+<section id="key-features">
+<h1>Key Features<a class="headerlink" href="#key-features" title="Link to this heading"></a></h1>
+<section id="user-roles">
+<h2>User Roles<a class="headerlink" href="#user-roles" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Readers</strong>: Can subscribe to publishers and follow journalists</p></li>
+<li><p><strong>Journalists</strong>: Can create articles and newsletters, work independently or with publishers</p></li>
+<li><p><strong>Editors</strong>: Can approve/reject content, manage publishers, and publish to Twitter</p></li>
+</ul>
+</section>
+<section id="content-types">
+<h2>Content Types<a class="headerlink" href="#content-types" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Articles</strong>: News articles with title, body, author, and optional publisher</p></li>
+<li><p><strong>Newsletters</strong>: Email newsletters with subject, content, author, and optional publisher</p></li>
+</ul>
+</section>
+</section>
+<section id="technical-stack">
+<h1>Technical Stack<a class="headerlink" href="#technical-stack" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><strong>Backend</strong>: Django 5.2.6 with Django REST Framework</p></li>
+<li><p><strong>Database</strong>: SQLite (development) / PostgreSQL (production)</p></li>
+<li><p><strong>Authentication</strong>: Django’s built-in auth with custom user model</p></li>
+<li><p><strong>API</strong>: RESTful API with token authentication</p></li>
+<li><p><strong>Documentation</strong>: Sphinx with Read the Docs theme</p></li>
+<li><p><strong>Testing</strong>: Comprehensive test suite with 60+ test cases</p></li>
+<li><p><strong>Deployment</strong>: Docker support with multi-stage builds</p></li>
+</ul>
+</section>
+<section id="quick-start">
+<h1>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading"></a></h1>
+<ol class="arabic">
+<li><p><strong>Installation</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">&lt;</span><span class="n">repository</span><span class="o">-</span><span class="n">url</span><span class="o">&gt;</span>
+<span class="n">cd</span> <span class="n">django</span><span class="o">-</span><span class="n">news</span><span class="o">-</span><span class="n">application</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Database Setup</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">migrate</span>
+<span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">createsuperuser</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Run Development Server</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">runserver</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Access the Application</strong>:</p>
+<ul class="simple">
+<li><p>Web Interface: <a class="reference external" href="http://localhost:8000">http://localhost:8000</a></p></li>
+<li><p>API Root: <a class="reference external" href="http://localhost:8000/api/">http://localhost:8000/api/</a></p></li>
+<li><p>Admin Panel: <a class="reference external" href="http://localhost:8000/admin/">http://localhost:8000/admin/</a></p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="api-quick-reference">
+<h1>API Quick Reference<a class="headerlink" href="#api-quick-reference" title="Link to this heading"></a></h1>
+<section id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Link to this heading"></a></h2>
+<p>All API endpoints require authentication. Get your token:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POST</span> <span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">auth</span><span class="o">/</span><span class="n">token</span><span class="o">/</span>
+<span class="p">{</span>
+    <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;your_username&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="s2">&quot;your_password&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="main-endpoints">
+<h2>Main Endpoints<a class="headerlink" href="#main-endpoints" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Articles</strong>: <code class="docutils literal notranslate"><span class="pre">/api/articles/</span></code> (GET, POST)</p></li>
+<li><p><strong>Newsletters</strong>: <code class="docutils literal notranslate"><span class="pre">/api/newsletters/</span></code> (GET, POST)</p></li>
+<li><p><strong>Publishers</strong>: <code class="docutils literal notranslate"><span class="pre">/api/publishers/</span></code> (GET)</p></li>
+<li><p><strong>Journalists</strong>: <code class="docutils literal notranslate"><span class="pre">/api/journalists/</span></code> (GET)</p></li>
+<li><p><strong>Subscriptions</strong>: <code class="docutils literal notranslate"><span class="pre">/api/subscriptions/</span></code> (GET, POST, DELETE)</p></li>
+<li><p><strong>Feed</strong>: <code class="docutils literal notranslate"><span class="pre">/api/feed/</span></code> (GET) - Combined articles and newsletters</p></li>
+</ul>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="overview.html" class="btn btn-neutral float-right" title="Application Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, News App Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

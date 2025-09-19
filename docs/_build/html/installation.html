@@ -1,0 +1,419 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation Guide &mdash; Django News Application 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Documentation" href="api/index.html" />
+    <link rel="prev" title="Application Overview" href="overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Django News Application
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Application Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#architecture">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#user-roles-and-permissions">User Roles and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#publishers">Publishers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#content-management">Content Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#subscription-system">Subscription System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#content-feeds">Content Feeds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#approval-workflow">Approval Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#integration-features">Integration Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#api-architecture">API Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#security-features">Security Features</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#system-requirements">System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#development-setup">Development Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#clone-the-repository">1. Clone the Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-virtual-environment">2. Create Virtual Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-dependencies">3. Install Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#environment-configuration">4. Environment Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#database-setup">5. Database Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-development-server">6. Run Development Server</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#production-setup">Production Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#docker-deployment">Docker Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#manual-production-setup">Manual Production Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#configuration-options">Configuration Options</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#django-settings">Django Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#twitter-integration">Twitter Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#email-configuration">Email Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#testing-the-installation">Testing the Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#common-issues">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#getting-help">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#development-tools">Development Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#api-overview">API Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#base-url">Base URL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#available-endpoints">Available Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#response-format">Response Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#http-status-codes">HTTP Status Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#rate-limiting">Rate Limiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#pagination">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#testing-the-api">Testing the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html">Module Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html#articles-application">Articles Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html#main-project">Main Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#production-deployment">Production Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#cloud-platform-deployment">Cloud Platform Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#monitoring-and-maintenance">Monitoring and Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#security-considerations">Security Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-suite-overview">Test Suite Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-categories">Test Categories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-data-setup">Test Data Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-configuration">Test Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#mocking-external-services">Mocking External Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-automation">Test Automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#performance-testing">Performance Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#best-practices">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#running-specific-tests">Running Specific Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Django News Application</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation-guide">
+<h1>Installation Guide<a class="headerlink" href="#installation-guide" title="Link to this heading"></a></h1>
+<p>This guide will help you set up the Django News Application in different environments.</p>
+</section>
+<section id="system-requirements">
+<h1>System Requirements<a class="headerlink" href="#system-requirements" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>Python 3.8 or higher</p></li>
+<li><p>pip (Python package installer)</p></li>
+<li><p>Git</p></li>
+<li><p>SQLite (included with Python) or PostgreSQL (for production)</p></li>
+</ul>
+</section>
+<section id="development-setup">
+<h1>Development Setup<a class="headerlink" href="#development-setup" title="Link to this heading"></a></h1>
+<section id="clone-the-repository">
+<h2>1. Clone the Repository<a class="headerlink" href="#clone-the-repository" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>&lt;repository-url&gt;
+<span class="nb">cd</span><span class="w"> </span>django-news-application
+</pre></div>
+</div>
+</section>
+<section id="create-virtual-environment">
+<h2>2. Create Virtual Environment<a class="headerlink" href="#create-virtual-environment" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+
+<span class="c1"># On Windows</span>
+venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
+
+<span class="c1"># On macOS/Linux</span>
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+</pre></div>
+</div>
+</section>
+<section id="install-dependencies">
+<h2>3. Install Dependencies<a class="headerlink" href="#install-dependencies" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</section>
+<section id="environment-configuration">
+<h2>4. Environment Configuration<a class="headerlink" href="#environment-configuration" title="Link to this heading"></a></h2>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file in the project root (optional for development):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Database (optional - defaults to SQLite)</span>
+<span class="nv">DATABASE_URL</span><span class="o">=</span>sqlite:///db.sqlite3
+
+<span class="c1"># Twitter Integration (optional)</span>
+<span class="nv">TWITTER_CLIENT_ID</span><span class="o">=</span>your_twitter_client_id
+<span class="nv">TWITTER_CLIENT_SECRET</span><span class="o">=</span>your_twitter_client_secret
+<span class="nv">TWITTER_REDIRECT_URI</span><span class="o">=</span>http://localhost:8000/accounts/twitter/callback/
+
+<span class="c1"># Email Configuration (optional)</span>
+<span class="nv">EMAIL_HOST</span><span class="o">=</span>smtp.gmail.com
+<span class="nv">EMAIL_PORT</span><span class="o">=</span><span class="m">587</span>
+<span class="nv">EMAIL_HOST_USER</span><span class="o">=</span>your_email@gmail.com
+<span class="nv">EMAIL_HOST_PASSWORD</span><span class="o">=</span>your_app_password
+<span class="nv">EMAIL_USE_TLS</span><span class="o">=</span>True
+</pre></div>
+</div>
+</section>
+<section id="database-setup">
+<h2>5. Database Setup<a class="headerlink" href="#database-setup" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply migrations</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+
+<span class="c1"># Create superuser account</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
+
+<span class="c1"># (Optional) Create test users</span>
+python<span class="w"> </span>create_test_users.py
+</pre></div>
+</div>
+</section>
+<section id="run-development-server">
+<h2>6. Run Development Server<a class="headerlink" href="#run-development-server" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>manage.py<span class="w"> </span>runserver
+</pre></div>
+</div>
+<p>The application will be available at:</p>
+<ul class="simple">
+<li><p><strong>Web Interface</strong>: <a class="reference external" href="http://localhost:8000">http://localhost:8000</a></p></li>
+<li><p><strong>API Root</strong>: <a class="reference external" href="http://localhost:8000/api/">http://localhost:8000/api/</a></p></li>
+<li><p><strong>Admin Panel</strong>: <a class="reference external" href="http://localhost:8000/admin/">http://localhost:8000/admin/</a></p></li>
+</ul>
+</section>
+</section>
+<section id="production-setup">
+<h1>Production Setup<a class="headerlink" href="#production-setup" title="Link to this heading"></a></h1>
+<section id="docker-deployment">
+<h2>Docker Deployment<a class="headerlink" href="#docker-deployment" title="Link to this heading"></a></h2>
+<p>The application includes Docker support for easy deployment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build and run with Docker Compose</span>
+docker-compose<span class="w"> </span>up<span class="w"> </span>--build
+
+<span class="c1"># Run in detached mode</span>
+docker-compose<span class="w"> </span>up<span class="w"> </span>-d
+</pre></div>
+</div>
+</section>
+<section id="manual-production-setup">
+<h2>Manual Production Setup<a class="headerlink" href="#manual-production-setup" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Install Production Dependencies</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w"> </span>gunicorn<span class="w"> </span>psycopg2-binary
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Configure Environment Variables</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">DJANGO_SETTINGS_MODULE</span><span class="o">=</span>news_app.settings
+<span class="nb">export</span><span class="w"> </span><span class="nv">SECRET_KEY</span><span class="o">=</span>your-secret-key
+<span class="nb">export</span><span class="w"> </span><span class="nv">DEBUG</span><span class="o">=</span>False
+<span class="nb">export</span><span class="w"> </span><span class="nv">ALLOWED_HOSTS</span><span class="o">=</span>your-domain.com
+<span class="nb">export</span><span class="w"> </span><span class="nv">DATABASE_URL</span><span class="o">=</span>postgresql://user:pass@localhost/dbname
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Database Setup</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>manage.py<span class="w"> </span>collectstatic<span class="w"> </span>--noinput
+python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><strong>Run with Gunicorn</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gunicorn<span class="w"> </span>news_app.wsgi:application<span class="w"> </span>--bind<span class="w"> </span><span class="m">0</span>.0.0.0:8000
+</pre></div>
+</div>
+</section>
+</section>
+<section id="configuration-options">
+<h1>Configuration Options<a class="headerlink" href="#configuration-options" title="Link to this heading"></a></h1>
+<section id="django-settings">
+<h2>Django Settings<a class="headerlink" href="#django-settings" title="Link to this heading"></a></h2>
+<p>Key settings that can be customized:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SECRET_KEY</span></code>: Django secret key (required in production)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DEBUG</span></code>: Debug mode (set to False in production)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ALLOWED_HOSTS</span></code>: Allowed hostnames</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DATABASE_URL</span></code>: Database connection string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EMAIL_*</span></code>: Email configuration for notifications</p></li>
+</ul>
+</section>
+<section id="twitter-integration">
+<h2>Twitter Integration<a class="headerlink" href="#twitter-integration" title="Link to this heading"></a></h2>
+<p>To enable Twitter integration:</p>
+<ol class="arabic simple">
+<li><p><strong>Create Twitter App</strong>: Visit <a class="reference external" href="https://developer.twitter.com/">https://developer.twitter.com/</a></p></li>
+<li><p><strong>Get Credentials</strong>: Obtain Client ID and Client Secret</p></li>
+<li><p><strong>Configure OAuth</strong>: Set redirect URI to your domain + <code class="docutils literal notranslate"><span class="pre">/accounts/twitter/callback/</span></code></p></li>
+<li><p><strong>Set Environment Variables</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">TWITTER_CLIENT_ID</span><span class="o">=</span>your_client_id
+<span class="nv">TWITTER_CLIENT_SECRET</span><span class="o">=</span>your_client_secret
+<span class="nv">TWITTER_REDIRECT_URI</span><span class="o">=</span>https://yourdomain.com/accounts/twitter/callback/
+</pre></div>
+</div>
+</section>
+<section id="email-configuration">
+<h2>Email Configuration<a class="headerlink" href="#email-configuration" title="Link to this heading"></a></h2>
+<p>For email notifications, configure SMTP settings:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gmail example</span>
+<span class="n">EMAIL_HOST</span> <span class="o">=</span> <span class="s1">&#39;smtp.gmail.com&#39;</span>
+<span class="n">EMAIL_PORT</span> <span class="o">=</span> <span class="mi">587</span>
+<span class="n">EMAIL_HOST_USER</span> <span class="o">=</span> <span class="s1">&#39;your_email@gmail.com&#39;</span>
+<span class="n">EMAIL_HOST_PASSWORD</span> <span class="o">=</span> <span class="s1">&#39;your_app_password&#39;</span>
+<span class="n">EMAIL_USE_TLS</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">DEFAULT_FROM_EMAIL</span> <span class="o">=</span> <span class="s1">&#39;your_email@gmail.com&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="testing-the-installation">
+<h1>Testing the Installation<a class="headerlink" href="#testing-the-installation" title="Link to this heading"></a></h1>
+<ol class="arabic simple">
+<li><p><strong>Run Test Suite</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>run_tests.py
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Test API Endpoints</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get API information</span>
+curl<span class="w"> </span>http://localhost:8000/api/info/
+
+<span class="c1"># Test authentication</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/api/auth/token/<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;username&quot;: &quot;testuser&quot;, &quot;password&quot;: &quot;testpass123&quot;}&#39;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Access Web Interface</strong>:</p></li>
+</ol>
+<p>Visit <a class="reference external" href="http://localhost:8000">http://localhost:8000</a> and test:
+* User registration
+* Login/logout
+* Content creation (if you have journalist/editor accounts)
+* Subscription management</p>
+</section>
+<section id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h1>
+<section id="common-issues">
+<h2>Common Issues<a class="headerlink" href="#common-issues" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><strong>Import Errors</strong></dt><dd><p>Make sure your virtual environment is activated and all dependencies are installed.</p>
+</dd>
+<dt><strong>Database Errors</strong></dt><dd><p>Run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">migrate</span></code> to apply database migrations.</p>
+</dd>
+<dt><strong>Permission Errors</strong></dt><dd><p>Ensure the application has write permissions to the database file and media directories.</p>
+</dd>
+<dt><strong>Twitter Integration Issues</strong></dt><dd><p>Verify your Twitter app credentials and redirect URI configuration.</p>
+</dd>
+<dt><strong>Email Not Working</strong></dt><dd><p>Check your SMTP settings and ensure “Less secure app access” is enabled for Gmail.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="getting-help">
+<h1>Getting Help<a class="headerlink" href="#getting-help" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><strong>Documentation</strong>: Full documentation available in the <code class="docutils literal notranslate"><span class="pre">docs/</span></code> directory</p></li>
+<li><p><strong>API Documentation</strong>: Available at <code class="docutils literal notranslate"><span class="pre">/api/info/</span></code> endpoint</p></li>
+<li><p><strong>Test Examples</strong>: See <code class="docutils literal notranslate"><span class="pre">articles/test_api.py</span></code> for API usage examples</p></li>
+<li><p><strong>Deployment Guide</strong>: Check <code class="docutils literal notranslate"><span class="pre">DEPLOYMENT_GUIDE.md</span></code> for detailed deployment instructions</p></li>
+</ul>
+</section>
+<section id="development-tools">
+<h1>Development Tools<a class="headerlink" href="#development-tools" title="Link to this heading"></a></h1>
+<p>The project includes several helpful development tools:</p>
+<ul class="simple">
+<li><p><strong>Test Runner</strong>: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">run_tests.py</span></code> with various options</p></li>
+<li><p><strong>Test User Creator</strong>: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">create_test_users.py</span></code></p></li>
+<li><p><strong>API Testing</strong>: Postman collection available</p></li>
+<li><p><strong>Docker Support</strong>: Multi-stage builds for development and production</p></li>
+<li><p><strong>Documentation</strong>: Sphinx-based documentation system</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="overview.html" class="btn btn-neutral float-left" title="Application Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api/index.html" class="btn btn-neutral float-right" title="API Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, News App Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

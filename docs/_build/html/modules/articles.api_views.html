@@ -1,0 +1,454 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>articles.api_views module &mdash; Django News Application 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="articles.forms module" href="articles.forms.html" />
+    <link rel="prev" title="articles.views module" href="articles.views.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Django News Application
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Application Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#architecture">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#user-roles-and-permissions">User Roles and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#publishers">Publishers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#content-management">Content Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#subscription-system">Subscription System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#content-feeds">Content Feeds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#approval-workflow">Approval Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#integration-features">Integration Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#api-architecture">API Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#security-features">Security Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#development-setup">Development Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#production-setup">Production Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#configuration-options">Configuration Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#testing-the-installation">Testing the Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#getting-help">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#development-tools">Development Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#api-overview">API Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#base-url">Base URL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#available-endpoints">Available Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#response-format">Response Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#http-status-codes">HTTP Status Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#rate-limiting">Rate Limiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#pagination">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#testing-the-api">Testing the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Module Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html#articles-application">Articles Application</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="articles.models.html">articles.models module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.views.html">articles.views module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">articles.api_views module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#articles.api_views.ArticleListView"><code class="docutils literal notranslate"><span class="pre">ArticleListView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.ArticleListView.serializer_class"><code class="docutils literal notranslate"><span class="pre">ArticleListView.serializer_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.ArticleListView.permission_classes"><code class="docutils literal notranslate"><span class="pre">ArticleListView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.ArticleListView.get_queryset"><code class="docutils literal notranslate"><span class="pre">ArticleListView.get_queryset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.api_views.ArticleDetailView"><code class="docutils literal notranslate"><span class="pre">ArticleDetailView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.ArticleDetailView.serializer_class"><code class="docutils literal notranslate"><span class="pre">ArticleDetailView.serializer_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.ArticleDetailView.permission_classes"><code class="docutils literal notranslate"><span class="pre">ArticleDetailView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.ArticleDetailView.queryset"><code class="docutils literal notranslate"><span class="pre">ArticleDetailView.queryset</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.api_views.NewsletterListView"><code class="docutils literal notranslate"><span class="pre">NewsletterListView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.NewsletterListView.serializer_class"><code class="docutils literal notranslate"><span class="pre">NewsletterListView.serializer_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.NewsletterListView.permission_classes"><code class="docutils literal notranslate"><span class="pre">NewsletterListView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.NewsletterListView.get_queryset"><code class="docutils literal notranslate"><span class="pre">NewsletterListView.get_queryset()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.api_views.NewsletterDetailView"><code class="docutils literal notranslate"><span class="pre">NewsletterDetailView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.NewsletterDetailView.serializer_class"><code class="docutils literal notranslate"><span class="pre">NewsletterDetailView.serializer_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.NewsletterDetailView.permission_classes"><code class="docutils literal notranslate"><span class="pre">NewsletterDetailView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.NewsletterDetailView.queryset"><code class="docutils literal notranslate"><span class="pre">NewsletterDetailView.queryset</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.api_views.PublisherListView"><code class="docutils literal notranslate"><span class="pre">PublisherListView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.PublisherListView.serializer_class"><code class="docutils literal notranslate"><span class="pre">PublisherListView.serializer_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.PublisherListView.permission_classes"><code class="docutils literal notranslate"><span class="pre">PublisherListView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.PublisherListView.queryset"><code class="docutils literal notranslate"><span class="pre">PublisherListView.queryset</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.api_views.PublisherDetailView"><code class="docutils literal notranslate"><span class="pre">PublisherDetailView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.PublisherDetailView.serializer_class"><code class="docutils literal notranslate"><span class="pre">PublisherDetailView.serializer_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.PublisherDetailView.permission_classes"><code class="docutils literal notranslate"><span class="pre">PublisherDetailView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.PublisherDetailView.queryset"><code class="docutils literal notranslate"><span class="pre">PublisherDetailView.queryset</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.api_views.JournalistListView"><code class="docutils literal notranslate"><span class="pre">JournalistListView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.JournalistListView.serializer_class"><code class="docutils literal notranslate"><span class="pre">JournalistListView.serializer_class</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.JournalistListView.permission_classes"><code class="docutils literal notranslate"><span class="pre">JournalistListView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.JournalistListView.queryset"><code class="docutils literal notranslate"><span class="pre">JournalistListView.queryset</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.api_views.UserSubscriptionsView"><code class="docutils literal notranslate"><span class="pre">UserSubscriptionsView</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.UserSubscriptionsView.permission_classes"><code class="docutils literal notranslate"><span class="pre">UserSubscriptionsView.permission_classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.UserSubscriptionsView.get"><code class="docutils literal notranslate"><span class="pre">UserSubscriptionsView.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.UserSubscriptionsView.post"><code class="docutils literal notranslate"><span class="pre">UserSubscriptionsView.post()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.api_views.UserSubscriptionsView.delete"><code class="docutils literal notranslate"><span class="pre">UserSubscriptionsView.delete()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.api_views.user_feed"><code class="docutils literal notranslate"><span class="pre">user_feed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.api_views.api_info"><code class="docutils literal notranslate"><span class="pre">api_info()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="articles.forms.html">articles.forms module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.serializers.html">articles.serializers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.admin.html">articles.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.utils.html">articles.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.signals.html">articles.signals module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.functions.html">articles.functions package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#main-project">Main Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#production-deployment">Production Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#cloud-platform-deployment">Cloud Platform Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#monitoring-and-maintenance">Monitoring and Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#security-considerations">Security Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html">Testing Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-suite-overview">Test Suite Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-categories">Test Categories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-data-setup">Test Data Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-configuration">Test Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#mocking-external-services">Mocking External Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-automation">Test Automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#performance-testing">Performance Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#best-practices">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#running-specific-tests">Running Specific Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Django News Application</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module Documentation</a></li>
+      <li class="breadcrumb-item active">articles.api_views module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/articles.api_views.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-articles.api_views">
+<span id="articles-api-views-module"></span><h1>articles.api_views module<a class="headerlink" href="#module-articles.api_views" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.api_views.ArticleListView">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.api_views.</span></span><span class="sig-name descname"><span class="pre">ArticleListView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/api_views.html#ArticleListView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.api_views.ArticleListView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ListAPIView</span></code></p>
+<p>API endpoint for listing articles based on user subscriptions.
+For readers: shows articles from followed journalists and subscribed publishers.
+For editors/journalists: shows all articles.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.api_views.ArticleListView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#articles.api_views.ArticleListView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="articles.serializers.html#articles.serializers.ArticleListSerializer" title="articles.serializers.ArticleListSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArticleListSerializer</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.api_views.ArticleListView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;]</span></em><a class="headerlink" href="#articles.api_views.ArticleListView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.api_views.ArticleListView.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/api_views.html#ArticleListView.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.api_views.ArticleListView.get_queryset" title="Link to this definition"></a></dt>
+<dd><p>Get the list of items for this view.
+This must be an iterable, and may be a queryset.
+Defaults to using <cite>self.queryset</cite>.</p>
+<p>This method should always be used rather than accessing <cite>self.queryset</cite>
+directly, as <cite>self.queryset</cite> gets evaluated only once, and those results
+are cached for all subsequent requests.</p>
+<p>You may want to override this if you need to provide different
+querysets depending on the incoming request.</p>
+<p>(Eg. return a list of items that is specific to the user)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.api_views.ArticleDetailView">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.api_views.</span></span><span class="sig-name descname"><span class="pre">ArticleDetailView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/api_views.html#ArticleDetailView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.api_views.ArticleDetailView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">RetrieveAPIView</span></code></p>
+<p>API endpoint for retrieving a specific article.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.api_views.ArticleDetailView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#articles.api_views.ArticleDetailView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="articles.serializers.html#articles.serializers.ArticleSerializer" title="articles.serializers.ArticleSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArticleSerializer</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.api_views.ArticleDetailView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;]</span></em><a class="headerlink" href="#articles.api_views.ArticleDetailView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.api_views.ArticleDetailView.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;QuerySet</span> <span class="pre">[&lt;Article:</span> <span class="pre">Just</span> <span class="pre">another</span> <span class="pre">Article&gt;,</span> <span class="pre">&lt;Article:</span> <span class="pre">Yet_another_test&gt;,</span> <span class="pre">&lt;Article:</span> <span class="pre">And_for_independent&gt;,</span> <span class="pre">&lt;Article:</span> <span class="pre">Test_Article_for_win&gt;,</span> <span class="pre">&lt;Article:</span> <span class="pre">Test</span> <span class="pre">Article</span> <span class="pre">with</span> <span class="pre">Publisher&gt;,</span> <span class="pre">&lt;Article:</span> <span class="pre">Test_Article_2&gt;,</span> <span class="pre">&lt;Article:</span> <span class="pre">Test</span> <span class="pre">Article</span> <span class="pre">with</span> <span class="pre">Publisher&gt;,</span> <span class="pre">&lt;Article:</span> <span class="pre">Another</span> <span class="pre">Article&gt;,</span> <span class="pre">&lt;Article:</span> <span class="pre">Another</span> <span class="pre">Article&gt;,</span> <span class="pre">&lt;Article:</span> <span class="pre">This</span> <span class="pre">is</span> <span class="pre">an</span> <span class="pre">Artilce&gt;]&gt;</span></em><a class="headerlink" href="#articles.api_views.ArticleDetailView.queryset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.api_views.NewsletterListView">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.api_views.</span></span><span class="sig-name descname"><span class="pre">NewsletterListView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/api_views.html#NewsletterListView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.api_views.NewsletterListView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ListAPIView</span></code></p>
+<p>API endpoint for listing newsletters based on user subscriptions.
+For readers: shows newsletters from followed journalists and subscribed publishers.
+For editors/journalists: shows all newsletters.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.api_views.NewsletterListView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#articles.api_views.NewsletterListView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="articles.serializers.html#articles.serializers.NewsletterListSerializer" title="articles.serializers.NewsletterListSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">NewsletterListSerializer</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.api_views.NewsletterListView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;]</span></em><a class="headerlink" href="#articles.api_views.NewsletterListView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.api_views.NewsletterListView.get_queryset">
+<span class="sig-name descname"><span class="pre">get_queryset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/api_views.html#NewsletterListView.get_queryset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.api_views.NewsletterListView.get_queryset" title="Link to this definition"></a></dt>
+<dd><p>Get the list of items for this view.
+This must be an iterable, and may be a queryset.
+Defaults to using <cite>self.queryset</cite>.</p>
+<p>This method should always be used rather than accessing <cite>self.queryset</cite>
+directly, as <cite>self.queryset</cite> gets evaluated only once, and those results
+are cached for all subsequent requests.</p>
+<p>You may want to override this if you need to provide different
+querysets depending on the incoming request.</p>
+<p>(Eg. return a list of items that is specific to the user)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.api_views.NewsletterDetailView">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.api_views.</span></span><span class="sig-name descname"><span class="pre">NewsletterDetailView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/api_views.html#NewsletterDetailView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.api_views.NewsletterDetailView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">RetrieveAPIView</span></code></p>
+<p>API endpoint for retrieving a specific newsletter.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.api_views.NewsletterDetailView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#articles.api_views.NewsletterDetailView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="articles.serializers.html#articles.serializers.NewsletterSerializer" title="articles.serializers.NewsletterSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">NewsletterSerializer</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.api_views.NewsletterDetailView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;]</span></em><a class="headerlink" href="#articles.api_views.NewsletterDetailView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.api_views.NewsletterDetailView.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;QuerySet</span> <span class="pre">[&lt;Newsletter:</span> <span class="pre">This</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">Newsletter&gt;]&gt;</span></em><a class="headerlink" href="#articles.api_views.NewsletterDetailView.queryset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.api_views.PublisherListView">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.api_views.</span></span><span class="sig-name descname"><span class="pre">PublisherListView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/api_views.html#PublisherListView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.api_views.PublisherListView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ListAPIView</span></code></p>
+<p>API endpoint for listing all publishers.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.api_views.PublisherListView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#articles.api_views.PublisherListView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="articles.serializers.html#articles.serializers.PublisherSerializer" title="articles.serializers.PublisherSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">PublisherSerializer</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.api_views.PublisherListView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;]</span></em><a class="headerlink" href="#articles.api_views.PublisherListView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.api_views.PublisherListView.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;QuerySet</span> <span class="pre">[&lt;Publisher:</span> <span class="pre">Daily</span> <span class="pre">Planet&gt;,</span> <span class="pre">&lt;Publisher:</span> <span class="pre">Other</span> <span class="pre">News&gt;,</span> <span class="pre">&lt;Publisher:</span> <span class="pre">Tech</span> <span class="pre">News&gt;]&gt;</span></em><a class="headerlink" href="#articles.api_views.PublisherListView.queryset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.api_views.PublisherDetailView">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.api_views.</span></span><span class="sig-name descname"><span class="pre">PublisherDetailView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/api_views.html#PublisherDetailView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.api_views.PublisherDetailView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">RetrieveAPIView</span></code></p>
+<p>API endpoint for retrieving a specific publisher.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.api_views.PublisherDetailView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#articles.api_views.PublisherDetailView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="articles.serializers.html#articles.serializers.PublisherSerializer" title="articles.serializers.PublisherSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">PublisherSerializer</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.api_views.PublisherDetailView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;]</span></em><a class="headerlink" href="#articles.api_views.PublisherDetailView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.api_views.PublisherDetailView.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;QuerySet</span> <span class="pre">[&lt;Publisher:</span> <span class="pre">Daily</span> <span class="pre">Planet&gt;,</span> <span class="pre">&lt;Publisher:</span> <span class="pre">Other</span> <span class="pre">News&gt;,</span> <span class="pre">&lt;Publisher:</span> <span class="pre">Tech</span> <span class="pre">News&gt;]&gt;</span></em><a class="headerlink" href="#articles.api_views.PublisherDetailView.queryset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.api_views.JournalistListView">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.api_views.</span></span><span class="sig-name descname"><span class="pre">JournalistListView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/api_views.html#JournalistListView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.api_views.JournalistListView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ListAPIView</span></code></p>
+<p>API endpoint for listing all journalists.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.api_views.JournalistListView.serializer_class">
+<span class="sig-name descname"><span class="pre">serializer_class</span></span><a class="headerlink" href="#articles.api_views.JournalistListView.serializer_class" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="articles.serializers.html#articles.serializers.UserSerializer" title="articles.serializers.UserSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserSerializer</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.api_views.JournalistListView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;]</span></em><a class="headerlink" href="#articles.api_views.JournalistListView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.api_views.JournalistListView.queryset">
+<span class="sig-name descname"><span class="pre">queryset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;QuerySet</span> <span class="pre">[&lt;User:</span> <span class="pre">journalist&gt;,</span> <span class="pre">&lt;User:</span> <span class="pre">journalist_2&gt;,</span> <span class="pre">&lt;User:</span> <span class="pre">journalist1&gt;]&gt;</span></em><a class="headerlink" href="#articles.api_views.JournalistListView.queryset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.api_views.UserSubscriptionsView">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.api_views.</span></span><span class="sig-name descname"><span class="pre">UserSubscriptionsView</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/api_views.html#UserSubscriptionsView"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.api_views.UserSubscriptionsView" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">APIView</span></code></p>
+<p>API endpoint for managing user subscriptions.
+GET: Retrieve user’s current subscriptions
+POST: Add subscriptions (follow journalist or subscribe to publisher)
+DELETE: Remove subscriptions</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.api_views.UserSubscriptionsView.permission_classes">
+<span class="sig-name descname"><span class="pre">permission_classes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'rest_framework.permissions.IsAuthenticated'&gt;]</span></em><a class="headerlink" href="#articles.api_views.UserSubscriptionsView.permission_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.api_views.UserSubscriptionsView.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/api_views.html#UserSubscriptionsView.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.api_views.UserSubscriptionsView.get" title="Link to this definition"></a></dt>
+<dd><p>Get user’s current subscriptions</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.api_views.UserSubscriptionsView.post">
+<span class="sig-name descname"><span class="pre">post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/api_views.html#UserSubscriptionsView.post"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.api_views.UserSubscriptionsView.post" title="Link to this definition"></a></dt>
+<dd><p>Add subscriptions</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.api_views.UserSubscriptionsView.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/api_views.html#UserSubscriptionsView.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.api_views.UserSubscriptionsView.delete" title="Link to this definition"></a></dt>
+<dd><p>Remove subscriptions</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.api_views.user_feed">
+<span class="sig-prename descclassname"><span class="pre">articles.api_views.</span></span><span class="sig-name descname"><span class="pre">user_feed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/api_views.html#user_feed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.api_views.user_feed" title="Link to this definition"></a></dt>
+<dd><p>API endpoint for getting a combined feed of articles and newsletters
+based on user subscriptions.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.api_views.api_info">
+<span class="sig-prename descclassname"><span class="pre">articles.api_views.</span></span><span class="sig-name descname"><span class="pre">api_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/api_views.html#api_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.api_views.api_info" title="Link to this definition"></a></dt>
+<dd><p>API endpoint for getting API information and available endpoints.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="articles.views.html" class="btn btn-neutral float-left" title="articles.views module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="articles.forms.html" class="btn btn-neutral float-right" title="articles.forms module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, News App Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

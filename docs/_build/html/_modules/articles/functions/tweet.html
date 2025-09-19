@@ -1,0 +1,548 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>articles.functions.tweet &mdash; Django News Application 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Django News Application
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Application Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html#architecture">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html#user-roles-and-permissions">User Roles and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html#publishers">Publishers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html#content-management">Content Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html#subscription-system">Subscription System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html#content-feeds">Content Feeds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html#approval-workflow">Approval Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html#integration-features">Integration Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html#api-architecture">API Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../overview.html#security-features">Security Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html#development-setup">Development Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html#production-setup">Production Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html#configuration-options">Configuration Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html#testing-the-installation">Testing the Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html#getting-help">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html#development-tools">Development Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/index.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/index.html#api-overview">API Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/index.html#base-url">Base URL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/index.html#available-endpoints">Available Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/index.html#response-format">Response Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/index.html#http-status-codes">HTTP Status Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/index.html#rate-limiting">Rate Limiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/index.html#pagination">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/index.html#testing-the-api">Testing the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/index.html">Module Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/index.html#articles-application">Articles Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/index.html#main-project">Main Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../deployment.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../deployment.html#production-deployment">Production Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../deployment.html#cloud-platform-deployment">Cloud Platform Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../deployment.html#monitoring-and-maintenance">Monitoring and Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../deployment.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../deployment.html#security-considerations">Security Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../deployment.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing.html">Testing Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing.html#test-suite-overview">Test Suite Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing.html#test-categories">Test Categories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing.html#test-data-setup">Test Data Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing.html#test-configuration">Test Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing.html#mocking-external-services">Mocking External Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing.html#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing.html#test-automation">Test Automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing.html#performance-testing">Performance Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing.html#best-practices">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing.html#running-specific-tests">Running Specific Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Django News Application</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">articles.functions.tweet</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for articles.functions.tweet</h1><div class="highlight"><pre>
+<span></span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Twitter API integration module for posting tweets with OAuth2 PKCE authentication.</span>
+
+<span class="sd">This module provides TwitterAPI class for authenticating with Twitter&#39;s API v2</span>
+<span class="sd">and posting tweets with optional media attachments.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">uuid</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">base64</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">secrets</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mimetypes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">oauthlib.oauth2</span><span class="w"> </span><span class="kn">import</span> <span class="n">OAuth2Error</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">requests_oauthlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">OAuth2Session</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">urllib.parse</span><span class="w"> </span><span class="kn">import</span> <span class="n">urlparse</span><span class="p">,</span> <span class="n">parse_qs</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.conf</span><span class="w"> </span><span class="kn">import</span> <span class="n">settings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">requests.auth</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTTPBasicAuth</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">UnidentifiedImageError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tempfile</span><span class="w"> </span><span class="kn">import</span> <span class="n">NamedTemporaryFile</span>
+
+<span class="c1"># Pull config from settings.py </span>
+<span class="n">TOKEN_STORE_PATH</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">TWITTER_TOKEN_PATH</span> 
+
+<span class="c1">#Tweet Length</span>
+<span class="n">MAX_TWEET_CHARS</span> <span class="o">=</span> <span class="mi">250</span>
+
+
+<span class="c1"># API endpoints</span>
+<span class="n">AUTH_URL</span> <span class="o">=</span> <span class="s2">&quot;https://x.com/i/oauth2/authorize&quot;</span> 
+<span class="n">TOKEN_URL</span> <span class="o">=</span> <span class="s2">&quot;https://api.x.com/2/oauth2/token&quot;</span>
+<span class="n">TWEET_URL</span> <span class="o">=</span> <span class="s2">&quot;https://api.x.com/2/tweets&quot;</span>
+<span class="n">MEDIA_UPLOAD_URL</span> <span class="o">=</span> <span class="s2">&quot;https://api.x.com/2/media/upload&quot;</span>
+<span class="n">MEDIA_STATUS_URL</span> <span class="o">=</span> <span class="s2">&quot;https://api.x.com/2/media/upload?command=STATUS&amp;media_id=</span><span class="si">{id}</span><span class="s2">&quot;</span>
+<span class="n">MEDIA_INIT_URL</span> <span class="o">=</span> <span class="s2">&quot;https://api.x.com/2/media/upload/initialize&quot;</span>
+<span class="n">MEDIA_APPEND_URL_TMPL</span> <span class="o">=</span> <span class="s2">&quot;https://api.x.com/2/media/upload/</span><span class="si">{media_id}</span><span class="s2">/append&quot;</span>
+<span class="n">MEDIA_FINALIZE_URL_TMPL</span> <span class="o">=</span> <span class="s2">&quot;https://api.x.com/2/media/upload/</span><span class="si">{media_id}</span><span class="s2">/finalize&quot;</span>
+
+
+<span class="c1"># --- add state storage  ---</span>
+<span class="n">_STATE_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;TW_STATE_PATH&quot;</span><span class="p">,</span> <span class="s2">&quot;.twitter_oauth_state.txt&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_load_tokens</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return saved token dict or None.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">TOKEN_STORE_PATH</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># optionally log</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_save_tokens</span><span class="p">(</span><span class="n">tokens</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Persist token dict to disk.&quot;&quot;&quot;</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">TOKEN_STORE_PATH</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">parent</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">TOKEN_STORE_PATH</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_save_state</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Save OAuth state value to disk for CSRF protection.&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">_STATE_PATH</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_load_state</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load OAuth state value from disk.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">_STATE_PATH</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_clear_state</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove OAuth state file.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">_STATE_PATH</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+
+<div class="viewcode-block" id="safe_text">
+<a class="viewcode-back" href="../../../modules/articles.functions.html#articles.functions.tweet.safe_text">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">safe_text</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Truncate text to maximum tweet character limit with ellipsis.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">MAX_TWEET_CHARS</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">text</span><span class="p">[:</span><span class="n">MAX_TWEET_CHARS</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;…&quot;</span>  <span class="c1"># trim + ellipsis</span>
+    <span class="k">return</span> <span class="n">text</span></div>
+
+
+
+<span class="c1"># --- PKCE helpers ---</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_make_code_verifier_challenge</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate PKCE code verifier and challenge for OAuth2 flow.&quot;&quot;&quot;</span>
+    <span class="n">verifier</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">urlsafe_b64encode</span><span class="p">(</span><span class="n">secrets</span><span class="o">.</span><span class="n">token_bytes</span><span class="p">(</span><span class="mi">64</span><span class="p">))</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+    <span class="n">challenge</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">urlsafe_b64encode</span><span class="p">(</span><span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">verifier</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">digest</span><span class="p">())</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">verifier</span><span class="p">,</span> <span class="n">challenge</span>
+
+
+<div class="viewcode-block" id="TwitterAPI">
+<a class="viewcode-back" href="../../../modules/articles.functions.html#articles.functions.tweet.TwitterAPI">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TwitterAPI</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Twitter API client with OAuth2 PKCE authentication and tweet posting capabilities.&quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="TwitterAPI.__init__">
+<a class="viewcode-back" href="../../../modules/articles.functions.html#articles.functions.tweet.TwitterAPI.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client_id</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">TWITTER_CLIENT_ID</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client_secret</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">TWITTER_CLIENT_SECRET</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">redirect_uri</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">TWITTER_REDIRECT_URI</span>  <span class="c1"># &lt;- use settings</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scopes</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">TWITTER_SCOPES</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="n">_load_tokens</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">OAuth2Session</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">code_verifier</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">client_id</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;TW_CLIENT_ID is not set&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_build_session_with_token</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="p">)</span></div>
+
+
+<span class="c1"># ---------- OAuth 2.0 PKCE ----------</span>
+<div class="viewcode-block" id="TwitterAPI.begin_oauth">
+<a class="viewcode-back" href="../../../modules/articles.functions.html#articles.functions.tweet.TwitterAPI.begin_oauth">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">begin_oauth</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Start OAuth2 PKCE flow and return authorization URL.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">code_verifier</span><span class="p">,</span> <span class="n">code_challenge</span> <span class="o">=</span> <span class="n">_make_code_verifier_challenge</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">OAuth2Session</span><span class="p">(</span>
+            <span class="n">client_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">client_id</span><span class="p">,</span>
+            <span class="n">redirect_uri</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">redirect_uri</span><span class="p">,</span>
+            <span class="n">scope</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scopes</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">state</span>  <span class="c1"># &lt;- keep a copy so the view can store it in session</span>
+        <span class="n">auth_url</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">authorization_url</span><span class="p">(</span>
+            <span class="n">AUTH_URL</span><span class="p">,</span>
+            <span class="n">code_challenge</span><span class="o">=</span><span class="n">code_challenge</span><span class="p">,</span>
+            <span class="n">code_challenge_method</span><span class="o">=</span><span class="s2">&quot;S256&quot;</span><span class="p">,</span>
+            <span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">auth_url</span></div>
+
+
+<div class="viewcode-block" id="TwitterAPI.finish_oauth">
+<a class="viewcode-back" href="../../../modules/articles.functions.html#articles.functions.tweet.TwitterAPI.finish_oauth">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">finish_oauth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect_response_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">expected_state</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Complete OAuth2 flow and exchange authorization code for access token.&quot;&quot;&quot;</span>
+        <span class="c1"># Recreate the OAuth2Session on this fresh instance if needed</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">OAuth2Session</span><span class="p">(</span>
+                <span class="n">client_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">client_id</span><span class="p">,</span>
+                <span class="n">redirect_uri</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">redirect_uri</span><span class="p">,</span>
+                <span class="n">scope</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scopes</span><span class="p">,</span>
+                <span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">code_verifier</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Missing PKCE code_verifier; restore it from session before calling finish_oauth().&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Optional but recommended state check</span>
+        <span class="n">returned_state</span> <span class="o">=</span> <span class="p">(</span><span class="n">parse_qs</span><span class="p">(</span><span class="n">urlparse</span><span class="p">(</span><span class="n">redirect_response_url</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;state&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">expected_state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">returned_state</span> <span class="o">!=</span> <span class="n">expected_state</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;OAuth state mismatch (possible CSRF)&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Build fetch_token kwargs</span>
+        <span class="n">fetch_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">token_url</span><span class="o">=</span><span class="n">TOKEN_URL</span><span class="p">,</span>  <span class="c1"># &quot;https://api.twitter.com/2/oauth2/token&quot;</span>
+            <span class="n">authorization_response</span><span class="o">=</span><span class="n">redirect_response_url</span><span class="p">,</span>
+            <span class="n">code_verifier</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">code_verifier</span><span class="p">,</span>
+            <span class="n">timeout</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>  <span class="c1"># nice to have</span>
+                <span class="p">)</span>
+        <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;client_secret&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="c1"># Confidential client → send Basic Authorization header</span>
+            <span class="n">fetch_kwargs</span><span class="p">[</span><span class="s2">&quot;auth&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">HTTPBasicAuth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">client_secret</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Public client (pure PKCE) → include client_id in body</span>
+            <span class="n">fetch_kwargs</span><span class="p">[</span><span class="s2">&quot;include_client_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">fetch_token</span><span class="p">(</span><span class="o">**</span><span class="n">fetch_kwargs</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">OAuth2Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># Surface helpful details</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OAuth2 token exchange failed: </span><span class="si">{</span><span class="nb">getattr</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;error&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;error&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nb">getattr</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;description&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Network error during token exchange: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+
+        <span class="n">_save_tokens</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="n">token</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_build_session_with_token</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>  <span class="c1"># ensures auto-refresh is configured</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">code_verifier</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">token</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">redirect_response_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">expected_state</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate OAuth state parameter to prevent CSRF attacks.&quot;&quot;&quot;</span>
+        <span class="c1"># naive parse to extract state; in Django use request.GET[&#39;state&#39;]</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">urllib.parse</span><span class="w"> </span><span class="kn">import</span> <span class="n">urlparse</span><span class="p">,</span> <span class="n">parse_qs</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">parse_qs</span><span class="p">(</span><span class="n">urlparse</span><span class="p">(</span><span class="n">redirect_response_url</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">)</span>
+        <span class="n">returned</span> <span class="o">=</span> <span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;state&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">expected_state</span> <span class="ow">or</span> <span class="n">returned</span> <span class="o">!=</span> <span class="n">expected_state</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;OAuth state mismatch (possible CSRF)&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_build_session_with_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create an OAuth2Session that can auto-refresh </span>
+<span class="sd">        using HTTP Basic when confidential.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">auto_refresh_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;client_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">client_id</span><span class="p">}</span>
+        <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;client_secret&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">auto_refresh_kwargs</span><span class="p">[</span><span class="s2">&quot;client_secret&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client_secret</span>
+            <span class="n">auto_refresh_kwargs</span><span class="p">[</span><span class="s2">&quot;auth&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">HTTPBasicAuth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">client_secret</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">OAuth2Session</span><span class="p">(</span>
+            <span class="n">client_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">client_id</span><span class="p">,</span>
+            <span class="n">token</span><span class="o">=</span><span class="n">token</span><span class="p">,</span>
+            <span class="n">redirect_uri</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">redirect_uri</span><span class="p">,</span>
+            <span class="n">scope</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scopes</span><span class="p">,</span>
+            <span class="n">auto_refresh_url</span><span class="o">=</span><span class="n">TOKEN_URL</span><span class="p">,</span>
+            <span class="n">auto_refresh_kwargs</span><span class="o">=</span><span class="n">auto_refresh_kwargs</span><span class="p">,</span>
+            <span class="n">token_updater</span><span class="o">=</span><span class="n">_save_tokens</span><span class="p">,</span>
+                <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_ensure_session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ensure OAuth session is initialized with valid token.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Not authenticated. Call begin_oauth() then finish_oauth().&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_build_session_with_token</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="p">)</span>
+
+    <span class="c1"># Small helper to call requests with timeout</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Make authenticated POST request with timeout.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_session</span><span class="p">()</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;timeout&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Make authenticated GET request with timeout.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_session</span><span class="p">()</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;timeout&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+    <span class="c1"># ---------- Media handling (v1.1) ----------</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_reencode_to_jpeg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_or_file</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert image to JPEG format for Twitter upload compatibility.&quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">path_or_file</span><span class="o">.</span><span class="n">path</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">path_or_file</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">path_or_file</span><span class="o">.</span><span class="n">path</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">path_or_file</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Image file not found: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;.jpg&quot;</span><span class="p">,</span> <span class="n">delete</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">tmp_path</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">tmp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">im</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">im</span><span class="o">.</span><span class="n">mode</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;RGBA&quot;</span><span class="p">,</span> <span class="s2">&quot;LA&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;P&quot;</span> <span class="ow">and</span> <span class="s2">&quot;transparency&quot;</span> <span class="ow">in</span> <span class="n">im</span><span class="o">.</span><span class="n">info</span><span class="p">):</span>
+                    <span class="n">bg</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+                    <span class="n">bg</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">im</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGBA&quot;</span><span class="p">),</span> <span class="n">mask</span><span class="o">=</span><span class="n">im</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGBA&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                    <span class="n">to_save</span> <span class="o">=</span> <span class="n">bg</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">to_save</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">)</span>
+                <span class="n">to_save</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">,</span> <span class="s2">&quot;JPEG&quot;</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">optimize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">UnidentifiedImageError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span> <span class="k">pass</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not read image: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span> <span class="k">pass</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Converted JPEG is empty.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">tmp_path</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_2xx</span><span class="p">(</span><span class="n">resp</span><span class="p">,</span> <span class="n">label</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if HTTP response status is 2xx, raise error if not.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">//</span> <span class="mi">100</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2"> failed: </span><span class="si">{</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="TwitterAPI.upload_media">
+<a class="viewcode-back" href="../../../modules/articles.functions.html#articles.functions.tweet.TwitterAPI.upload_media">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">upload_media</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">media_category</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;tweet_image&quot;</span><span class="p">,</span> <span class="n">timeout_s</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        v2 subpaths flow: initialize (JSON) → append (multipart) → finalize.</span>
+<span class="sd">        Requires OAuth2 user token with &#39;media.write&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span><span class="o">,</span><span class="w"> </span><span class="nn">mimetypes</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_session</span><span class="p">()</span>
+
+        <span class="c1"># Resolve path and normalize to JPEG (handles alpha)</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">path</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">image</span><span class="o">.</span><span class="n">path</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Image file not found: </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">tmp_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reencode_to_jpeg</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">media_type</span> <span class="o">=</span> <span class="n">mimetypes</span><span class="o">.</span><span class="n">guess_type</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">or</span> <span class="s2">&quot;image/jpeg&quot;</span>
+            <span class="n">total_bytes</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">)</span>
+
+            <span class="c1"># 1) INIT (JSON)</span>
+            <span class="n">init</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+                <span class="n">MEDIA_INIT_URL</span><span class="p">,</span>
+                <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;media_type&quot;</span><span class="p">:</span> <span class="n">media_type</span><span class="p">,</span> <span class="s2">&quot;total_bytes&quot;</span><span class="p">:</span> <span class="n">total_bytes</span><span class="p">,</span> <span class="s2">&quot;media_category&quot;</span><span class="p">:</span> <span class="n">media_category</span><span class="p">},</span>
+                <span class="n">timeout</span><span class="o">=</span><span class="n">timeout_s</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">init</span><span class="o">.</span><span class="n">status_code</span> <span class="o">//</span> <span class="mi">100</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;INIT failed: </span><span class="si">{</span><span class="n">init</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">init</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">media_id</span> <span class="o">=</span> <span class="n">init</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+
+            <span class="c1"># 2) APPEND (multipart)</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">append</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+                    <span class="n">MEDIA_APPEND_URL_TMPL</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">media_id</span><span class="o">=</span><span class="n">media_id</span><span class="p">),</span>
+                    <span class="n">files</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;media&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">),</span> <span class="n">f</span><span class="p">,</span> <span class="n">media_type</span><span class="p">)},</span>
+                    <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;segment_index&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+                    <span class="n">timeout</span><span class="o">=</span><span class="n">timeout_s</span><span class="p">,</span>
+                    <span class="p">)</span>
+            <span class="k">if</span> <span class="n">append</span><span class="o">.</span><span class="n">status_code</span> <span class="o">//</span> <span class="mi">100</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;APPEND failed: </span><span class="si">{</span><span class="n">append</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">append</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="c1"># 3) FINALIZE (no body)</span>
+            <span class="n">finalize</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+                <span class="n">MEDIA_FINALIZE_URL_TMPL</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">media_id</span><span class="o">=</span><span class="n">media_id</span><span class="p">),</span>
+                <span class="n">timeout</span><span class="o">=</span><span class="n">timeout_s</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">finalize</span><span class="o">.</span><span class="n">status_code</span> <span class="o">//</span> <span class="mi">100</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;FINALIZE failed: </span><span class="si">{</span><span class="n">finalize</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">finalize</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Optional: poll STATUS if finalize returns processing_info (mainly video)</span>
+            <span class="n">proc</span> <span class="o">=</span> <span class="n">finalize</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;processing_info&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">proc</span><span class="p">:</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+                <span class="k">while</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="n">timeout_s</span><span class="p">:</span>
+                    <span class="n">st</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                        <span class="s2">&quot;https://api.x.com/2/media/upload&quot;</span><span class="p">,</span>
+                        <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;STATUS&quot;</span><span class="p">,</span> <span class="s2">&quot;media_id&quot;</span><span class="p">:</span> <span class="n">media_id</span><span class="p">},</span>
+                        <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                        <span class="p">)</span>
+                    <span class="k">if</span> <span class="n">st</span><span class="o">.</span><span class="n">status_code</span> <span class="o">//</span> <span class="mi">100</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+                        <span class="k">break</span>
+                    <span class="n">proc</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;processing_info&quot;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">proc</span> <span class="ow">or</span> <span class="n">proc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;state&quot;</span><span class="p">)</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;succeeded&quot;</span><span class="p">,</span> <span class="s2">&quot;failed&quot;</span><span class="p">):</span>
+                        <span class="k">break</span>
+                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">proc</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;check_after_secs&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">media_id</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">pass</span></div>
+
+
+    <span class="c1"># ---------- Tweet creation ----------</span>
+<div class="viewcode-block" id="TwitterAPI.post_tweet">
+<a class="viewcode-back" href="../../../modules/articles.functions.html#articles.functions.tweet.TwitterAPI.post_tweet">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">post_tweet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">media_ids</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                   <span class="n">reply_to_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Post a tweet with optional media attachments and reply context.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_session</span><span class="p">()</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">safe_text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">media_ids</span><span class="p">:</span>
+            <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;media&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;media_ids&quot;</span><span class="p">:</span> <span class="n">media_ids</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">reply_to_id</span><span class="p">:</span>
+            <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;reply&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;in_reply_to_tweet_id&quot;</span><span class="p">:</span> <span class="n">reply_to_id</span><span class="p">}</span>
+
+        <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">TWEET_URL</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">body</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">body</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;raw&quot;</span><span class="p">:</span> <span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">}</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DEBUG /2/tweets status:&quot;</span><span class="p">,</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">201</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">body</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="n">body</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;raw&quot;</span><span class="p">:</span> <span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">}</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tweet failed: HTTP </span><span class="si">{</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, News App Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

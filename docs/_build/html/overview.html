@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Application Overview &mdash; Django News Application 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation Guide" href="installation.html" />
+    <link rel="prev" title="Django News Application Documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Django News Application
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Application Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#architecture">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#user-roles-and-permissions">User Roles and Permissions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#readers">Readers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#journalists">Journalists</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#editors">Editors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#publishers">Publishers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#content-management">Content Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#articles">Articles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#newsletters">Newsletters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#subscription-system">Subscription System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#publisher-subscriptions">Publisher Subscriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#journalist-following">Journalist Following</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#content-feeds">Content Feeds</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#personalized-feeds">Personalized Feeds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#browse-all">Browse All</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#approval-workflow">Approval Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#content-approval-process">Content Approval Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#integration-features">Integration Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#twitter-integration">Twitter Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#email-notifications">Email Notifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#api-architecture">API Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#restful-design">RESTful Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authentication">Authentication</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#security-features">Security Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#development-setup">Development Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#production-setup">Production Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#configuration-options">Configuration Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#testing-the-installation">Testing the Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#getting-help">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#development-tools">Development Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#api-overview">API Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#base-url">Base URL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#available-endpoints">Available Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#response-format">Response Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#http-status-codes">HTTP Status Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#rate-limiting">Rate Limiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#pagination">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#testing-the-api">Testing the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html">Module Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html#articles-application">Articles Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html#main-project">Main Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#production-deployment">Production Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#cloud-platform-deployment">Cloud Platform Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#monitoring-and-maintenance">Monitoring and Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#security-considerations">Security Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-suite-overview">Test Suite Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-categories">Test Categories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-data-setup">Test Data Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-configuration">Test Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#mocking-external-services">Mocking External Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-automation">Test Automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#performance-testing">Performance Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#best-practices">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#running-specific-tests">Running Specific Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Django News Application</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Application Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/overview.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="application-overview">
+<h1>Application Overview<a class="headerlink" href="#application-overview" title="Link to this heading"></a></h1>
+</section>
+<section id="architecture">
+<h1>Architecture<a class="headerlink" href="#architecture" title="Link to this heading"></a></h1>
+<p>The Django News Application follows a role-based architecture with three distinct user types,
+each with specific permissions and capabilities.</p>
+</section>
+<section id="user-roles-and-permissions">
+<h1>User Roles and Permissions<a class="headerlink" href="#user-roles-and-permissions" title="Link to this heading"></a></h1>
+<section id="readers">
+<h2>Readers<a class="headerlink" href="#readers" title="Link to this heading"></a></h2>
+<p>Readers are the primary consumers of content in the application. They have the following capabilities:</p>
+<ul class="simple">
+<li><p>Subscribe to publishers to receive notifications about new content</p></li>
+<li><p>Follow individual journalists to see their independent work</p></li>
+<li><p>Browse all approved articles and newsletters</p></li>
+<li><p>Manage their subscription preferences</p></li>
+<li><p>Access personalized news feeds based on their subscriptions</p></li>
+</ul>
+<p><strong>Database Fields:</strong>
+* <code class="docutils literal notranslate"><span class="pre">subscriptions_publishers</span></code>: Many-to-many relationship with publishers
+* <code class="docutils literal notranslate"><span class="pre">subscriptions_journalists</span></code>: Many-to-many relationship with journalists</p>
+</section>
+<section id="journalists">
+<h2>Journalists<a class="headerlink" href="#journalists" title="Link to this heading"></a></h2>
+<p>Journalists are content creators who can publish both independently and through publishers:</p>
+<ul class="simple">
+<li><p>Create and edit articles and newsletters</p></li>
+<li><p>Publish content independently (without publisher affiliation)</p></li>
+<li><p>Work with publishers as affiliated journalists</p></li>
+<li><p>View all content in the system</p></li>
+<li><p>Cannot approve their own content</p></li>
+</ul>
+<p><strong>Key Features:</strong>
+* Independent publishing capability
+* Publisher affiliation support
+* Content creation permissions</p>
+</section>
+<section id="editors">
+<h2>Editors<a class="headerlink" href="#editors" title="Link to this heading"></a></h2>
+<p>Editors have administrative control over content and publishers:</p>
+<ul class="simple">
+<li><p>Approve or reject articles and newsletters</p></li>
+<li><p>Publish approved content to Twitter (if configured)</p></li>
+<li><p>Manage publisher relationships</p></li>
+<li><p>Create new publishers</p></li>
+<li><p>Cannot create content themselves</p></li>
+</ul>
+<p><strong>Database Fields:</strong>
+* <code class="docutils literal notranslate"><span class="pre">affiliated_publisher</span></code>: Foreign key to associated publisher</p>
+</section>
+</section>
+<section id="publishers">
+<h1>Publishers<a class="headerlink" href="#publishers" title="Link to this heading"></a></h1>
+<p>Publishers act as content organizations that can have:</p>
+<ul class="simple">
+<li><p>Multiple affiliated editors</p></li>
+<li><p>Multiple affiliated journalists</p></li>
+<li><p>Subscribers (readers who follow the publisher)</p></li>
+<li><p>Branded content approval workflows</p></li>
+</ul>
+</section>
+<section id="content-management">
+<h1>Content Management<a class="headerlink" href="#content-management" title="Link to this heading"></a></h1>
+<section id="articles">
+<h2>Articles<a class="headerlink" href="#articles" title="Link to this heading"></a></h2>
+<p>Articles are the primary content type with the following attributes:</p>
+<ul class="simple">
+<li><p><strong>Title</strong>: Article headline</p></li>
+<li><p><strong>Body</strong>: Full article content</p></li>
+<li><p><strong>Author</strong>: Must be a journalist</p></li>
+<li><p><strong>Publisher</strong>: Optional, can be independent</p></li>
+<li><p><strong>Approval Status</strong>: Requires editor approval for publication</p></li>
+<li><p><strong>Timestamps</strong>: Creation and modification tracking</p></li>
+</ul>
+</section>
+<section id="newsletters">
+<h2>Newsletters<a class="headerlink" href="#newsletters" title="Link to this heading"></a></h2>
+<p>Newsletters are email-style content with:</p>
+<ul class="simple">
+<li><p><strong>Subject</strong>: Newsletter headline</p></li>
+<li><p><strong>Content</strong>: Newsletter body</p></li>
+<li><p><strong>Author</strong>: Must be a journalist</p></li>
+<li><p><strong>Publisher</strong>: Optional, can be independent</p></li>
+<li><p><strong>Timestamps</strong>: Creation and modification tracking</p></li>
+</ul>
+</section>
+</section>
+<section id="subscription-system">
+<h1>Subscription System<a class="headerlink" href="#subscription-system" title="Link to this heading"></a></h1>
+<p>The application implements a flexible subscription system:</p>
+<section id="publisher-subscriptions">
+<h2>Publisher Subscriptions<a class="headerlink" href="#publisher-subscriptions" title="Link to this heading"></a></h2>
+<p>Readers can subscribe to publishers to:
+* Receive notifications when new content is published
+* See publisher content in their personalized feed
+* Get email notifications for approved articles</p>
+</section>
+<section id="journalist-following">
+<h2>Journalist Following<a class="headerlink" href="#journalist-following" title="Link to this heading"></a></h2>
+<p>Readers can follow individual journalists to:
+* See independent content from followed journalists
+* Track journalist activity across publishers
+* Receive updates on new publications</p>
+</section>
+</section>
+<section id="content-feeds">
+<h1>Content Feeds<a class="headerlink" href="#content-feeds" title="Link to this heading"></a></h1>
+<section id="personalized-feeds">
+<h2>Personalized Feeds<a class="headerlink" href="#personalized-feeds" title="Link to this heading"></a></h2>
+<p>Each user type sees different content in their feeds:</p>
+<ul class="simple">
+<li><p><strong>Readers</strong>: Content from subscribed publishers and followed journalists</p></li>
+<li><p><strong>Journalists</strong>: All content in the system</p></li>
+<li><p><strong>Editors</strong>: All content in the system with approval capabilities</p></li>
+</ul>
+</section>
+<section id="browse-all">
+<h2>Browse All<a class="headerlink" href="#browse-all" title="Link to this heading"></a></h2>
+<p>A separate “Browse All” view allows readers to:
+* Discover new publishers and journalists
+* Search and filter content
+* Find content outside their current subscriptions</p>
+</section>
+</section>
+<section id="approval-workflow">
+<h1>Approval Workflow<a class="headerlink" href="#approval-workflow" title="Link to this heading"></a></h1>
+<section id="content-approval-process">
+<h2>Content Approval Process<a class="headerlink" href="#content-approval-process" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Creation</strong>: Journalist creates article or newsletter</p></li>
+<li><p><strong>Submission</strong>: Content is saved with <code class="docutils literal notranslate"><span class="pre">is_approved=False</span></code></p></li>
+<li><p><strong>Review</strong>: Editor reviews content for approval</p></li>
+<li><p><strong>Approval</strong>: Editor approves content (<code class="docutils literal notranslate"><span class="pre">is_approved=True</span></code>)</p></li>
+<li><p><strong>Publication</strong>: Approved content becomes visible to readers</p></li>
+<li><p><strong>Notification</strong>: Email notifications sent to subscribers</p></li>
+<li><p><strong>Social Media</strong>: Optional Twitter posting for approved content</p></li>
+</ol>
+</section>
+</section>
+<section id="integration-features">
+<h1>Integration Features<a class="headerlink" href="#integration-features" title="Link to this heading"></a></h1>
+<section id="twitter-integration">
+<h2>Twitter Integration<a class="headerlink" href="#twitter-integration" title="Link to this heading"></a></h2>
+<p>The application includes OAuth2-based Twitter integration:</p>
+<ul class="simple">
+<li><p>Secure PKCE-based authentication</p></li>
+<li><p>Automatic tweet composition for approved content</p></li>
+<li><p>Media upload support</p></li>
+<li><p>Rate limiting and error handling</p></li>
+</ul>
+</section>
+<section id="email-notifications">
+<h2>Email Notifications<a class="headerlink" href="#email-notifications" title="Link to this heading"></a></h2>
+<p>Automated email system for:</p>
+<ul class="simple">
+<li><p>New content notifications to subscribers</p></li>
+<li><p>Account management (password reset, username recovery)</p></li>
+<li><p>System notifications</p></li>
+</ul>
+</section>
+</section>
+<section id="api-architecture">
+<h1>API Architecture<a class="headerlink" href="#api-architecture" title="Link to this heading"></a></h1>
+<section id="restful-design">
+<h2>RESTful Design<a class="headerlink" href="#restful-design" title="Link to this heading"></a></h2>
+<p>The API follows REST principles with:</p>
+<ul class="simple">
+<li><p>Resource-based URLs</p></li>
+<li><p>HTTP methods for different operations</p></li>
+<li><p>JSON request/response format</p></li>
+<li><p>Token-based authentication</p></li>
+<li><p>Proper HTTP status codes</p></li>
+</ul>
+</section>
+<section id="authentication">
+<h2>Authentication<a class="headerlink" href="#authentication" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Token-based authentication for API access</p></li>
+<li><p>Session-based authentication for web interface</p></li>
+<li><p>Role-based access control</p></li>
+<li><p>Secure password handling</p></li>
+</ul>
+</section>
+</section>
+<section id="security-features">
+<h1>Security Features<a class="headerlink" href="#security-features" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p>CSRF protection for web forms</p></li>
+<li><p>SQL injection prevention through Django ORM</p></li>
+<li><p>XSS protection with template auto-escaping</p></li>
+<li><p>Secure password hashing</p></li>
+<li><p>Role-based access control</p></li>
+<li><p>Input validation and sanitization</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Django News Application Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, News App Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

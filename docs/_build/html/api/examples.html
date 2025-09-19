@@ -1,0 +1,730 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Usage Examples &mdash; Django News Application 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Module Documentation" href="../modules/index.html" />
+    <link rel="prev" title="API Endpoints Reference" href="endpoints.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Django News Application
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Application Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#architecture">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#user-roles-and-permissions">User Roles and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#publishers">Publishers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#content-management">Content Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#subscription-system">Subscription System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#content-feeds">Content Feeds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#approval-workflow">Approval Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#integration-features">Integration Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#api-architecture">API Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#security-features">Security Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#development-setup">Development Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#production-setup">Production Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#configuration-options">Configuration Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#testing-the-installation">Testing the Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#getting-help">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#development-tools">Development Tools</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="authentication.html">API Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#authentication-methods">Authentication Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#getting-a-token">Getting a Token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#using-the-token">Using the Token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#authentication-examples">Authentication Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#role-based-access-control">Role-based Access Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#authentication-errors">Authentication Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#token-management">Token Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#session-authentication">Session Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#testing-authentication">Testing Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endpoints.html">API Endpoints Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endpoints.html#authentication-endpoints">Authentication Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endpoints.html#articles-endpoints">Articles Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endpoints.html#newsletters-endpoints">Newsletters Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endpoints.html#publishers-endpoints">Publishers Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endpoints.html#journalists-endpoints">Journalists Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endpoints.html#subscriptions-endpoints">Subscriptions Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endpoints.html#feed-endpoints">Feed Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endpoints.html#utility-endpoints">Utility Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endpoints.html#error-responses">Error Responses</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">API Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-authentication-flow">Basic Authentication Flow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#python-example">Python Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#javascript-example">JavaScript Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#subscription-management-examples">Subscription Management Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#managing-publisher-subscriptions">Managing Publisher Subscriptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#following-journalists">Following Journalists</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#content-discovery-examples">Content Discovery Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#finding-publishers-and-journalists">Finding Publishers and Journalists</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#building-a-news-reader-application">Building a News Reader Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#error-handling-examples">Error Handling Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#robust-error-handling">Robust Error Handling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-api-endpoints">Testing API Endpoints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-pytest-for-api-testing">Using pytest for API Testing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#efficient-api-usage">Efficient API Usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#api-overview">API Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#base-url">Base URL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#available-endpoints">Available Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#response-format">Response Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#http-status-codes">HTTP Status Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#rate-limiting">Rate Limiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#pagination">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#testing-the-api">Testing the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/index.html">Module Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/index.html#articles-application">Articles Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/index.html#main-project">Main Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#production-deployment">Production Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#cloud-platform-deployment">Cloud Platform Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#monitoring-and-maintenance">Monitoring and Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#security-considerations">Security Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html">Testing Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-suite-overview">Test Suite Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-categories">Test Categories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-data-setup">Test Data Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-configuration">Test Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#mocking-external-services">Mocking External Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-automation">Test Automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#performance-testing">Performance Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#best-practices">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#running-specific-tests">Running Specific Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Django News Application</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">API Documentation</a></li>
+      <li class="breadcrumb-item active">API Usage Examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/examples.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-usage-examples">
+<h1>API Usage Examples<a class="headerlink" href="#api-usage-examples" title="Link to this heading"></a></h1>
+<p>This section provides practical examples of using the Django News Application API.</p>
+</section>
+<section id="basic-authentication-flow">
+<h1>Basic Authentication Flow<a class="headerlink" href="#basic-authentication-flow" title="Link to this heading"></a></h1>
+<section id="python-example">
+<h2>Python Example<a class="headerlink" href="#python-example" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="c1"># Base URL</span>
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;http://localhost:8000/api&#39;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">NewsAPIClient</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="n">BASE_URL</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="n">base_url</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">authenticate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get authentication token&quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s1">/auth/token/&#39;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span>
+            <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="n">password</span>
+        <span class="p">})</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;token&#39;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+                <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Token </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="p">})</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_articles</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get articles for the authenticated user&quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s1">/articles/&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span> <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_article_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">article_id</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get detailed information about a specific article&quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s1">/articles/</span><span class="si">{</span><span class="n">article_id</span><span class="si">}</span><span class="s1">/&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span> <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_user_feed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get combined feed of articles and newsletters&quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s1">/feed/&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span> <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="c1"># Usage example</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">NewsAPIClient</span><span class="p">()</span>
+
+<span class="c1"># Authenticate</span>
+<span class="k">if</span> <span class="n">client</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="s1">&#39;reader1&#39;</span><span class="p">,</span> <span class="s1">&#39;testpass123&#39;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Authentication successful!&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Get articles</span>
+    <span class="n">articles</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_articles</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">articles</span><span class="p">)</span><span class="si">}</span><span class="s2"> articles&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Get detailed article info</span>
+    <span class="k">if</span> <span class="n">articles</span><span class="p">:</span>
+        <span class="n">article_details</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_article_details</span><span class="p">(</span><span class="n">articles</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Article: </span><span class="si">{</span><span class="n">article_details</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Get combined feed</span>
+    <span class="n">feed</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_user_feed</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Feed contains </span><span class="si">{</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;total_articles&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> articles and </span><span class="si">{</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;total_newsletters&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> newsletters&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Authentication failed!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="javascript-example">
+<h2>JavaScript Example<a class="headerlink" href="#javascript-example" title="Link to this heading"></a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nx">NewsAPIClient</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">constructor</span><span class="p">(</span><span class="nx">baseUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;http://localhost:8000/api&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">baseUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">baseUrl</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">authenticate</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span><span class="w"> </span><span class="nx">password</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">baseUrl</span><span class="si">}</span><span class="sb">/auth/token/`</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="w"> </span><span class="nx">username</span><span class="p">,</span><span class="w"> </span><span class="nx">password</span><span class="w"> </span><span class="p">})</span>
+<span class="w">            </span><span class="p">});</span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">                </span><span class="k">this</span><span class="p">.</span><span class="nx">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">data</span><span class="p">.</span><span class="nx">token</span><span class="p">;</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Authentication error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">apiRequest</span><span class="p">(</span><span class="nx">endpoint</span><span class="p">,</span><span class="w"> </span><span class="nx">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">baseUrl</span><span class="si">}${</span><span class="nx">endpoint</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">headers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="p">...</span><span class="nx">options</span><span class="p">.</span><span class="nx">headers</span>
+<span class="w">        </span><span class="p">};</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">token</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">headers</span><span class="p">.</span><span class="nx">Authorization</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`Token </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">token</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="p">...</span><span class="nx">options</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">headers</span>
+<span class="w">            </span><span class="p">});</span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="ne">Error</span><span class="p">(</span><span class="sb">`HTTP </span><span class="si">${</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">response</span><span class="p">.</span><span class="nx">statusText</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;API request error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">);</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="nx">error</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">getArticles</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">apiRequest</span><span class="p">(</span><span class="s1">&#39;/articles/&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">getArticleDetails</span><span class="p">(</span><span class="nx">articleId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">apiRequest</span><span class="p">(</span><span class="sb">`/articles/</span><span class="si">${</span><span class="nx">articleId</span><span class="si">}</span><span class="sb">/`</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">getUserFeed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">apiRequest</span><span class="p">(</span><span class="s1">&#39;/feed/&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">getSubscriptions</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">apiRequest</span><span class="p">(</span><span class="s1">&#39;/subscriptions/&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">subscribeToPublisher</span><span class="p">(</span><span class="nx">publisherId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">apiRequest</span><span class="p">(</span><span class="s1">&#39;/subscriptions/&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="w"> </span><span class="nx">publisher_id</span><span class="o">:</span><span class="w"> </span><span class="nx">publisherId</span><span class="w"> </span><span class="p">})</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">followJournalist</span><span class="p">(</span><span class="nx">journalistId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">apiRequest</span><span class="p">(</span><span class="s1">&#39;/subscriptions/&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">            </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="w"> </span><span class="nx">journalist_id</span><span class="o">:</span><span class="w"> </span><span class="nx">journalistId</span><span class="w"> </span><span class="p">})</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Usage example</span>
+<span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">NewsAPIClient</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Authenticate</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">authenticate</span><span class="p">(</span><span class="s1">&#39;reader1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;testpass123&#39;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Authentication successful!&#39;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Get articles</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">articles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">getArticles</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Found </span><span class="si">${</span><span class="nx">articles</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="sb"> articles`</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Get user feed</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">feed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">getUserFeed</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Feed: </span><span class="si">${</span><span class="nx">feed</span><span class="p">.</span><span class="nx">total_articles</span><span class="si">}</span><span class="sb"> articles, </span><span class="si">${</span><span class="nx">feed</span><span class="p">.</span><span class="nx">total_newsletters</span><span class="si">}</span><span class="sb"> newsletters`</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Get current subscriptions</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">subscriptions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">getSubscriptions</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Current subscriptions:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">subscriptions</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Authentication failed!&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">main</span><span class="p">().</span><span class="k">catch</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="subscription-management-examples">
+<h1>Subscription Management Examples<a class="headerlink" href="#subscription-management-examples" title="Link to this heading"></a></h1>
+<section id="managing-publisher-subscriptions">
+<h2>Managing Publisher Subscriptions<a class="headerlink" href="#managing-publisher-subscriptions" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get current subscriptions</span>
+curl<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Token your_token_here&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>http://localhost:8000/api/subscriptions/
+
+<span class="c1"># Subscribe to a publisher</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Token your_token_here&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;publisher_id&quot;: 1}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>http://localhost:8000/api/subscriptions/
+
+<span class="c1"># Unsubscribe from a publisher</span>
+curl<span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Token your_token_here&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;publisher_id&quot;: 1}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>http://localhost:8000/api/subscriptions/
+</pre></div>
+</div>
+</section>
+<section id="following-journalists">
+<h2>Following Journalists<a class="headerlink" href="#following-journalists" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Follow a journalist</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Token your_token_here&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;journalist_id&quot;: 2}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>http://localhost:8000/api/subscriptions/
+
+<span class="c1"># Unfollow a journalist</span>
+curl<span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Token your_token_here&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;journalist_id&quot;: 2}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>http://localhost:8000/api/subscriptions/
+</pre></div>
+</div>
+</section>
+</section>
+<section id="content-discovery-examples">
+<h1>Content Discovery Examples<a class="headerlink" href="#content-discovery-examples" title="Link to this heading"></a></h1>
+<section id="finding-publishers-and-journalists">
+<h2>Finding Publishers and Journalists<a class="headerlink" href="#finding-publishers-and-journalists" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get all publishers</span>
+<span class="n">publishers</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">BASE_URL</span><span class="si">}</span><span class="s1">/publishers/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Available publishers:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">publisher</span> <span class="ow">in</span> <span class="n">publishers</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">publisher</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (ID: </span><span class="si">{</span><span class="n">publisher</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get all journalists</span>
+<span class="n">journalists</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">BASE_URL</span><span class="si">}</span><span class="s1">/journalists/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Available journalists:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">journalist</span> <span class="ow">in</span> <span class="n">journalists</span><span class="p">:</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">journalist</span><span class="p">[</span><span class="s1">&#39;first_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">journalist</span><span class="p">[</span><span class="s1">&#39;last_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> (@</span><span class="si">{</span><span class="n">journalist</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, ID: </span><span class="si">{</span><span class="n">journalist</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="building-a-news-reader-application">
+<h1>Building a News Reader Application<a class="headerlink" href="#building-a-news-reader-application" title="Link to this heading"></a></h1>
+<p>Here’s a complete example of building a simple news reader:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SimpleNewsReader</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">NewsAPIClient</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">authenticated</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">login</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Login to the news application&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">authenticate</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">authenticated</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Logged in as </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ Login failed&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">show_feed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Display the user&#39;s personalized feed&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticated</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please login first&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">feed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get_user_feed</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">feed</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed to fetch feed&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📰 Your News Feed&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">50</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Show articles</span>
+        <span class="k">if</span> <span class="n">feed</span><span class="p">[</span><span class="s1">&#39;articles&#39;</span><span class="p">]:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📄 Articles (</span><span class="si">{</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;total_articles&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> total):&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">article</span> <span class="ow">in</span> <span class="n">feed</span><span class="p">[</span><span class="s1">&#39;articles&#39;</span><span class="p">][:</span><span class="mi">5</span><span class="p">]:</span>  <span class="c1"># Show first 5</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;• </span><span class="si">{</span><span class="n">article</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  By: </span><span class="si">{</span><span class="n">article</span><span class="p">[</span><span class="s1">&#39;author_username&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">article</span><span class="p">[</span><span class="s1">&#39;publisher_name&#39;</span><span class="p">]:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Publisher: </span><span class="si">{</span><span class="n">article</span><span class="p">[</span><span class="s1">&#39;publisher_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Date: </span><span class="si">{</span><span class="n">article</span><span class="p">[</span><span class="s1">&#39;created_at_formatted&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Preview: </span><span class="si">{</span><span class="n">article</span><span class="p">[</span><span class="s1">&#39;body_preview&#39;</span><span class="p">][:</span><span class="mi">100</span><span class="p">]</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">()</span>
+
+        <span class="c1"># Show newsletters</span>
+        <span class="k">if</span> <span class="n">feed</span><span class="p">[</span><span class="s1">&#39;newsletters&#39;</span><span class="p">]:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📧 Newsletters (</span><span class="si">{</span><span class="n">feed</span><span class="p">[</span><span class="s1">&#39;total_newsletters&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> total):&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">newsletter</span> <span class="ow">in</span> <span class="n">feed</span><span class="p">[</span><span class="s1">&#39;newsletters&#39;</span><span class="p">][:</span><span class="mi">5</span><span class="p">]:</span>  <span class="c1"># Show first 5</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;• </span><span class="si">{</span><span class="n">newsletter</span><span class="p">[</span><span class="s1">&#39;subject&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  By: </span><span class="si">{</span><span class="n">newsletter</span><span class="p">[</span><span class="s1">&#39;author_username&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">newsletter</span><span class="p">[</span><span class="s1">&#39;publisher_name&#39;</span><span class="p">]:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Publisher: </span><span class="si">{</span><span class="n">newsletter</span><span class="p">[</span><span class="s1">&#39;publisher_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Date: </span><span class="si">{</span><span class="n">newsletter</span><span class="p">[</span><span class="s1">&#39;created_at_formatted&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Preview: </span><span class="si">{</span><span class="n">newsletter</span><span class="p">[</span><span class="s1">&#39;content_preview&#39;</span><span class="p">][:</span><span class="mi">100</span><span class="p">]</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">show_subscriptions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Display current subscriptions&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticated</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please login first&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">subs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s1">/subscriptions/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">👥 Your Subscriptions&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">30</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">subs</span><span class="p">[</span><span class="s1">&#39;subscribed_publishers&#39;</span><span class="p">]:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📰 Publishers:&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">pub</span> <span class="ow">in</span> <span class="n">subs</span><span class="p">[</span><span class="s1">&#39;subscribed_publishers&#39;</span><span class="p">]:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;• </span><span class="si">{</span><span class="n">pub</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">subs</span><span class="p">[</span><span class="s1">&#39;followed_journalists&#39;</span><span class="p">]:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✍️ Journalists:&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">journalist</span> <span class="ow">in</span> <span class="n">subs</span><span class="p">[</span><span class="s1">&#39;followed_journalists&#39;</span><span class="p">]:</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">journalist</span><span class="p">[</span><span class="s1">&#39;first_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">journalist</span><span class="p">[</span><span class="s1">&#39;last_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;• </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> (@</span><span class="si">{</span><span class="n">journalist</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">discover_content</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Help users discover new publishers and journalists&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">authenticated</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please login first&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🔍 Discover New Content&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">30</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Show available publishers</span>
+        <span class="n">publishers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s1">/publishers/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📰 Available Publishers:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">pub</span> <span class="ow">in</span> <span class="n">publishers</span><span class="p">[:</span><span class="mi">10</span><span class="p">]:</span>  <span class="c1"># Show first 10</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;• </span><span class="si">{</span><span class="n">pub</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (ID: </span><span class="si">{</span><span class="n">pub</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Show available journalists</span>
+        <span class="n">journalists</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s1">/journalists/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">✍️ Available Journalists:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">journalist</span> <span class="ow">in</span> <span class="n">journalists</span><span class="p">[:</span><span class="mi">10</span><span class="p">]:</span>  <span class="c1"># Show first 10</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">journalist</span><span class="p">[</span><span class="s1">&#39;first_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">journalist</span><span class="p">[</span><span class="s1">&#39;last_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;• </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> (@</span><span class="si">{</span><span class="n">journalist</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, ID: </span><span class="si">{</span><span class="n">journalist</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Usage example</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">SimpleNewsReader</span><span class="p">()</span>
+
+    <span class="c1"># Login</span>
+    <span class="k">if</span> <span class="n">reader</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;reader1&#39;</span><span class="p">,</span> <span class="s1">&#39;testpass123&#39;</span><span class="p">):</span>
+        <span class="c1"># Show current subscriptions</span>
+        <span class="n">reader</span><span class="o">.</span><span class="n">show_subscriptions</span><span class="p">()</span>
+
+        <span class="c1"># Show personalized feed</span>
+        <span class="n">reader</span><span class="o">.</span><span class="n">show_feed</span><span class="p">()</span>
+
+        <span class="c1"># Discover new content</span>
+        <span class="n">reader</span><span class="o">.</span><span class="n">discover_content</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="error-handling-examples">
+<h1>Error Handling Examples<a class="headerlink" href="#error-handling-examples" title="Link to this heading"></a></h1>
+<section id="robust-error-handling">
+<h2>Robust Error Handling<a class="headerlink" href="#robust-error-handling" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">requests.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">RequestException</span><span class="p">,</span> <span class="ne">ConnectionError</span><span class="p">,</span> <span class="n">Timeout</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">safe_api_call</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Make a safe API call with proper error handling&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()}</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">401</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;Authentication required&#39;</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">403</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;Permission denied&#39;</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;Resource not found&#39;</span><span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;HTTP </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">}</span>
+
+    <span class="k">except</span> <span class="ne">ConnectionError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;Connection failed&#39;</span><span class="p">}</span>
+    <span class="k">except</span> <span class="n">Timeout</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;Request timeout&#39;</span><span class="p">}</span>
+    <span class="k">except</span> <span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Request error: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">}</span>
+
+<span class="c1"># Usage</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">safe_api_call</span><span class="p">(</span><span class="s1">&#39;http://localhost:8000/api/articles/&#39;</span><span class="p">,</span>
+                      <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;Token your_token&#39;</span><span class="p">})</span>
+
+<span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;success&#39;</span><span class="p">]:</span>
+    <span class="n">articles</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">articles</span><span class="p">)</span><span class="si">}</span><span class="s2"> articles&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="testing-api-endpoints">
+<h1>Testing API Endpoints<a class="headerlink" href="#testing-api-endpoints" title="Link to this heading"></a></h1>
+<section id="using-pytest-for-api-testing">
+<h2>Using pytest for API Testing<a class="headerlink" href="#using-pytest-for-api-testing" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestNewsAPI</span><span class="p">:</span>
+    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;http://localhost:8000/api&#39;</span>
+
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">authenticated_client</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create an authenticated API client&quot;&quot;&quot;</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+
+        <span class="c1"># Get token</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">BASE_URL</span><span class="si">}</span><span class="s1">/auth/token/&#39;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="s1">&#39;reader1&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="s1">&#39;testpass123&#39;</span>
+        <span class="p">})</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="n">token</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;token&#39;</span><span class="p">]</span>
+            <span class="n">client</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Token </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">})</span>
+
+        <span class="k">return</span> <span class="n">client</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_get_articles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">authenticated_client</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test getting articles&quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">authenticated_client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">BASE_URL</span><span class="si">}</span><span class="s1">/articles/&#39;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+
+        <span class="n">articles</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">articles</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">articles</span><span class="p">:</span>
+            <span class="n">article</span> <span class="o">=</span> <span class="n">articles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">assert</span> <span class="s1">&#39;id&#39;</span> <span class="ow">in</span> <span class="n">article</span>
+            <span class="k">assert</span> <span class="s1">&#39;title&#39;</span> <span class="ow">in</span> <span class="n">article</span>
+            <span class="k">assert</span> <span class="s1">&#39;author_username&#39;</span> <span class="ow">in</span> <span class="n">article</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_get_article_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">authenticated_client</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test getting article details&quot;&quot;&quot;</span>
+        <span class="c1"># First get list of articles</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">authenticated_client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">BASE_URL</span><span class="si">}</span><span class="s1">/articles/&#39;</span><span class="p">)</span>
+        <span class="n">articles</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">articles</span><span class="p">:</span>
+            <span class="n">article_id</span> <span class="o">=</span> <span class="n">articles</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+
+            <span class="c1"># Get detailed article info</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">authenticated_client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">BASE_URL</span><span class="si">}</span><span class="s1">/articles/</span><span class="si">{</span><span class="n">article_id</span><span class="si">}</span><span class="s1">/&#39;</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+
+            <span class="n">article</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+            <span class="k">assert</span> <span class="n">article</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">article_id</span>
+            <span class="k">assert</span> <span class="s1">&#39;body&#39;</span> <span class="ow">in</span> <span class="n">article</span>  <span class="c1"># Full content should be present</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_unauthorized_access</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test that unauthorized requests are rejected&quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">BASE_URL</span><span class="si">}</span><span class="s1">/articles/&#39;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">401</span>
+</pre></div>
+</div>
+<p>Run tests with: <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">test_api_examples.py</span> <span class="pre">-v</span></code></p>
+</section>
+</section>
+<section id="performance-considerations">
+<h1>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Link to this heading"></a></h1>
+<section id="efficient-api-usage">
+<h2>Efficient API Usage<a class="headerlink" href="#efficient-api-usage" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Reuse connections</strong>: Use session objects to reuse HTTP connections</p></li>
+<li><p><strong>Cache tokens</strong>: Store authentication tokens and reuse them</p></li>
+<li><p><strong>Batch requests</strong>: When possible, minimize the number of API calls</p></li>
+<li><p><strong>Handle rate limits</strong>: Implement exponential backoff for failed requests</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">api_call_with_retry</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">max_retries</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">backoff_factor</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Make API call with exponential backoff retry&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_retries</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">result</span>
+
+            <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="n">max_retries</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># Don&#39;t sleep on last attempt</span>
+                <span class="n">sleep_time</span> <span class="o">=</span> <span class="n">backoff_factor</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">attempt</span><span class="p">)</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep_time</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="n">max_retries</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># Last attempt</span>
+                <span class="k">raise</span> <span class="n">e</span>
+
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;Max retries exceeded&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>This completes the API usage examples. These examples demonstrate real-world usage patterns and best practices for integrating with the Django News Application API.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="endpoints.html" class="btn btn-neutral float-left" title="API Endpoints Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../modules/index.html" class="btn btn-neutral float-right" title="Module Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, News App Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

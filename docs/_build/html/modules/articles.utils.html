@@ -1,0 +1,223 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>articles.utils module &mdash; Django News Application 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="articles.signals module" href="articles.signals.html" />
+    <link rel="prev" title="articles.admin module" href="articles.admin.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Django News Application
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Application Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#architecture">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#user-roles-and-permissions">User Roles and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#publishers">Publishers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#content-management">Content Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#subscription-system">Subscription System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#content-feeds">Content Feeds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#approval-workflow">Approval Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#integration-features">Integration Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#api-architecture">API Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#security-features">Security Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#development-setup">Development Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#production-setup">Production Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#configuration-options">Configuration Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#testing-the-installation">Testing the Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#getting-help">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#development-tools">Development Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#api-overview">API Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#base-url">Base URL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#available-endpoints">Available Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#response-format">Response Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#http-status-codes">HTTP Status Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#rate-limiting">Rate Limiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#pagination">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#testing-the-api">Testing the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Module Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html#articles-application">Articles Application</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="articles.models.html">articles.models module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.views.html">articles.views module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.api_views.html">articles.api_views module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.forms.html">articles.forms module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.serializers.html">articles.serializers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.admin.html">articles.admin module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">articles.utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#articles.utils.create_reset_token"><code class="docutils literal notranslate"><span class="pre">create_reset_token()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.utils.build_reset_url"><code class="docutils literal notranslate"><span class="pre">build_reset_url()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.utils.validate_and_consume_token"><code class="docutils literal notranslate"><span class="pre">validate_and_consume_token()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.utils.lookup_reset_token"><code class="docutils literal notranslate"><span class="pre">lookup_reset_token()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.utils.consume_reset_token"><code class="docutils literal notranslate"><span class="pre">consume_reset_token()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="articles.signals.html">articles.signals module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.functions.html">articles.functions package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#main-project">Main Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#production-deployment">Production Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#cloud-platform-deployment">Cloud Platform Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#monitoring-and-maintenance">Monitoring and Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#security-considerations">Security Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html">Testing Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-suite-overview">Test Suite Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-categories">Test Categories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-data-setup">Test Data Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-configuration">Test Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#mocking-external-services">Mocking External Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-automation">Test Automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#performance-testing">Performance Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#best-practices">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#running-specific-tests">Running Specific Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Django News Application</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module Documentation</a></li>
+      <li class="breadcrumb-item active">articles.utils module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/articles.utils.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="articles-utils-module">
+<h1>articles.utils module<a class="headerlink" href="#articles-utils-module" title="Link to this heading"></a></h1>
+<dl class="py function" id="module-articles.utils">
+<dt class="sig sig-object py" id="articles.utils.create_reset_token">
+<span class="sig-prename descclassname"><span class="pre">articles.utils.</span></span><span class="sig-name descname"><span class="pre">create_reset_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/utils.html#create_reset_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.utils.create_reset_token" title="Link to this definition"></a></dt>
+<dd><p>Create a single-use reset token for a user.
+Returns the RAW token (caller sends it to the user).
+Old tokens for this user are deleted to reduce surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.utils.build_reset_url">
+<span class="sig-prename descclassname"><span class="pre">articles.utils.</span></span><span class="sig-name descname"><span class="pre">build_reset_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raw_token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/utils.html#build_reset_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.utils.build_reset_url" title="Link to this definition"></a></dt>
+<dd><p>Build absolute URL with the RAW token in path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.utils.validate_and_consume_token">
+<span class="sig-prename descclassname"><span class="pre">articles.utils.</span></span><span class="sig-name descname"><span class="pre">validate_and_consume_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/utils.html#validate_and_consume_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.utils.validate_and_consume_token" title="Link to this definition"></a></dt>
+<dd><p>Return (user, token_obj) if valid and not expired/used; marks as used.
+Return (None, None) if invalid.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.utils.lookup_reset_token">
+<span class="sig-prename descclassname"><span class="pre">articles.utils.</span></span><span class="sig-name descname"><span class="pre">lookup_reset_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/utils.html#lookup_reset_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.utils.lookup_reset_token" title="Link to this definition"></a></dt>
+<dd><p>Validate existence/expiry/unused WITHOUT consuming it.
+Returns (user, rt) if valid; (None, None) otherwise.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="articles.utils.consume_reset_token">
+<span class="sig-prename descclassname"><span class="pre">articles.utils.</span></span><span class="sig-name descname"><span class="pre">consume_reset_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/utils.html#consume_reset_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.utils.consume_reset_token" title="Link to this definition"></a></dt>
+<dd><p>Mark the token as used (single-use).</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="articles.admin.html" class="btn btn-neutral float-left" title="articles.admin module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="articles.signals.html" class="btn btn-neutral float-right" title="articles.signals module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, News App Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

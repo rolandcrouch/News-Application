@@ -1,0 +1,712 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deployment Guide &mdash; Django News Application 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Testing Documentation" href="testing.html" />
+    <link rel="prev" title="news_app.urls module" href="modules/news_app.urls.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Django News Application
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Application Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#architecture">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#user-roles-and-permissions">User Roles and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#publishers">Publishers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#content-management">Content Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#subscription-system">Subscription System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#content-feeds">Content Feeds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#approval-workflow">Approval Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#integration-features">Integration Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#api-architecture">API Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#security-features">Security Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#development-setup">Development Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#production-setup">Production Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#configuration-options">Configuration Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#testing-the-installation">Testing the Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#getting-help">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#development-tools">Development Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#api-overview">API Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#base-url">Base URL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#available-endpoints">Available Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#response-format">Response Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#http-status-codes">HTTP Status Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#rate-limiting">Rate Limiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#pagination">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html#testing-the-api">Testing the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html">Module Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html#articles-application">Articles Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html#main-project">Main Project</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#production-deployment">Production Deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#docker-deployment-recommended">Docker Deployment (Recommended)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#traditional-server-deployment">Traditional Server Deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#cloud-platform-deployment">Cloud Platform Deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#heroku-deployment">Heroku Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#aws-ec2-deployment">AWS EC2 Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#digitalocean-deployment">DigitalOcean Deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#monitoring-and-maintenance">Monitoring and Maintenance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#health-checks">Health Checks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#logging-configuration">Logging Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#backup-strategy">Backup Strategy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#performance-optimization">Performance Optimization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#database-optimization">Database Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#caching">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#static-files">Static Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#security-considerations">Security Considerations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#environment-security">Environment Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#django-security">Django Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#regular-updates">Regular Updates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#common-issues">Common Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#log-files">Log Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-suite-overview">Test Suite Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-categories">Test Categories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-data-setup">Test Data Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-configuration">Test Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#mocking-external-services">Mocking External Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#test-automation">Test Automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#performance-testing">Performance Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#best-practices">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing.html#running-specific-tests">Running Specific Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Django News Application</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Deployment Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/deployment.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="deployment-guide">
+<h1>Deployment Guide<a class="headerlink" href="#deployment-guide" title="Link to this heading"></a></h1>
+<p>This guide covers various deployment options for the Django News Application.</p>
+</section>
+<section id="production-deployment">
+<h1>Production Deployment<a class="headerlink" href="#production-deployment" title="Link to this heading"></a></h1>
+<section id="docker-deployment-recommended">
+<h2>Docker Deployment (Recommended)<a class="headerlink" href="#docker-deployment-recommended" title="Link to this heading"></a></h2>
+<p>The application includes Docker support for easy deployment:</p>
+<p><strong>Prerequisites:</strong>
+- Docker and Docker Compose installed
+- Domain name configured (for production)
+- SSL certificate (recommended)</p>
+<p><strong>Steps:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Clone and Configure</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>&lt;repository-url&gt;
+<span class="nb">cd</span><span class="w"> </span>django-news-application
+
+<span class="c1"># Create production environment file</span>
+cp<span class="w"> </span>.env.example<span class="w"> </span>.env.production
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Configure Environment</strong>:</p></li>
+</ol>
+<p>Edit <code class="docutils literal notranslate"><span class="pre">.env.production</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Django Settings</span>
+<span class="nv">SECRET_KEY</span><span class="o">=</span>your-super-secret-key-here
+<span class="nv">DEBUG</span><span class="o">=</span>False
+<span class="nv">ALLOWED_HOSTS</span><span class="o">=</span>yourdomain.com,www.yourdomain.com
+
+<span class="c1"># Database (PostgreSQL recommended for production)</span>
+<span class="nv">DATABASE_URL</span><span class="o">=</span>postgresql://user:password@db:5432/newsapp
+
+<span class="c1"># Email Configuration</span>
+<span class="nv">EMAIL_HOST</span><span class="o">=</span>smtp.gmail.com
+<span class="nv">EMAIL_PORT</span><span class="o">=</span><span class="m">587</span>
+<span class="nv">EMAIL_HOST_USER</span><span class="o">=</span>your-email@gmail.com
+<span class="nv">EMAIL_HOST_PASSWORD</span><span class="o">=</span>your-app-password
+<span class="nv">EMAIL_USE_TLS</span><span class="o">=</span>True
+<span class="nv">DEFAULT_FROM_EMAIL</span><span class="o">=</span>your-email@gmail.com
+
+<span class="c1"># Twitter Integration (Optional)</span>
+<span class="nv">TWITTER_CLIENT_ID</span><span class="o">=</span>your_twitter_client_id
+<span class="nv">TWITTER_CLIENT_SECRET</span><span class="o">=</span>your_twitter_client_secret
+<span class="nv">TWITTER_REDIRECT_URI</span><span class="o">=</span>https://yourdomain.com/accounts/twitter/callback/
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Deploy with Docker Compose</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Production deployment</span>
+docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.prod.yml<span class="w"> </span>up<span class="w"> </span>-d
+
+<span class="c1"># Check logs</span>
+docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.prod.yml<span class="w"> </span>logs<span class="w"> </span>-f
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><strong>Initialize Database</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run migrations</span>
+docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.prod.yml<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>web<span class="w"> </span>python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+
+<span class="c1"># Create superuser</span>
+docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.prod.yml<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>web<span class="w"> </span>python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
+
+<span class="c1"># Collect static files</span>
+docker-compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.prod.yml<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>web<span class="w"> </span>python<span class="w"> </span>manage.py<span class="w"> </span>collectstatic<span class="w"> </span>--noinput
+</pre></div>
+</div>
+</section>
+<section id="traditional-server-deployment">
+<h2>Traditional Server Deployment<a class="headerlink" href="#traditional-server-deployment" title="Link to this heading"></a></h2>
+<p><strong>Prerequisites:</strong>
+- Linux server (Ubuntu/CentOS)
+- Python 3.8+
+- PostgreSQL
+- Nginx
+- SSL certificate</p>
+<p><strong>Steps:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Server Setup</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update system</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>upgrade<span class="w"> </span>-y
+
+<span class="c1"># Install dependencies</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3<span class="w"> </span>python3-pip<span class="w"> </span>python3-venv<span class="w"> </span>postgresql<span class="w"> </span>postgresql-contrib<span class="w"> </span>nginx<span class="w"> </span>certbot<span class="w"> </span>python3-certbot-nginx
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Database Setup</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create database and user</span>
+sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>psql
+CREATE<span class="w"> </span>DATABASE<span class="w"> </span>newsapp<span class="p">;</span>
+CREATE<span class="w"> </span>USER<span class="w"> </span>newsapp_user<span class="w"> </span>WITH<span class="w"> </span>PASSWORD<span class="w"> </span><span class="s1">&#39;secure_password&#39;</span><span class="p">;</span>
+GRANT<span class="w"> </span>ALL<span class="w"> </span>PRIVILEGES<span class="w"> </span>ON<span class="w"> </span>DATABASE<span class="w"> </span>newsapp<span class="w"> </span>TO<span class="w"> </span>newsapp_user<span class="p">;</span>
+<span class="se">\q</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Application Setup</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create application user</span>
+sudo<span class="w"> </span>useradd<span class="w"> </span>--system<span class="w"> </span>--home<span class="w"> </span>/opt/newsapp<span class="w"> </span>--shell<span class="w"> </span>/bin/bash<span class="w"> </span>newsapp
+
+<span class="c1"># Clone application</span>
+sudo<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>&lt;repository-url&gt;<span class="w"> </span>/opt/newsapp
+sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>newsapp:newsapp<span class="w"> </span>/opt/newsapp
+
+<span class="c1"># Switch to application user</span>
+sudo<span class="w"> </span>-u<span class="w"> </span>newsapp<span class="w"> </span>-s
+<span class="nb">cd</span><span class="w"> </span>/opt/newsapp
+
+<span class="c1"># Create virtual environment</span>
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+
+<span class="c1"># Install dependencies</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w"> </span>gunicorn<span class="w"> </span>psycopg2-binary
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><strong>Configure Environment</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create environment file</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>.env<span class="w"> </span><span class="s">&lt;&lt; EOF</span>
+<span class="s">SECRET_KEY=your-super-secret-key</span>
+<span class="s">DEBUG=False</span>
+<span class="s">ALLOWED_HOSTS=yourdomain.com</span>
+<span class="s">DATABASE_URL=postgresql://newsapp_user:secure_password@localhost/newsapp</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p><strong>Initialize Application</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run migrations</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>migrate
+
+<span class="c1"># Create superuser</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
+
+<span class="c1"># Collect static files</span>
+python<span class="w"> </span>manage.py<span class="w"> </span>collectstatic<span class="w"> </span>--noinput
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p><strong>Configure Gunicorn</strong>:</p></li>
+</ol>
+<p>Create <code class="docutils literal notranslate"><span class="pre">/etc/systemd/system/newsapp.service</span></code>:</p>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">Django News Application</span>
+<span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
+
+<span class="k">[Service]</span>
+<span class="na">User</span><span class="o">=</span><span class="s">newsapp</span>
+<span class="na">Group</span><span class="o">=</span><span class="s">newsapp</span>
+<span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/opt/newsapp</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/opt/newsapp/venv/bin/gunicorn --workers 3 --bind unix:/opt/newsapp/newsapp.sock news_app.wsgi:application</span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p><strong>Configure Nginx</strong>:</p></li>
+</ol>
+<p>Create <code class="docutils literal notranslate"><span class="pre">/etc/nginx/sites-available/newsapp</span></code>:</p>
+<div class="highlight-nginx notranslate"><div class="highlight"><pre><span></span><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
+<span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">yourdomain.com</span><span class="w"> </span><span class="s">www.yourdomain.com</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">/favicon.ico</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kn">access_log</span><span class="w"> </span><span class="no">off</span><span class="p">;</span><span class="w"> </span><span class="kn">log_not_found</span><span class="w"> </span><span class="no">off</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/static/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">root</span><span class="w"> </span><span class="s">/opt/newsapp</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/media/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">root</span><span class="w"> </span><span class="s">/opt/newsapp</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">include</span><span class="w"> </span><span class="s">proxy_params</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://unix:/opt/newsapp/newsapp.sock</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="8">
+<li><p><strong>Enable Services</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable and start services</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>newsapp
+sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>newsapp
+
+<span class="c1"># Enable Nginx site</span>
+sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/etc/nginx/sites-available/newsapp<span class="w"> </span>/etc/nginx/sites-enabled
+sudo<span class="w"> </span>nginx<span class="w"> </span>-t
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>nginx
+</pre></div>
+</div>
+<ol class="arabic simple" start="9">
+<li><p><strong>Setup SSL</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get SSL certificate</span>
+sudo<span class="w"> </span>certbot<span class="w"> </span>--nginx<span class="w"> </span>-d<span class="w"> </span>yourdomain.com<span class="w"> </span>-d<span class="w"> </span>www.yourdomain.com
+</pre></div>
+</div>
+</section>
+</section>
+<section id="cloud-platform-deployment">
+<h1>Cloud Platform Deployment<a class="headerlink" href="#cloud-platform-deployment" title="Link to this heading"></a></h1>
+<section id="heroku-deployment">
+<h2>Heroku Deployment<a class="headerlink" href="#heroku-deployment" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Install Heroku CLI</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install Heroku CLI (macOS)</span>
+brew<span class="w"> </span>tap<span class="w"> </span>heroku/brew<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>heroku
+
+<span class="c1"># Login</span>
+heroku<span class="w"> </span>login
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Prepare Application</strong>:</p></li>
+</ol>
+<p>Create <code class="docutils literal notranslate"><span class="pre">Procfile</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>web: gunicorn news_app.wsgi:application --port $PORT --bind 0.0.0.0
+release: python manage.py migrate
+</pre></div>
+</div>
+<p>Create <code class="docutils literal notranslate"><span class="pre">runtime.txt</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python-3.11.0
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Deploy</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create Heroku app</span>
+heroku<span class="w"> </span>create<span class="w"> </span>your-news-app
+
+<span class="c1"># Add PostgreSQL</span>
+heroku<span class="w"> </span>addons:create<span class="w"> </span>heroku-postgresql:hobby-dev
+
+<span class="c1"># Set environment variables</span>
+heroku<span class="w"> </span>config:set<span class="w"> </span><span class="nv">SECRET_KEY</span><span class="o">=</span>your-secret-key
+heroku<span class="w"> </span>config:set<span class="w"> </span><span class="nv">DEBUG</span><span class="o">=</span>False
+heroku<span class="w"> </span>config:set<span class="w"> </span><span class="nv">ALLOWED_HOSTS</span><span class="o">=</span>your-news-app.herokuapp.com
+
+<span class="c1"># Deploy</span>
+git<span class="w"> </span>push<span class="w"> </span>heroku<span class="w"> </span>main
+
+<span class="c1"># Create superuser</span>
+heroku<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>manage.py<span class="w"> </span>createsuperuser
+</pre></div>
+</div>
+</section>
+<section id="aws-ec2-deployment">
+<h2>AWS EC2 Deployment<a class="headerlink" href="#aws-ec2-deployment" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Launch EC2 Instance</strong>:
+- Choose Ubuntu 20.04 LTS
+- Configure security groups (HTTP, HTTPS, SSH)
+- Create or use existing key pair</p></li>
+<li><p><strong>Connect and Setup</strong>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Connect to instance</span>
+ssh<span class="w"> </span>-i<span class="w"> </span>your-key.pem<span class="w"> </span>ubuntu@your-ec2-ip
+
+<span class="c1"># Follow traditional server deployment steps above</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><strong>Configure Load Balancer</strong> (Optional):
+- Create Application Load Balancer
+- Configure target groups
+- Setup health checks</p></li>
+</ol>
+</section>
+<section id="digitalocean-deployment">
+<h2>DigitalOcean Deployment<a class="headerlink" href="#digitalocean-deployment" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Create Droplet</strong>:
+- Choose Ubuntu 20.04
+- Select appropriate size
+- Add SSH keys</p></li>
+<li><p><strong>Setup Domain</strong>:
+- Configure DNS records
+- Point A record to droplet IP</p></li>
+<li><p><strong>Deploy</strong>:
+- Follow traditional server deployment steps</p></li>
+</ol>
+</section>
+</section>
+<section id="monitoring-and-maintenance">
+<h1>Monitoring and Maintenance<a class="headerlink" href="#monitoring-and-maintenance" title="Link to this heading"></a></h1>
+<section id="health-checks">
+<h2>Health Checks<a class="headerlink" href="#health-checks" title="Link to this heading"></a></h2>
+<p>Create <code class="docutils literal notranslate"><span class="pre">/opt/newsapp/healthcheck.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">django</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">,</span> <span class="s1">&#39;news_app.settings&#39;</span><span class="p">)</span>
+<span class="n">django</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.db</span><span class="w"> </span><span class="kn">import</span> <span class="n">connection</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.core.cache</span><span class="w"> </span><span class="kn">import</span> <span class="n">cache</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">check_database</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cursor</span><span class="p">:</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT 1&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">check_application</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">articles.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">User</span>
+        <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">checks</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;Database&quot;</span><span class="p">,</span> <span class="n">check_database</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;Application&quot;</span><span class="p">,</span> <span class="n">check_application</span><span class="p">),</span>
+    <span class="p">]</span>
+
+    <span class="n">all_passed</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">check_func</span> <span class="ow">in</span> <span class="n">checks</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">check_func</span><span class="p">()</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;PASS&quot;</span> <span class="k">if</span> <span class="n">result</span> <span class="k">else</span> <span class="s2">&quot;FAIL&quot;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span><span class="p">:</span>
+                <span class="n">all_passed</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: ERROR - </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">all_passed</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span> <span class="k">if</span> <span class="n">all_passed</span> <span class="k">else</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="logging-configuration">
+<h2>Logging Configuration<a class="headerlink" href="#logging-configuration" title="Link to this heading"></a></h2>
+<p>Add to <code class="docutils literal notranslate"><span class="pre">settings.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">LOGGING</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;disable_existing_loggers&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="s1">&#39;formatters&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;verbose&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{levelname}</span><span class="s1"> </span><span class="si">{asctime}</span><span class="s1"> </span><span class="si">{module}</span><span class="s1"> </span><span class="si">{process:d}</span><span class="s1"> </span><span class="si">{thread:d}</span><span class="s1"> </span><span class="si">{message}</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;style&#39;</span><span class="p">:</span> <span class="s1">&#39;{&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;handlers&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;file&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="s1">&#39;INFO&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="s1">&#39;logging.FileHandler&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="s1">&#39;/opt/newsapp/logs/django.log&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;formatter&#39;</span><span class="p">:</span> <span class="s1">&#39;verbose&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;root&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;handlers&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="s1">&#39;INFO&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="backup-strategy">
+<h2>Backup Strategy<a class="headerlink" href="#backup-strategy" title="Link to this heading"></a></h2>
+<p>Create backup script <code class="docutils literal notranslate"><span class="pre">/opt/newsapp/backup.sh</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># Configuration</span>
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">&quot;/opt/newsapp/backups&quot;</span>
+<span class="nv">DB_NAME</span><span class="o">=</span><span class="s2">&quot;newsapp&quot;</span>
+<span class="nv">DB_USER</span><span class="o">=</span><span class="s2">&quot;newsapp_user&quot;</span>
+<span class="nv">DATE</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+<span class="s2">&quot;%Y%m%d_%H%M%S&quot;</span><span class="k">)</span>
+
+<span class="c1"># Create backup directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$BACKUP_DIR</span>
+
+<span class="c1"># Database backup</span>
+pg_dump<span class="w"> </span>-U<span class="w"> </span><span class="nv">$DB_USER</span><span class="w"> </span>-h<span class="w"> </span>localhost<span class="w"> </span><span class="nv">$DB_NAME</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/db_backup_</span><span class="nv">$DATE</span><span class="s2">.sql&quot;</span>
+
+<span class="c1"># Media files backup</span>
+tar<span class="w"> </span>-czf<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$BACKUP_DIR</span><span class="s2">/media_backup_</span><span class="nv">$DATE</span><span class="s2">.tar.gz&quot;</span><span class="w"> </span>/opt/newsapp/media/
+
+<span class="c1"># Clean old backups (keep last 7 days)</span>
+find<span class="w"> </span><span class="nv">$BACKUP_DIR</span><span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.sql&quot;</span><span class="w"> </span>-mtime<span class="w"> </span>+7<span class="w"> </span>-delete
+find<span class="w"> </span><span class="nv">$BACKUP_DIR</span><span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;*.tar.gz&quot;</span><span class="w"> </span>-mtime<span class="w"> </span>+7<span class="w"> </span>-delete
+
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Backup completed: </span><span class="nv">$DATE</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>Add to crontab:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Daily backup at 2 AM</span>
+<span class="m">0</span><span class="w"> </span><span class="m">2</span><span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/opt/newsapp/backup.sh<span class="w"> </span>&gt;&gt;<span class="w"> </span>/opt/newsapp/logs/backup.log<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="performance-optimization">
+<h1>Performance Optimization<a class="headerlink" href="#performance-optimization" title="Link to this heading"></a></h1>
+<section id="database-optimization">
+<h2>Database Optimization<a class="headerlink" href="#database-optimization" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Database Indexing</strong>:</p></li>
+</ol>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Add indexes for common queries</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">idx_article_created_at</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">articles_article</span><span class="p">(</span><span class="n">created_at</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">idx_article_author</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">articles_article</span><span class="p">(</span><span class="n">author_id</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">idx_article_publisher</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">articles_article</span><span class="p">(</span><span class="n">publisher_id</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">idx_article_approved</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">articles_article</span><span class="p">(</span><span class="n">is_approved</span><span class="p">);</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Connection Pooling</strong>:</p></li>
+</ol>
+<p>Install and configure pgbouncer for PostgreSQL connection pooling.</p>
+</section>
+<section id="caching">
+<h2>Caching<a class="headerlink" href="#caching" title="Link to this heading"></a></h2>
+<p>Add Redis for caching:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># settings.py</span>
+<span class="n">CACHES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s1">&#39;django_redis.cache.RedisCache&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;LOCATION&#39;</span><span class="p">:</span> <span class="s1">&#39;redis://127.0.0.1:6379/1&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;OPTIONS&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;CLIENT_CLASS&#39;</span><span class="p">:</span> <span class="s1">&#39;django_redis.client.DefaultClient&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="static-files">
+<h2>Static Files<a class="headerlink" href="#static-files" title="Link to this heading"></a></h2>
+<p>Use CDN for static files in production:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># settings.py</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">DEBUG</span><span class="p">:</span>
+    <span class="n">STATICFILES_STORAGE</span> <span class="o">=</span> <span class="s1">&#39;whitenoise.storage.CompressedManifestStaticFilesStorage&#39;</span>
+    <span class="n">STATIC_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BASE_DIR</span><span class="p">,</span> <span class="s1">&#39;staticfiles&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="security-considerations">
+<h1>Security Considerations<a class="headerlink" href="#security-considerations" title="Link to this heading"></a></h1>
+<section id="environment-security">
+<h2>Environment Security<a class="headerlink" href="#environment-security" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Environment Variables</strong>: Never commit secrets to version control</p></li>
+<li><p><strong>File Permissions</strong>: Restrict access to configuration files</p></li>
+<li><p><strong>Database Security</strong>: Use strong passwords and restrict access</p></li>
+<li><p><strong>SSL/TLS</strong>: Always use HTTPS in production</p></li>
+<li><p><strong>Firewall</strong>: Configure firewall to allow only necessary ports</p></li>
+</ol>
+</section>
+<section id="django-security">
+<h2>Django Security<a class="headerlink" href="#django-security" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Security Middleware</strong>: Ensure all security middleware is enabled</p></li>
+<li><p><strong>CSRF Protection</strong>: Verify CSRF tokens are working</p></li>
+<li><p><strong>XSS Protection</strong>: Use Django’s built-in XSS protection</p></li>
+<li><p><strong>SQL Injection</strong>: Use Django ORM to prevent SQL injection</p></li>
+<li><p><strong>Authentication</strong>: Implement proper session management</p></li>
+</ol>
+</section>
+<section id="regular-updates">
+<h2>Regular Updates<a class="headerlink" href="#regular-updates" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>System Updates</strong>: Keep OS and packages updated</p></li>
+<li><p><strong>Python Dependencies</strong>: Regularly update Python packages</p></li>
+<li><p><strong>Security Patches</strong>: Monitor and apply security patches</p></li>
+<li><p><strong>Django Updates</strong>: Keep Django updated to latest stable version</p></li>
+</ol>
+</section>
+</section>
+<section id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h1>
+<section id="common-issues">
+<h2>Common Issues<a class="headerlink" href="#common-issues" title="Link to this heading"></a></h2>
+<p><strong>Static Files Not Loading</strong>:
+- Run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">collectstatic</span></code>
+- Check Nginx configuration
+- Verify file permissions</p>
+<p><strong>Database Connection Errors</strong>:
+- Check database credentials
+- Verify database is running
+- Check network connectivity</p>
+<p><strong>502 Bad Gateway</strong>:
+- Check Gunicorn is running
+- Verify socket file permissions
+- Check Nginx configuration</p>
+<p><strong>High Memory Usage</strong>:
+- Monitor database queries
+- Check for memory leaks
+- Consider adding more workers</p>
+</section>
+<section id="log-files">
+<h2>Log Files<a class="headerlink" href="#log-files" title="Link to this heading"></a></h2>
+<p>Important log locations:
+- Application logs: <code class="docutils literal notranslate"><span class="pre">/opt/newsapp/logs/django.log</span></code>
+- Nginx logs: <code class="docutils literal notranslate"><span class="pre">/var/log/nginx/</span></code>
+- System logs: <code class="docutils literal notranslate"><span class="pre">/var/log/syslog</span></code>
+- Gunicorn logs: <code class="docutils literal notranslate"><span class="pre">journalctl</span> <span class="pre">-u</span> <span class="pre">newsapp</span></code></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules/news_app.urls.html" class="btn btn-neutral float-left" title="news_app.urls module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="testing.html" class="btn btn-neutral float-right" title="Testing Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, News App Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

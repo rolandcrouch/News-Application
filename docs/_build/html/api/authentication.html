@@ -1,0 +1,403 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Authentication &mdash; Django News Application 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API Endpoints Reference" href="endpoints.html" />
+    <link rel="prev" title="API Documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Django News Application
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Application Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#architecture">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#user-roles-and-permissions">User Roles and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#publishers">Publishers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#content-management">Content Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#subscription-system">Subscription System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#content-feeds">Content Feeds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#approval-workflow">Approval Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#integration-features">Integration Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#api-architecture">API Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#security-features">Security Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#development-setup">Development Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#production-setup">Production Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#configuration-options">Configuration Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#testing-the-installation">Testing the Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#getting-help">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#development-tools">Development Tools</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">API Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authentication-methods">Authentication Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#token-authentication">Token Authentication</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-a-token">Getting a Token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-token">Using the Token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authentication-examples">Authentication Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#python-with-requests">Python with requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#javascript-with-fetch">JavaScript with fetch</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#role-based-access-control">Role-based Access Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reader-access">Reader Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#journalist-access">Journalist Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#editor-access">Editor Access</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#authentication-errors">Authentication Errors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#unauthorized">401 Unauthorized</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#forbidden">403 Forbidden</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#token-management">Token Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#token-security">Token Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#token-lifetime">Token Lifetime</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#session-authentication">Session Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-authentication">Testing Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endpoints.html">API Endpoints Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endpoints.html#authentication-endpoints">Authentication Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endpoints.html#articles-endpoints">Articles Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endpoints.html#newsletters-endpoints">Newsletters Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endpoints.html#publishers-endpoints">Publishers Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endpoints.html#journalists-endpoints">Journalists Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endpoints.html#subscriptions-endpoints">Subscriptions Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endpoints.html#feed-endpoints">Feed Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endpoints.html#utility-endpoints">Utility Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="endpoints.html#error-responses">Error Responses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">API Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#basic-authentication-flow">Basic Authentication Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#subscription-management-examples">Subscription Management Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#content-discovery-examples">Content Discovery Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#building-a-news-reader-application">Building a News Reader Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#error-handling-examples">Error Handling Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#testing-api-endpoints">Testing API Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#performance-considerations">Performance Considerations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#api-overview">API Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#base-url">Base URL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#available-endpoints">Available Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#response-format">Response Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#http-status-codes">HTTP Status Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#rate-limiting">Rate Limiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#pagination">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#testing-the-api">Testing the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/index.html">Module Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/index.html#articles-application">Articles Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/index.html#main-project">Main Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#production-deployment">Production Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#cloud-platform-deployment">Cloud Platform Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#monitoring-and-maintenance">Monitoring and Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#security-considerations">Security Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html">Testing Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-suite-overview">Test Suite Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-categories">Test Categories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-data-setup">Test Data Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-configuration">Test Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#mocking-external-services">Mocking External Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-automation">Test Automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#performance-testing">Performance Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#best-practices">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#running-specific-tests">Running Specific Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Django News Application</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">API Documentation</a></li>
+      <li class="breadcrumb-item active">API Authentication</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/authentication.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-authentication">
+<h1>API Authentication<a class="headerlink" href="#api-authentication" title="Link to this heading"></a></h1>
+<p>The Django News Application API uses token-based authentication for secure access to all endpoints.</p>
+</section>
+<section id="authentication-methods">
+<h1>Authentication Methods<a class="headerlink" href="#authentication-methods" title="Link to this heading"></a></h1>
+<section id="token-authentication">
+<h2>Token Authentication<a class="headerlink" href="#token-authentication" title="Link to this heading"></a></h2>
+<p>The primary authentication method is token-based authentication using Django REST Framework’s built-in token system.</p>
+</section>
+</section>
+<section id="getting-a-token">
+<h1>Getting a Token<a class="headerlink" href="#getting-a-token" title="Link to this heading"></a></h1>
+<p>To obtain an authentication token, send a POST request to the token endpoint:</p>
+<p><strong>Endpoint</strong>: <code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/auth/token/</span></code></p>
+<p><strong>Request</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/api/auth/token/<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">         &quot;username&quot;: &quot;your_username&quot;,</span>
+<span class="s1">         &quot;password&quot;: &quot;your_password&quot;</span>
+<span class="s1">     }&#39;</span>
+</pre></div>
+</div>
+<p><strong>Response</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="using-the-token">
+<h1>Using the Token<a class="headerlink" href="#using-the-token" title="Link to this heading"></a></h1>
+<p>Include the token in the Authorization header of all API requests:</p>
+<p><strong>Header Format</strong>:
+<code class="docutils literal notranslate"><span class="pre">Authorization:</span> <span class="pre">Token</span> <span class="pre">your_token_here</span></code></p>
+<p><strong>Example Request</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>http://localhost:8000/api/articles/
+</pre></div>
+</div>
+</section>
+<section id="authentication-examples">
+<h1>Authentication Examples<a class="headerlink" href="#authentication-examples" title="Link to this heading"></a></h1>
+<section id="python-with-requests">
+<h2>Python with requests<a class="headerlink" href="#python-with-requests" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="c1"># Get token</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;http://localhost:8000/api/auth/token/&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="s1">&#39;your_username&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="s1">&#39;your_password&#39;</span>
+<span class="p">})</span>
+<span class="n">token</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;token&#39;</span><span class="p">]</span>
+
+<span class="c1"># Use token in subsequent requests</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Token </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">}</span>
+<span class="n">articles</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://localhost:8000/api/articles/&#39;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">articles</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="javascript-with-fetch">
+<h2>JavaScript with fetch<a class="headerlink" href="#javascript-with-fetch" title="Link to this heading"></a></h2>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Get token</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">tokenResponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:8000/api/auth/token/&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+<span class="w">        </span><span class="nx">username</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;your_username&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;your_password&#39;</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">token</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">tokenResponse</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+
+<span class="c1">// Use token in subsequent requests</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">articlesResponse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:8000/api/articles/&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s1">&#39;Authorization&#39;</span><span class="o">:</span><span class="w"> </span><span class="sb">`Token </span><span class="si">${</span><span class="nx">token</span><span class="si">}</span><span class="sb">`</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">articles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">articlesResponse</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">articles</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="role-based-access-control">
+<h1>Role-based Access Control<a class="headerlink" href="#role-based-access-control" title="Link to this heading"></a></h1>
+<p>Different user roles have access to different API endpoints and data:</p>
+<section id="reader-access">
+<h2>Reader Access<a class="headerlink" href="#reader-access" title="Link to this heading"></a></h2>
+<p>Readers can:
+* View articles from subscribed publishers and followed journalists
+* View newsletters from subscribed publishers and followed journalists
+* Manage their own subscriptions
+* Browse all approved content</p>
+<p><strong>Filtered Content</strong>: Readers only see content relevant to their subscriptions in list endpoints.</p>
+</section>
+<section id="journalist-access">
+<h2>Journalist Access<a class="headerlink" href="#journalist-access" title="Link to this heading"></a></h2>
+<p>Journalists can:
+* View all articles and newsletters in the system
+* Create new articles and newsletters (via web interface)
+* View all publishers and other journalists</p>
+<p><strong>Full Content Access</strong>: Journalists see all content regardless of approval status.</p>
+</section>
+<section id="editor-access">
+<h2>Editor Access<a class="headerlink" href="#editor-access" title="Link to this heading"></a></h2>
+<p>Editors can:
+* View all articles and newsletters in the system
+* Approve/reject content (via web interface)
+* View all publishers and journalists</p>
+<p><strong>Administrative Access</strong>: Editors have the same viewing permissions as journalists plus approval capabilities.</p>
+</section>
+</section>
+<section id="authentication-errors">
+<h1>Authentication Errors<a class="headerlink" href="#authentication-errors" title="Link to this heading"></a></h1>
+<p>Common authentication errors and their meanings:</p>
+<section id="unauthorized">
+<h2>401 Unauthorized<a class="headerlink" href="#unauthorized" title="Link to this heading"></a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Authentication credentials were not provided.&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Cause</strong>: No Authorization header provided
+<strong>Solution</strong>: Include the Authorization header with a valid token</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Invalid token.&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Cause</strong>: Token is invalid or expired
+<strong>Solution</strong>: Obtain a new token using the <code class="docutils literal notranslate"><span class="pre">/api/auth/token/</span></code> endpoint</p>
+</section>
+<section id="forbidden">
+<h2>403 Forbidden<a class="headerlink" href="#forbidden" title="Link to this heading"></a></h2>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;You do not have permission to perform this action.&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Cause</strong>: Valid authentication but insufficient permissions
+<strong>Solution</strong>: Ensure your user role has access to the requested resource</p>
+</section>
+</section>
+<section id="token-management">
+<h1>Token Management<a class="headerlink" href="#token-management" title="Link to this heading"></a></h1>
+<section id="token-security">
+<h2>Token Security<a class="headerlink" href="#token-security" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Keep tokens secure</strong>: Never expose tokens in client-side code or logs</p></li>
+<li><p><strong>Use HTTPS</strong>: Always use HTTPS in production to protect tokens in transit</p></li>
+<li><p><strong>Token rotation</strong>: Consider implementing token rotation for enhanced security</p></li>
+</ul>
+</section>
+<section id="token-lifetime">
+<h2>Token Lifetime<a class="headerlink" href="#token-lifetime" title="Link to this heading"></a></h2>
+<p>By default, Django REST Framework tokens do not expire. In production, consider:</p>
+<ul class="simple">
+<li><p>Implementing token expiration</p></li>
+<li><p>Regular token rotation</p></li>
+<li><p>Monitoring token usage</p></li>
+</ul>
+</section>
+</section>
+<section id="session-authentication">
+<h1>Session Authentication<a class="headerlink" href="#session-authentication" title="Link to this heading"></a></h1>
+<p>For web interface access, the application also supports session-based authentication.
+This is primarily used by the Django admin and web views, not the API.</p>
+</section>
+<section id="testing-authentication">
+<h1>Testing Authentication<a class="headerlink" href="#testing-authentication" title="Link to this heading"></a></h1>
+<p>You can test authentication using the included test users:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test with reader account</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/api/auth/token/<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;username&quot;: &quot;reader1&quot;, &quot;password&quot;: &quot;testpass123&quot;}&#39;</span>
+
+<span class="c1"># Test with journalist account</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/api/auth/token/<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;username&quot;: &quot;journalist1&quot;, &quot;password&quot;: &quot;testpass123&quot;}&#39;</span>
+
+<span class="c1"># Test with editor account</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8000/api/auth/token/<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;username&quot;: &quot;editor1&quot;, &quot;password&quot;: &quot;testpass123&quot;}&#39;</span>
+</pre></div>
+</div>
+<p><strong>Note</strong>: Test users are created by running <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">create_test_users.py</span></code></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="API Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="endpoints.html" class="btn btn-neutral float-right" title="API Endpoints Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, News App Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

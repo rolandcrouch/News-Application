@@ -1,0 +1,1196 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>articles.models module &mdash; Django News Application 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="articles.views module" href="articles.views.html" />
+    <link rel="prev" title="news_app package" href="news_app.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Django News Application
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Application Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#architecture">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#user-roles-and-permissions">User Roles and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#publishers">Publishers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#content-management">Content Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#subscription-system">Subscription System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#content-feeds">Content Feeds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#approval-workflow">Approval Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#integration-features">Integration Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#api-architecture">API Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#security-features">Security Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#development-setup">Development Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#production-setup">Production Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#configuration-options">Configuration Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#testing-the-installation">Testing the Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#getting-help">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#development-tools">Development Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#api-overview">API Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#base-url">Base URL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#available-endpoints">Available Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#response-format">Response Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#http-status-codes">HTTP Status Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#rate-limiting">Rate Limiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#pagination">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html#testing-the-api">Testing the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Module Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html#articles-application">Articles Application</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">articles.models module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#articles.models.User"><code class="docutils literal notranslate"><span class="pre">User</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.Roles"><code class="docutils literal notranslate"><span class="pre">User.Roles</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.role"><code class="docutils literal notranslate"><span class="pre">User.role</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.subscriptions_publishers"><code class="docutils literal notranslate"><span class="pre">User.subscriptions_publishers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.subscriptions_journalists"><code class="docutils literal notranslate"><span class="pre">User.subscriptions_journalists</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.affiliated_publisher"><code class="docutils literal notranslate"><span class="pre">User.affiliated_publisher</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.clean"><code class="docutils literal notranslate"><span class="pre">User.clean()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.save"><code class="docutils literal notranslate"><span class="pre">User.save()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.get_independent_articles"><code class="docutils literal notranslate"><span class="pre">User.get_independent_articles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.get_independent_newsletters"><code class="docutils literal notranslate"><span class="pre">User.get_independent_newsletters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.get_subscribed_publishers"><code class="docutils literal notranslate"><span class="pre">User.get_subscribed_publishers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.get_subscribed_journalists"><code class="docutils literal notranslate"><span class="pre">User.get_subscribed_journalists()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">User.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">User.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.affiliated_publisher_id"><code class="docutils literal notranslate"><span class="pre">User.affiliated_publisher_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.approved_articles"><code class="docutils literal notranslate"><span class="pre">User.approved_articles</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.articles"><code class="docutils literal notranslate"><span class="pre">User.articles</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.auth_token"><code class="docutils literal notranslate"><span class="pre">User.auth_token</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.date_joined"><code class="docutils literal notranslate"><span class="pre">User.date_joined</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.editing_publishers"><code class="docutils literal notranslate"><span class="pre">User.editing_publishers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.email"><code class="docutils literal notranslate"><span class="pre">User.email</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.first_name"><code class="docutils literal notranslate"><span class="pre">User.first_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.followers"><code class="docutils literal notranslate"><span class="pre">User.followers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.get_next_by_date_joined"><code class="docutils literal notranslate"><span class="pre">User.get_next_by_date_joined()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.get_previous_by_date_joined"><code class="docutils literal notranslate"><span class="pre">User.get_previous_by_date_joined()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.get_role_display"><code class="docutils literal notranslate"><span class="pre">User.get_role_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.groups"><code class="docutils literal notranslate"><span class="pre">User.groups</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.id"><code class="docutils literal notranslate"><span class="pre">User.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.is_active"><code class="docutils literal notranslate"><span class="pre">User.is_active</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.is_staff"><code class="docutils literal notranslate"><span class="pre">User.is_staff</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.is_superuser"><code class="docutils literal notranslate"><span class="pre">User.is_superuser</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.journalist_publishers"><code class="docutils literal notranslate"><span class="pre">User.journalist_publishers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.last_login"><code class="docutils literal notranslate"><span class="pre">User.last_login</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.last_name"><code class="docutils literal notranslate"><span class="pre">User.last_name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.logentry_set"><code class="docutils literal notranslate"><span class="pre">User.logentry_set</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.newsletters"><code class="docutils literal notranslate"><span class="pre">User.newsletters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.password"><code class="docutils literal notranslate"><span class="pre">User.password</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.reset_tokens"><code class="docutils literal notranslate"><span class="pre">User.reset_tokens</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.user_permissions"><code class="docutils literal notranslate"><span class="pre">User.user_permissions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.User.username"><code class="docutils literal notranslate"><span class="pre">User.username</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.models.Publisher"><code class="docutils literal notranslate"><span class="pre">Publisher</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Publisher.name"><code class="docutils literal notranslate"><span class="pre">Publisher.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Publisher.editors"><code class="docutils literal notranslate"><span class="pre">Publisher.editors</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Publisher.journalists"><code class="docutils literal notranslate"><span class="pre">Publisher.journalists</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Publisher.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Publisher.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Publisher.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Publisher.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Publisher.affiliated_users"><code class="docutils literal notranslate"><span class="pre">Publisher.affiliated_users</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Publisher.articles"><code class="docutils literal notranslate"><span class="pre">Publisher.articles</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Publisher.id"><code class="docutils literal notranslate"><span class="pre">Publisher.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Publisher.newsletters"><code class="docutils literal notranslate"><span class="pre">Publisher.newsletters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Publisher.objects"><code class="docutils literal notranslate"><span class="pre">Publisher.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Publisher.subscribers"><code class="docutils literal notranslate"><span class="pre">Publisher.subscribers</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.models.Article"><code class="docutils literal notranslate"><span class="pre">Article</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Article.title"><code class="docutils literal notranslate"><span class="pre">Article.title</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Article.body"><code class="docutils literal notranslate"><span class="pre">Article.body</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Article.author"><code class="docutils literal notranslate"><span class="pre">Article.author</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Article.publisher"><code class="docutils literal notranslate"><span class="pre">Article.publisher</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Article.is_approved"><code class="docutils literal notranslate"><span class="pre">Article.is_approved</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Article.approved_by"><code class="docutils literal notranslate"><span class="pre">Article.approved_by</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Article.created_at"><code class="docutils literal notranslate"><span class="pre">Article.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Article.updated_at"><code class="docutils literal notranslate"><span class="pre">Article.updated_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Article.get_is_approved_display"><code class="docutils literal notranslate"><span class="pre">Article.get_is_approved_display()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Article.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Article.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Article.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Article.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Article.approved_by_id"><code class="docutils literal notranslate"><span class="pre">Article.approved_by_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Article.author_id"><code class="docutils literal notranslate"><span class="pre">Article.author_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Article.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">Article.get_next_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Article.get_next_by_updated_at"><code class="docutils literal notranslate"><span class="pre">Article.get_next_by_updated_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Article.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">Article.get_previous_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Article.get_previous_by_updated_at"><code class="docutils literal notranslate"><span class="pre">Article.get_previous_by_updated_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Article.id"><code class="docutils literal notranslate"><span class="pre">Article.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Article.objects"><code class="docutils literal notranslate"><span class="pre">Article.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Article.publisher_id"><code class="docutils literal notranslate"><span class="pre">Article.publisher_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.models.Newsletter"><code class="docutils literal notranslate"><span class="pre">Newsletter</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Newsletter.subject"><code class="docutils literal notranslate"><span class="pre">Newsletter.subject</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Newsletter.content"><code class="docutils literal notranslate"><span class="pre">Newsletter.content</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Newsletter.author"><code class="docutils literal notranslate"><span class="pre">Newsletter.author</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Newsletter.publisher"><code class="docutils literal notranslate"><span class="pre">Newsletter.publisher</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Newsletter.created_at"><code class="docutils literal notranslate"><span class="pre">Newsletter.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Newsletter.updated_at"><code class="docutils literal notranslate"><span class="pre">Newsletter.updated_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Newsletter.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">Newsletter.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Newsletter.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">Newsletter.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Newsletter.author_id"><code class="docutils literal notranslate"><span class="pre">Newsletter.author_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Newsletter.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">Newsletter.get_next_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Newsletter.get_next_by_updated_at"><code class="docutils literal notranslate"><span class="pre">Newsletter.get_next_by_updated_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Newsletter.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">Newsletter.get_previous_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Newsletter.get_previous_by_updated_at"><code class="docutils literal notranslate"><span class="pre">Newsletter.get_previous_by_updated_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Newsletter.id"><code class="docutils literal notranslate"><span class="pre">Newsletter.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Newsletter.objects"><code class="docutils literal notranslate"><span class="pre">Newsletter.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.Newsletter.publisher_id"><code class="docutils literal notranslate"><span class="pre">Newsletter.publisher_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#articles.models.ResetToken"><code class="docutils literal notranslate"><span class="pre">ResetToken</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.ResetToken.user"><code class="docutils literal notranslate"><span class="pre">ResetToken.user</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.ResetToken.token_hash"><code class="docutils literal notranslate"><span class="pre">ResetToken.token_hash</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.ResetToken.created_at"><code class="docutils literal notranslate"><span class="pre">ResetToken.created_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.ResetToken.expires_at"><code class="docutils literal notranslate"><span class="pre">ResetToken.expires_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.ResetToken.used_at"><code class="docutils literal notranslate"><span class="pre">ResetToken.used_at</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.ResetToken.is_expired"><code class="docutils literal notranslate"><span class="pre">ResetToken.is_expired()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.ResetToken.is_used"><code class="docutils literal notranslate"><span class="pre">ResetToken.is_used()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.ResetToken.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">ResetToken.DoesNotExist</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.ResetToken.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">ResetToken.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.ResetToken.get_next_by_created_at"><code class="docutils literal notranslate"><span class="pre">ResetToken.get_next_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.ResetToken.get_next_by_expires_at"><code class="docutils literal notranslate"><span class="pre">ResetToken.get_next_by_expires_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.ResetToken.get_previous_by_created_at"><code class="docutils literal notranslate"><span class="pre">ResetToken.get_previous_by_created_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.ResetToken.get_previous_by_expires_at"><code class="docutils literal notranslate"><span class="pre">ResetToken.get_previous_by_expires_at()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.ResetToken.id"><code class="docutils literal notranslate"><span class="pre">ResetToken.id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.ResetToken.objects"><code class="docutils literal notranslate"><span class="pre">ResetToken.objects</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#articles.models.ResetToken.user_id"><code class="docutils literal notranslate"><span class="pre">ResetToken.user_id</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="articles.views.html">articles.views module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.api_views.html">articles.api_views module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.forms.html">articles.forms module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.serializers.html">articles.serializers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.admin.html">articles.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.utils.html">articles.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.signals.html">articles.signals module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="articles.functions.html">articles.functions package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#main-project">Main Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#production-deployment">Production Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#cloud-platform-deployment">Cloud Platform Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#monitoring-and-maintenance">Monitoring and Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#security-considerations">Security Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html">Testing Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-suite-overview">Test Suite Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-categories">Test Categories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-data-setup">Test Data Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-configuration">Test Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#mocking-external-services">Mocking External Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-automation">Test Automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#performance-testing">Performance Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#best-practices">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#running-specific-tests">Running Specific Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Django News Application</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module Documentation</a></li>
+      <li class="breadcrumb-item active">articles.models module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/articles.models.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="articles-models-module">
+<h1>articles.models module<a class="headerlink" href="#articles-models-module" title="Link to this heading"></a></h1>
+<dl class="py class" id="module-articles.models">
+<dt class="sig sig-object py" id="articles.models.User">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.models.</span></span><span class="sig-name descname"><span class="pre">User</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/models.html#User"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.models.User" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/topics/auth/customizing/#django.contrib.auth.models.AbstractUser" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractUser</span></code></a></p>
+<p>Custom user with roles and role-specific fields.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.models.User.Roles">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Roles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/models.html#User.Roles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.models.User.Roles" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TextChoices</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.Roles.READER">
+<span class="sig-name descname"><span class="pre">READER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'reader'</span></em><a class="headerlink" href="#articles.models.User.Roles.READER" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.Roles.EDITOR">
+<span class="sig-name descname"><span class="pre">EDITOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'editor'</span></em><a class="headerlink" href="#articles.models.User.Roles.EDITOR" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.Roles.JOURNALIST">
+<span class="sig-name descname"><span class="pre">JOURNALIST</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'journalist'</span></em><a class="headerlink" href="#articles.models.User.Roles.JOURNALIST" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.role">
+<span class="sig-name descname"><span class="pre">role</span></span><a class="headerlink" href="#articles.models.User.role" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.subscriptions_publishers">
+<span class="sig-name descname"><span class="pre">subscriptions_publishers</span></span><a class="headerlink" href="#articles.models.User.subscriptions_publishers" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the forward and reverse sides of
+a many-to-many relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Pizza</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;pizzas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code> and <code class="docutils literal notranslate"><span class="pre">Topping.pizzas</span></code> are <code class="docutils literal notranslate"><span class="pre">ManyToManyDescriptor</span></code>
+instances.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.subscriptions_journalists">
+<span class="sig-name descname"><span class="pre">subscriptions_journalists</span></span><a class="headerlink" href="#articles.models.User.subscriptions_journalists" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the forward and reverse sides of
+a many-to-many relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Pizza</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;pizzas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code> and <code class="docutils literal notranslate"><span class="pre">Topping.pizzas</span></code> are <code class="docutils literal notranslate"><span class="pre">ManyToManyDescriptor</span></code>
+instances.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.affiliated_publisher">
+<span class="sig-name descname"><span class="pre">affiliated_publisher</span></span><a class="headerlink" href="#articles.models.User.affiliated_publisher" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.User.clean">
+<span class="sig-name descname"><span class="pre">clean</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/models.html#User.clean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.models.User.clean" title="Link to this definition"></a></dt>
+<dd><p>Ensure users don’t set invalid role-specific fields.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.User.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/models.html#User.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.models.User.save" title="Link to this definition"></a></dt>
+<dd><p>Normalize fields based on role when saving.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.User.get_independent_articles">
+<span class="sig-name descname"><span class="pre">get_independent_articles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/models.html#User.get_independent_articles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.models.User.get_independent_articles" title="Link to this definition"></a></dt>
+<dd><p>Get articles published independently by this journalist (no publisher).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.User.get_independent_newsletters">
+<span class="sig-name descname"><span class="pre">get_independent_newsletters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/models.html#User.get_independent_newsletters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.models.User.get_independent_newsletters" title="Link to this definition"></a></dt>
+<dd><p>Get newsletters published independently by this journalist (no publisher).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.User.get_subscribed_publishers">
+<span class="sig-name descname"><span class="pre">get_subscribed_publishers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/models.html#User.get_subscribed_publishers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.models.User.get_subscribed_publishers" title="Link to this definition"></a></dt>
+<dd><p>Get publishers this reader is subscribed to.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.User.get_subscribed_journalists">
+<span class="sig-name descname"><span class="pre">get_subscribed_journalists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/models.html#User.get_subscribed_journalists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.models.User.get_subscribed_journalists" title="Link to this definition"></a></dt>
+<dd><p>Get journalists this reader is subscribed to.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="articles.models.User.DoesNotExist">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#articles.models.User.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.ObjectDoesNotExist" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="articles.models.User.MultipleObjectsReturned">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#articles.models.User.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.MultipleObjectsReturned" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.affiliated_publisher_id">
+<span class="sig-name descname"><span class="pre">affiliated_publisher_id</span></span><a class="headerlink" href="#articles.models.User.affiliated_publisher_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.approved_articles">
+<span class="sig-name descname"><span class="pre">approved_articles</span></span><a class="headerlink" href="#articles.models.User.approved_articles" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.articles">
+<span class="sig-name descname"><span class="pre">articles</span></span><a class="headerlink" href="#articles.models.User.articles" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.auth_token">
+<span class="sig-name descname"><span class="pre">auth_token</span></span><a class="headerlink" href="#articles.models.User.auth_token" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the reverse side of a one-to-one
+relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Restaurant</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">place</span> <span class="o">=</span> <span class="n">OneToOneField</span><span class="p">(</span><span class="n">Place</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;restaurant&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Place.restaurant</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseOneToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.date_joined">
+<span class="sig-name descname"><span class="pre">date_joined</span></span><a class="headerlink" href="#articles.models.User.date_joined" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.editing_publishers">
+<span class="sig-name descname"><span class="pre">editing_publishers</span></span><a class="headerlink" href="#articles.models.User.editing_publishers" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the forward and reverse sides of
+a many-to-many relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Pizza</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;pizzas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code> and <code class="docutils literal notranslate"><span class="pre">Topping.pizzas</span></code> are <code class="docutils literal notranslate"><span class="pre">ManyToManyDescriptor</span></code>
+instances.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.email">
+<span class="sig-name descname"><span class="pre">email</span></span><a class="headerlink" href="#articles.models.User.email" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.first_name">
+<span class="sig-name descname"><span class="pre">first_name</span></span><a class="headerlink" href="#articles.models.User.first_name" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.followers">
+<span class="sig-name descname"><span class="pre">followers</span></span><a class="headerlink" href="#articles.models.User.followers" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the forward and reverse sides of
+a many-to-many relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Pizza</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;pizzas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code> and <code class="docutils literal notranslate"><span class="pre">Topping.pizzas</span></code> are <code class="docutils literal notranslate"><span class="pre">ManyToManyDescriptor</span></code>
+instances.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.User.get_next_by_date_joined">
+<span class="sig-name descname"><span class="pre">get_next_by_date_joined</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">date_joined&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#articles.models.User.get_next_by_date_joined" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.User.get_previous_by_date_joined">
+<span class="sig-name descname"><span class="pre">get_previous_by_date_joined</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">date_joined&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#articles.models.User.get_previous_by_date_joined" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.User.get_role_display">
+<span class="sig-name descname"><span class="pre">get_role_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.CharField:</span> <span class="pre">role&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#articles.models.User.get_role_display" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.groups">
+<span class="sig-name descname"><span class="pre">groups</span></span><a class="headerlink" href="#articles.models.User.groups" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the forward and reverse sides of
+a many-to-many relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Pizza</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;pizzas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code> and <code class="docutils literal notranslate"><span class="pre">Topping.pizzas</span></code> are <code class="docutils literal notranslate"><span class="pre">ManyToManyDescriptor</span></code>
+instances.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#articles.models.User.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.is_active">
+<span class="sig-name descname"><span class="pre">is_active</span></span><a class="headerlink" href="#articles.models.User.is_active" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.is_staff">
+<span class="sig-name descname"><span class="pre">is_staff</span></span><a class="headerlink" href="#articles.models.User.is_staff" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.is_superuser">
+<span class="sig-name descname"><span class="pre">is_superuser</span></span><a class="headerlink" href="#articles.models.User.is_superuser" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.journalist_publishers">
+<span class="sig-name descname"><span class="pre">journalist_publishers</span></span><a class="headerlink" href="#articles.models.User.journalist_publishers" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the forward and reverse sides of
+a many-to-many relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Pizza</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;pizzas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code> and <code class="docutils literal notranslate"><span class="pre">Topping.pizzas</span></code> are <code class="docutils literal notranslate"><span class="pre">ManyToManyDescriptor</span></code>
+instances.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.last_login">
+<span class="sig-name descname"><span class="pre">last_login</span></span><a class="headerlink" href="#articles.models.User.last_login" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.last_name">
+<span class="sig-name descname"><span class="pre">last_name</span></span><a class="headerlink" href="#articles.models.User.last_name" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.logentry_set">
+<span class="sig-name descname"><span class="pre">logentry_set</span></span><a class="headerlink" href="#articles.models.User.logentry_set" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.newsletters">
+<span class="sig-name descname"><span class="pre">newsletters</span></span><a class="headerlink" href="#articles.models.User.newsletters" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.password">
+<span class="sig-name descname"><span class="pre">password</span></span><a class="headerlink" href="#articles.models.User.password" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.reset_tokens">
+<span class="sig-name descname"><span class="pre">reset_tokens</span></span><a class="headerlink" href="#articles.models.User.reset_tokens" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.user_permissions">
+<span class="sig-name descname"><span class="pre">user_permissions</span></span><a class="headerlink" href="#articles.models.User.user_permissions" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the forward and reverse sides of
+a many-to-many relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Pizza</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;pizzas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code> and <code class="docutils literal notranslate"><span class="pre">Topping.pizzas</span></code> are <code class="docutils literal notranslate"><span class="pre">ManyToManyDescriptor</span></code>
+instances.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.User.username">
+<span class="sig-name descname"><span class="pre">username</span></span><a class="headerlink" href="#articles.models.User.username" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.models.Publisher">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.models.</span></span><span class="sig-name descname"><span class="pre">Publisher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/models.html#Publisher"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.models.Publisher" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>A publisher with editors and journalists.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Publisher.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#articles.models.Publisher.name" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Publisher.editors">
+<span class="sig-name descname"><span class="pre">editors</span></span><a class="headerlink" href="#articles.models.Publisher.editors" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the forward and reverse sides of
+a many-to-many relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Pizza</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;pizzas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code> and <code class="docutils literal notranslate"><span class="pre">Topping.pizzas</span></code> are <code class="docutils literal notranslate"><span class="pre">ManyToManyDescriptor</span></code>
+instances.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Publisher.journalists">
+<span class="sig-name descname"><span class="pre">journalists</span></span><a class="headerlink" href="#articles.models.Publisher.journalists" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the forward and reverse sides of
+a many-to-many relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Pizza</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;pizzas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code> and <code class="docutils literal notranslate"><span class="pre">Topping.pizzas</span></code> are <code class="docutils literal notranslate"><span class="pre">ManyToManyDescriptor</span></code>
+instances.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="articles.models.Publisher.DoesNotExist">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#articles.models.Publisher.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.ObjectDoesNotExist" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="articles.models.Publisher.MultipleObjectsReturned">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#articles.models.Publisher.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.MultipleObjectsReturned" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Publisher.affiliated_users">
+<span class="sig-name descname"><span class="pre">affiliated_users</span></span><a class="headerlink" href="#articles.models.Publisher.affiliated_users" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Publisher.articles">
+<span class="sig-name descname"><span class="pre">articles</span></span><a class="headerlink" href="#articles.models.Publisher.articles" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Publisher.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#articles.models.Publisher.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Publisher.newsletters">
+<span class="sig-name descname"><span class="pre">newsletters</span></span><a class="headerlink" href="#articles.models.Publisher.newsletters" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Publisher.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#articles.models.Publisher.objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Publisher.subscribers">
+<span class="sig-name descname"><span class="pre">subscribers</span></span><a class="headerlink" href="#articles.models.Publisher.subscribers" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related objects manager on the forward and reverse sides of
+a many-to-many relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Pizza</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;pizzas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code> and <code class="docutils literal notranslate"><span class="pre">Topping.pizzas</span></code> are <code class="docutils literal notranslate"><span class="pre">ManyToManyDescriptor</span></code>
+instances.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.models.Article">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.models.</span></span><span class="sig-name descname"><span class="pre">Article</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/models.html#Article"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.models.Article" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>An article written by a journalist, with optional publisher.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Article.title">
+<span class="sig-name descname"><span class="pre">title</span></span><a class="headerlink" href="#articles.models.Article.title" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Article.body">
+<span class="sig-name descname"><span class="pre">body</span></span><a class="headerlink" href="#articles.models.Article.body" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Article.author">
+<span class="sig-name descname"><span class="pre">author</span></span><a class="headerlink" href="#articles.models.Article.author" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Article.publisher">
+<span class="sig-name descname"><span class="pre">publisher</span></span><a class="headerlink" href="#articles.models.Article.publisher" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Article.is_approved">
+<span class="sig-name descname"><span class="pre">is_approved</span></span><a class="headerlink" href="#articles.models.Article.is_approved" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Article.approved_by">
+<span class="sig-name descname"><span class="pre">approved_by</span></span><a class="headerlink" href="#articles.models.Article.approved_by" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Article.created_at">
+<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#articles.models.Article.created_at" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Article.updated_at">
+<span class="sig-name descname"><span class="pre">updated_at</span></span><a class="headerlink" href="#articles.models.Article.updated_at" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.Article.get_is_approved_display">
+<span class="sig-name descname"><span class="pre">get_is_approved_display</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/models.html#Article.get_is_approved_display"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.models.Article.get_is_approved_display" title="Link to this definition"></a></dt>
+<dd><p>Return human-readable approval status</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="articles.models.Article.DoesNotExist">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#articles.models.Article.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.ObjectDoesNotExist" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="articles.models.Article.MultipleObjectsReturned">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#articles.models.Article.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.MultipleObjectsReturned" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Article.approved_by_id">
+<span class="sig-name descname"><span class="pre">approved_by_id</span></span><a class="headerlink" href="#articles.models.Article.approved_by_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Article.author_id">
+<span class="sig-name descname"><span class="pre">author_id</span></span><a class="headerlink" href="#articles.models.Article.author_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.Article.get_next_by_created_at">
+<span class="sig-name descname"><span class="pre">get_next_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#articles.models.Article.get_next_by_created_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.Article.get_next_by_updated_at">
+<span class="sig-name descname"><span class="pre">get_next_by_updated_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">updated_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#articles.models.Article.get_next_by_updated_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.Article.get_previous_by_created_at">
+<span class="sig-name descname"><span class="pre">get_previous_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#articles.models.Article.get_previous_by_created_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.Article.get_previous_by_updated_at">
+<span class="sig-name descname"><span class="pre">get_previous_by_updated_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">updated_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#articles.models.Article.get_previous_by_updated_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Article.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#articles.models.Article.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Article.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#articles.models.Article.objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Article.publisher_id">
+<span class="sig-name descname"><span class="pre">publisher_id</span></span><a class="headerlink" href="#articles.models.Article.publisher_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.models.Newsletter">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.models.</span></span><span class="sig-name descname"><span class="pre">Newsletter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/models.html#Newsletter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.models.Newsletter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>A newsletter written by a journalist, with optional publisher.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Newsletter.subject">
+<span class="sig-name descname"><span class="pre">subject</span></span><a class="headerlink" href="#articles.models.Newsletter.subject" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Newsletter.content">
+<span class="sig-name descname"><span class="pre">content</span></span><a class="headerlink" href="#articles.models.Newsletter.content" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Newsletter.author">
+<span class="sig-name descname"><span class="pre">author</span></span><a class="headerlink" href="#articles.models.Newsletter.author" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Newsletter.publisher">
+<span class="sig-name descname"><span class="pre">publisher</span></span><a class="headerlink" href="#articles.models.Newsletter.publisher" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Newsletter.created_at">
+<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#articles.models.Newsletter.created_at" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Newsletter.updated_at">
+<span class="sig-name descname"><span class="pre">updated_at</span></span><a class="headerlink" href="#articles.models.Newsletter.updated_at" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="articles.models.Newsletter.DoesNotExist">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#articles.models.Newsletter.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.ObjectDoesNotExist" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="articles.models.Newsletter.MultipleObjectsReturned">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#articles.models.Newsletter.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.MultipleObjectsReturned" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Newsletter.author_id">
+<span class="sig-name descname"><span class="pre">author_id</span></span><a class="headerlink" href="#articles.models.Newsletter.author_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.Newsletter.get_next_by_created_at">
+<span class="sig-name descname"><span class="pre">get_next_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#articles.models.Newsletter.get_next_by_created_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.Newsletter.get_next_by_updated_at">
+<span class="sig-name descname"><span class="pre">get_next_by_updated_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">updated_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#articles.models.Newsletter.get_next_by_updated_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.Newsletter.get_previous_by_created_at">
+<span class="sig-name descname"><span class="pre">get_previous_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#articles.models.Newsletter.get_previous_by_created_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.Newsletter.get_previous_by_updated_at">
+<span class="sig-name descname"><span class="pre">get_previous_by_updated_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">updated_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#articles.models.Newsletter.get_previous_by_updated_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Newsletter.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#articles.models.Newsletter.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Newsletter.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#articles.models.Newsletter.objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.Newsletter.publisher_id">
+<span class="sig-name descname"><span class="pre">publisher_id</span></span><a class="headerlink" href="#articles.models.Newsletter.publisher_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="articles.models.ResetToken">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">articles.models.</span></span><span class="sig-name descname"><span class="pre">ResetToken</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/models.html#ResetToken"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.models.ResetToken" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>One-time password reset token for a user.</p>
+<p>Stores a hashed token string with an expiry and usage timestamp.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.ResetToken.user">
+<span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#articles.models.ResetToken.user" title="Link to this definition"></a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.ResetToken.token_hash">
+<span class="sig-name descname"><span class="pre">token_hash</span></span><a class="headerlink" href="#articles.models.ResetToken.token_hash" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.ResetToken.created_at">
+<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#articles.models.ResetToken.created_at" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.ResetToken.expires_at">
+<span class="sig-name descname"><span class="pre">expires_at</span></span><a class="headerlink" href="#articles.models.ResetToken.expires_at" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.ResetToken.used_at">
+<span class="sig-name descname"><span class="pre">used_at</span></span><a class="headerlink" href="#articles.models.ResetToken.used_at" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.ResetToken.is_expired">
+<span class="sig-name descname"><span class="pre">is_expired</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/models.html#ResetToken.is_expired"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.models.ResetToken.is_expired" title="Link to this definition"></a></dt>
+<dd><p>Return True if the token has passed its expiry time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.ResetToken.is_used">
+<span class="sig-name descname"><span class="pre">is_used</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/articles/models.html#ResetToken.is_used"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#articles.models.ResetToken.is_used" title="Link to this definition"></a></dt>
+<dd><p>Return True if the token has already been consumed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="articles.models.ResetToken.DoesNotExist">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#articles.models.ResetToken.DoesNotExist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.ObjectDoesNotExist" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectDoesNotExist</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="articles.models.ResetToken.MultipleObjectsReturned">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#articles.models.ResetToken.MultipleObjectsReturned" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.djangoproject.com/en/stable/ref/exceptions/#django.core.exceptions.MultipleObjectsReturned" title="(in Django v5.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleObjectsReturned</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.ResetToken.get_next_by_created_at">
+<span class="sig-name descname"><span class="pre">get_next_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#articles.models.ResetToken.get_next_by_created_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.ResetToken.get_next_by_expires_at">
+<span class="sig-name descname"><span class="pre">get_next_by_expires_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">expires_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#articles.models.ResetToken.get_next_by_expires_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.ResetToken.get_previous_by_created_at">
+<span class="sig-name descname"><span class="pre">get_previous_by_created_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">created_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#articles.models.ResetToken.get_previous_by_created_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="articles.models.ResetToken.get_previous_by_expires_at">
+<span class="sig-name descname"><span class="pre">get_previous_by_expires_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field=&lt;django.db.models.fields.DateTimeField:</span> <span class="pre">expires_at&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_next=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#articles.models.ResetToken.get_previous_by_expires_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.ResetToken.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#articles.models.ResetToken.id" title="Link to this definition"></a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.ResetToken.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#articles.models.ResetToken.objects" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="articles.models.ResetToken.user_id">
+<span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#articles.models.ResetToken.user_id" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="news_app.html" class="btn btn-neutral float-left" title="news_app package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="articles.views.html" class="btn btn-neutral float-right" title="articles.views module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, News App Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

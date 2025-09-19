@@ -1,48 +1,90 @@
+# Git and version control
+.git
+.gitignore
+.gitattributes
+
 # Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
+__pycache__
+*.pyc
+*.pyo
+*.pyd
 .Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# Django
+env
+pip-log.txt
+pip-delete-this-directory.txt
+.tox
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
 *.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
+.git
+.mypy_cache
+.pytest_cache
+.hypothesis
 
-# Environment
-.env
-.venv/
-env/
+# Virtual environments
 venv/
+env/
 ENV/
 env.bak/
 venv.bak/
+.venv
 
-# IDE
+# IDEs and editors
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
+.DS_Store
+Thumbs.db
 
-# OS
+# Documentation
+docs/_build/
+*.md
+README.md
+CHANGELOG.md
+LICENSE
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Development and testing
+.pytest_cache/
+.tox/
+.coverage
+htmlcov/
+.env.local
+.env.development
+.env.test
+test_*.py
+*_test.py
+tests/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Media and static files (will be collected in container)
+staticfiles/
+media/
+
+# Logs
+*.log
+logs/
+
+# Database
+*.sqlite3
+*.db
+
+# OS generated files
 .DS_Store
 .DS_Store?
 ._*
@@ -51,30 +93,29 @@ venv.bak/
 ehthumbs.db
 Thumbs.db
 
-# Git
-.git/
-.gitignore
-
-# Docker
-.dockerignore
-Dockerfile
-docker-compose.yml
-
-# Documentation (keep in image for reference)
-# README.md
-# API_DOCUMENTATION.md
-# POSTMAN_TESTING_GUIDE.md
-
-# Project specific
-*.pdf
-note_to_reviewer
-
-# Media and uploads (will be handled by volumes)
-media/
-staticfiles/
-
 # Temporary files
 *.tmp
-*.bak
-*.orig
+*.temp
+.tmp/
+.temp/
 
+# Node.js (if any frontend assets)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Local configuration
+.env
+.env.local
+.env.production
+local_settings.py
+
+# Container-specific ignores
+var/
+!var/.gitkeep

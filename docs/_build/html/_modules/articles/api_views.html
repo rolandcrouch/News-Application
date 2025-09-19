@@ -1,0 +1,451 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>articles.api_views &mdash; Django News Application 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Django News Application
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Application Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#architecture">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#user-roles-and-permissions">User Roles and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#publishers">Publishers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#content-management">Content Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#subscription-system">Subscription System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#content-feeds">Content Feeds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#approval-workflow">Approval Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#integration-features">Integration Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#api-architecture">API Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html#security-features">Security Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#development-setup">Development Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#production-setup">Production Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#configuration-options">Configuration Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#testing-the-installation">Testing the Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#getting-help">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#development-tools">Development Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#api-overview">API Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#base-url">Base URL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#available-endpoints">Available Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#response-format">Response Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#http-status-codes">HTTP Status Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#rate-limiting">Rate Limiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#pagination">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/index.html#testing-the-api">Testing the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/index.html">Module Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/index.html#articles-application">Articles Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules/index.html#main-project">Main Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html#production-deployment">Production Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html#cloud-platform-deployment">Cloud Platform Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html#monitoring-and-maintenance">Monitoring and Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html#security-considerations">Security Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deployment.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html">Testing Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#test-suite-overview">Test Suite Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#test-categories">Test Categories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#test-data-setup">Test Data Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#test-configuration">Test Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#mocking-external-services">Mocking External Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#test-automation">Test Automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#performance-testing">Performance Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#best-practices">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing.html#running-specific-tests">Running Specific Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Django News Application</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">articles.api_views</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for articles.api_views</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework</span><span class="w"> </span><span class="kn">import</span> <span class="n">generics</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">permissions</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework.decorators</span><span class="w"> </span><span class="kn">import</span> <span class="n">api_view</span><span class="p">,</span> <span class="n">permission_classes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework.response</span><span class="w"> </span><span class="kn">import</span> <span class="n">Response</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rest_framework.views</span><span class="w"> </span><span class="kn">import</span> <span class="n">APIView</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.db.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Q</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.contrib.auth</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_user_model</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Article</span><span class="p">,</span> <span class="n">Newsletter</span><span class="p">,</span> <span class="n">Publisher</span><span class="p">,</span> <span class="n">User</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.serializers</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ArticleSerializer</span><span class="p">,</span> <span class="n">NewsletterSerializer</span><span class="p">,</span> <span class="n">PublisherSerializer</span><span class="p">,</span> <span class="n">UserSerializer</span><span class="p">,</span>
+    <span class="n">SubscriptionSerializer</span><span class="p">,</span> <span class="n">ArticleListSerializer</span><span class="p">,</span> <span class="n">NewsletterListSerializer</span>
+<span class="p">)</span>
+
+<span class="n">User</span> <span class="o">=</span> <span class="n">get_user_model</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="ArticleListView">
+<a class="viewcode-back" href="../../modules/articles.api_views.html#articles.api_views.ArticleListView">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ArticleListView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">ListAPIView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    API endpoint for listing articles based on user subscriptions.</span>
+<span class="sd">    For readers: shows articles from followed journalists and subscribed publishers.</span>
+<span class="sd">    For editors/journalists: shows all articles.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">ArticleListSerializer</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">permissions</span><span class="o">.</span><span class="n">IsAuthenticated</span><span class="p">]</span>
+    
+<div class="viewcode-block" id="ArticleListView.get_queryset">
+<a class="viewcode-back" href="../../modules/articles.api_views.html#articles.api_views.ArticleListView.get_queryset">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
+        
+        <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="n">User</span><span class="o">.</span><span class="n">Roles</span><span class="o">.</span><span class="n">READER</span><span class="p">:</span>
+            <span class="c1"># For readers: show articles from followed journalists and subscribed publishers</span>
+            <span class="n">followed_journalist_ids</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">subscriptions_journalists</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">subscribed_publisher_ids</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">subscriptions_publishers</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                <span class="n">Q</span><span class="p">(</span><span class="n">publisher__isnull</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">author_id__in</span><span class="o">=</span><span class="n">followed_journalist_ids</span><span class="p">)</span> <span class="o">|</span>
+                <span class="n">Q</span><span class="p">(</span><span class="n">publisher_id__in</span><span class="o">=</span><span class="n">subscribed_publisher_ids</span><span class="p">)</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;publisher&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-created_at&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># For editors and journalists: show all articles</span>
+            <span class="k">return</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;publisher&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-created_at&#39;</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ArticleDetailView">
+<a class="viewcode-back" href="../../modules/articles.api_views.html#articles.api_views.ArticleDetailView">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ArticleDetailView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">RetrieveAPIView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    API endpoint for retrieving a specific article.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">ArticleSerializer</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">permissions</span><span class="o">.</span><span class="n">IsAuthenticated</span><span class="p">]</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;publisher&#39;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="NewsletterListView">
+<a class="viewcode-back" href="../../modules/articles.api_views.html#articles.api_views.NewsletterListView">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">NewsletterListView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">ListAPIView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    API endpoint for listing newsletters based on user subscriptions.</span>
+<span class="sd">    For readers: shows newsletters from followed journalists and subscribed publishers.</span>
+<span class="sd">    For editors/journalists: shows all newsletters.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">NewsletterListSerializer</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">permissions</span><span class="o">.</span><span class="n">IsAuthenticated</span><span class="p">]</span>
+    
+<div class="viewcode-block" id="NewsletterListView.get_queryset">
+<a class="viewcode-back" href="../../modules/articles.api_views.html#articles.api_views.NewsletterListView.get_queryset">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
+        
+        <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="n">User</span><span class="o">.</span><span class="n">Roles</span><span class="o">.</span><span class="n">READER</span><span class="p">:</span>
+            <span class="c1"># For readers: show newsletters from followed journalists and subscribed publishers</span>
+            <span class="n">followed_journalist_ids</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">subscriptions_journalists</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">subscribed_publisher_ids</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">subscriptions_publishers</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="n">Newsletter</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+                <span class="n">Q</span><span class="p">(</span><span class="n">publisher__isnull</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">author_id__in</span><span class="o">=</span><span class="n">followed_journalist_ids</span><span class="p">)</span> <span class="o">|</span>
+                <span class="n">Q</span><span class="p">(</span><span class="n">publisher_id__in</span><span class="o">=</span><span class="n">subscribed_publisher_ids</span><span class="p">)</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;publisher&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-created_at&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># For editors and journalists: show all newsletters</span>
+            <span class="k">return</span> <span class="n">Newsletter</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;publisher&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-created_at&#39;</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="NewsletterDetailView">
+<a class="viewcode-back" href="../../modules/articles.api_views.html#articles.api_views.NewsletterDetailView">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">NewsletterDetailView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">RetrieveAPIView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    API endpoint for retrieving a specific newsletter.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">NewsletterSerializer</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">permissions</span><span class="o">.</span><span class="n">IsAuthenticated</span><span class="p">]</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Newsletter</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;publisher&#39;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="PublisherListView">
+<a class="viewcode-back" href="../../modules/articles.api_views.html#articles.api_views.PublisherListView">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PublisherListView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">ListAPIView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    API endpoint for listing all publishers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">PublisherSerializer</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">permissions</span><span class="o">.</span><span class="n">IsAuthenticated</span><span class="p">]</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Publisher</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="PublisherDetailView">
+<a class="viewcode-back" href="../../modules/articles.api_views.html#articles.api_views.PublisherDetailView">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">PublisherDetailView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">RetrieveAPIView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    API endpoint for retrieving a specific publisher.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">PublisherSerializer</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">permissions</span><span class="o">.</span><span class="n">IsAuthenticated</span><span class="p">]</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">Publisher</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span></div>
+
+
+
+<div class="viewcode-block" id="JournalistListView">
+<a class="viewcode-back" href="../../modules/articles.api_views.html#articles.api_views.JournalistListView">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">JournalistListView</span><span class="p">(</span><span class="n">generics</span><span class="o">.</span><span class="n">ListAPIView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    API endpoint for listing all journalists.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">serializer_class</span> <span class="o">=</span> <span class="n">UserSerializer</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">permissions</span><span class="o">.</span><span class="n">IsAuthenticated</span><span class="p">]</span>
+    <span class="n">queryset</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">role</span><span class="o">=</span><span class="n">User</span><span class="o">.</span><span class="n">Roles</span><span class="o">.</span><span class="n">JOURNALIST</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="UserSubscriptionsView">
+<a class="viewcode-back" href="../../modules/articles.api_views.html#articles.api_views.UserSubscriptionsView">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">UserSubscriptionsView</span><span class="p">(</span><span class="n">APIView</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    API endpoint for managing user subscriptions.</span>
+<span class="sd">    GET: Retrieve user&#39;s current subscriptions</span>
+<span class="sd">    POST: Add subscriptions (follow journalist or subscribe to publisher)</span>
+<span class="sd">    DELETE: Remove subscriptions</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">permission_classes</span> <span class="o">=</span> <span class="p">[</span><span class="n">permissions</span><span class="o">.</span><span class="n">IsAuthenticated</span><span class="p">]</span>
+    
+<div class="viewcode-block" id="UserSubscriptionsView.get">
+<a class="viewcode-back" href="../../modules/articles.api_views.html#articles.api_views.UserSubscriptionsView.get">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get user&#39;s current subscriptions&quot;&quot;&quot;</span>
+        <span class="n">serializer</span> <span class="o">=</span> <span class="n">SubscriptionSerializer</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">serializer</span><span class="o">.</span><span class="n">data</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="UserSubscriptionsView.post">
+<a class="viewcode-back" href="../../modules/articles.api_views.html#articles.api_views.UserSubscriptionsView.post">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add subscriptions&quot;&quot;&quot;</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">data</span>
+        
+        <span class="k">if</span> <span class="s1">&#39;journalist_id&#39;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">journalist</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;journalist_id&#39;</span><span class="p">],</span> <span class="n">role</span><span class="o">=</span><span class="n">User</span><span class="o">.</span><span class="n">Roles</span><span class="o">.</span><span class="n">JOURNALIST</span><span class="p">)</span>
+                <span class="n">user</span><span class="o">.</span><span class="n">subscriptions_journalists</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">journalist</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Now following </span><span class="si">{</span><span class="n">journalist</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_201_CREATED</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;Journalist not found&#39;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_404_NOT_FOUND</span><span class="p">)</span>
+        
+        <span class="k">elif</span> <span class="s1">&#39;publisher_id&#39;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">publisher</span> <span class="o">=</span> <span class="n">Publisher</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;publisher_id&#39;</span><span class="p">])</span>
+                <span class="n">user</span><span class="o">.</span><span class="n">subscriptions_publishers</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">publisher</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Now subscribed to </span><span class="si">{</span><span class="n">publisher</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_201_CREATED</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">Publisher</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;Publisher not found&#39;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_404_NOT_FOUND</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;Must provide journalist_id or publisher_id&#39;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="UserSubscriptionsView.delete">
+<a class="viewcode-back" href="../../modules/articles.api_views.html#articles.api_views.UserSubscriptionsView.delete">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Remove subscriptions&quot;&quot;&quot;</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">data</span>
+        
+        <span class="k">if</span> <span class="s1">&#39;journalist_id&#39;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">journalist</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;journalist_id&#39;</span><span class="p">],</span> <span class="n">role</span><span class="o">=</span><span class="n">User</span><span class="o">.</span><span class="n">Roles</span><span class="o">.</span><span class="n">JOURNALIST</span><span class="p">)</span>
+                <span class="n">user</span><span class="o">.</span><span class="n">subscriptions_journalists</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">journalist</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Unfollowed </span><span class="si">{</span><span class="n">journalist</span><span class="o">.</span><span class="n">username</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">User</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;Journalist not found&#39;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_404_NOT_FOUND</span><span class="p">)</span>
+        
+        <span class="k">elif</span> <span class="s1">&#39;publisher_id&#39;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">publisher</span> <span class="o">=</span> <span class="n">Publisher</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;publisher_id&#39;</span><span class="p">])</span>
+                <span class="n">user</span><span class="o">.</span><span class="n">subscriptions_publishers</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">publisher</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Unsubscribed from </span><span class="si">{</span><span class="n">publisher</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">Publisher</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;Publisher not found&#39;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_404_NOT_FOUND</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">Response</span><span class="p">({</span><span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;Must provide journalist_id or publisher_id&#39;</span><span class="p">},</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="user_feed">
+<a class="viewcode-back" href="../../modules/articles.api_views.html#articles.api_views.user_feed">[docs]</a>
+<span class="nd">@api_view</span><span class="p">([</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="nd">@permission_classes</span><span class="p">([</span><span class="n">permissions</span><span class="o">.</span><span class="n">IsAuthenticated</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">user_feed</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    API endpoint for getting a combined feed of articles and newsletters</span>
+<span class="sd">    based on user subscriptions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span>
+    
+    <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="n">User</span><span class="o">.</span><span class="n">Roles</span><span class="o">.</span><span class="n">READER</span><span class="p">:</span>
+        <span class="c1"># For readers: show content from followed journalists and subscribed publishers</span>
+        <span class="n">followed_journalist_ids</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">subscriptions_journalists</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">subscribed_publisher_ids</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="n">subscriptions_publishers</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="n">articles</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">Q</span><span class="p">(</span><span class="n">publisher__isnull</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">author_id__in</span><span class="o">=</span><span class="n">followed_journalist_ids</span><span class="p">)</span> <span class="o">|</span>
+            <span class="n">Q</span><span class="p">(</span><span class="n">publisher_id__in</span><span class="o">=</span><span class="n">subscribed_publisher_ids</span><span class="p">)</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;publisher&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-created_at&#39;</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+        
+        <span class="n">newsletters</span> <span class="o">=</span> <span class="n">Newsletter</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+            <span class="n">Q</span><span class="p">(</span><span class="n">publisher__isnull</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">author_id__in</span><span class="o">=</span><span class="n">followed_journalist_ids</span><span class="p">)</span> <span class="o">|</span>
+            <span class="n">Q</span><span class="p">(</span><span class="n">publisher_id__in</span><span class="o">=</span><span class="n">subscribed_publisher_ids</span><span class="p">)</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;publisher&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-created_at&#39;</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># For editors and journalists: show all content</span>
+        <span class="n">articles</span> <span class="o">=</span> <span class="n">Article</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;publisher&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-created_at&#39;</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+        <span class="n">newsletters</span> <span class="o">=</span> <span class="n">Newsletter</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">select_related</span><span class="p">(</span><span class="s1">&#39;author&#39;</span><span class="p">,</span> <span class="s1">&#39;publisher&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s1">&#39;-created_at&#39;</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span>
+    
+    <span class="c1"># Combine and serialize</span>
+    <span class="n">feed_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;articles&#39;</span><span class="p">:</span> <span class="n">ArticleListSerializer</span><span class="p">(</span><span class="n">articles</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+        <span class="s1">&#39;newsletters&#39;</span><span class="p">:</span> <span class="n">NewsletterListSerializer</span><span class="p">(</span><span class="n">newsletters</span><span class="p">,</span> <span class="n">many</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+        <span class="s1">&#39;total_articles&#39;</span><span class="p">:</span> <span class="n">articles</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span>
+        <span class="s1">&#39;total_newsletters&#39;</span><span class="p">:</span> <span class="n">newsletters</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">feed_data</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="api_info">
+<a class="viewcode-back" href="../../modules/articles.api_views.html#articles.api_views.api_info">[docs]</a>
+<span class="nd">@api_view</span><span class="p">([</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="nd">@permission_classes</span><span class="p">([</span><span class="n">permissions</span><span class="o">.</span><span class="n">AllowAny</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">api_info</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    API endpoint for getting API information and available endpoints.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;api_name&#39;</span><span class="p">:</span> <span class="s1">&#39;News Application API&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="s1">&#39;1.0&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;RESTful API for retrieving articles and newsletters from publishers and journalists&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;endpoints&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;articles&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;list&#39;</span><span class="p">:</span> <span class="s1">&#39;/api/articles/&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;detail&#39;</span><span class="p">:</span> <span class="s1">&#39;/api/articles/</span><span class="si">{id}</span><span class="s1">/&#39;</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="s1">&#39;newsletters&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;list&#39;</span><span class="p">:</span> <span class="s1">&#39;/api/newsletters/&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;detail&#39;</span><span class="p">:</span> <span class="s1">&#39;/api/newsletters/</span><span class="si">{id}</span><span class="s1">/&#39;</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="s1">&#39;publishers&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;list&#39;</span><span class="p">:</span> <span class="s1">&#39;/api/publishers/&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;detail&#39;</span><span class="p">:</span> <span class="s1">&#39;/api/publishers/</span><span class="si">{id}</span><span class="s1">/&#39;</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="s1">&#39;journalists&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;list&#39;</span><span class="p">:</span> <span class="s1">&#39;/api/journalists/&#39;</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="s1">&#39;subscriptions&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;manage&#39;</span><span class="p">:</span> <span class="s1">&#39;/api/subscriptions/&#39;</span><span class="p">,</span>
+            <span class="p">},</span>
+            <span class="s1">&#39;feed&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;combined&#39;</span><span class="p">:</span> <span class="s1">&#39;/api/feed/&#39;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;authentication&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;methods&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Session&#39;</span><span class="p">,</span> <span class="s1">&#39;Token&#39;</span><span class="p">],</span>
+            <span class="s1">&#39;token_endpoint&#39;</span><span class="p">:</span> <span class="s1">&#39;/api/auth/token/&#39;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;formats&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;JSON&#39;</span><span class="p">,</span> <span class="s1">&#39;XML&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;pagination&#39;</span><span class="p">:</span> <span class="s1">&#39;Page-based (20 items per page)&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+    
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="n">info</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, News App Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

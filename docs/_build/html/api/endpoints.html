@@ -1,0 +1,644 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Endpoints Reference &mdash; Django News Application 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API Usage Examples" href="examples.html" />
+    <link rel="prev" title="API Authentication" href="authentication.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Django News Application
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Application Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#architecture">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#user-roles-and-permissions">User Roles and Permissions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#publishers">Publishers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#content-management">Content Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#subscription-system">Subscription System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#content-feeds">Content Feeds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#approval-workflow">Approval Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#integration-features">Integration Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#api-architecture">API Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html#security-features">Security Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#development-setup">Development Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#production-setup">Production Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#configuration-options">Configuration Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#testing-the-installation">Testing the Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#getting-help">Getting Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#development-tools">Development Tools</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="authentication.html">API Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#authentication-methods">Authentication Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#getting-a-token">Getting a Token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#using-the-token">Using the Token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#authentication-examples">Authentication Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#role-based-access-control">Role-based Access Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#authentication-errors">Authentication Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#token-management">Token Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#session-authentication">Session Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="authentication.html#testing-authentication">Testing Authentication</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">API Endpoints Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authentication-endpoints">Authentication Endpoints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-authentication-token">Get Authentication Token</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#articles-endpoints">Articles Endpoints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#list-articles">List Articles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-article-details">Get Article Details</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#newsletters-endpoints">Newsletters Endpoints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#list-newsletters">List Newsletters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-newsletter-details">Get Newsletter Details</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#publishers-endpoints">Publishers Endpoints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#list-publishers">List Publishers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-publisher-details">Get Publisher Details</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#journalists-endpoints">Journalists Endpoints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#list-journalists">List Journalists</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#subscriptions-endpoints">Subscriptions Endpoints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-user-subscriptions">Get User Subscriptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-subscription">Add Subscription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remove-subscription">Remove Subscription</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#feed-endpoints">Feed Endpoints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-combined-feed">Get Combined Feed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#utility-endpoints">Utility Endpoints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-api-information">Get API Information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#error-responses">Error Responses</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#authentication-errors">Authentication Errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validation-errors">Validation Errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#not-found-errors">Not Found Errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#server-errors">Server Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html">API Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#basic-authentication-flow">Basic Authentication Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#subscription-management-examples">Subscription Management Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#content-discovery-examples">Content Discovery Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#building-a-news-reader-application">Building a News Reader Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#error-handling-examples">Error Handling Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#testing-api-endpoints">Testing API Endpoints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#performance-considerations">Performance Considerations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#api-overview">API Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#base-url">Base URL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#available-endpoints">Available Endpoints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#response-format">Response Format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#http-status-codes">HTTP Status Codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#rate-limiting">Rate Limiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#pagination">Pagination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#testing-the-api">Testing the API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/index.html">Module Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/index.html#articles-application">Articles Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/index.html#main-project">Main Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html">Deployment Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#production-deployment">Production Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#cloud-platform-deployment">Cloud Platform Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#monitoring-and-maintenance">Monitoring and Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#security-considerations">Security Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html">Testing Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-suite-overview">Test Suite Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#running-tests">Running Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-categories">Test Categories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-data-setup">Test Data Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-configuration">Test Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#mocking-external-services">Mocking External Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#test-automation">Test Automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#performance-testing">Performance Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#best-practices">Best Practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../testing.html#running-specific-tests">Running Specific Tests</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Django News Application</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">API Documentation</a></li>
+      <li class="breadcrumb-item active">API Endpoints Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/endpoints.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-endpoints-reference">
+<h1>API Endpoints Reference<a class="headerlink" href="#api-endpoints-reference" title="Link to this heading"></a></h1>
+<p>This section provides detailed information about all available API endpoints.</p>
+</section>
+<section id="authentication-endpoints">
+<h1>Authentication Endpoints<a class="headerlink" href="#authentication-endpoints" title="Link to this heading"></a></h1>
+<section id="get-authentication-token">
+<h2>Get Authentication Token<a class="headerlink" href="#get-authentication-token" title="Link to this heading"></a></h2>
+<p><strong>Endpoint</strong>: <code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/auth/token/</span></code></p>
+<p><strong>Description</strong>: Obtain an authentication token for API access.</p>
+<p><strong>Authentication</strong>: None required</p>
+<p><strong>Request Body</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Response</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Status Codes</strong>:
+* <code class="docutils literal notranslate"><span class="pre">200</span> <span class="pre">OK</span></code> - Token generated successfully
+* <code class="docutils literal notranslate"><span class="pre">400</span> <span class="pre">Bad</span> <span class="pre">Request</span></code> - Invalid credentials</p>
+</section>
+</section>
+<section id="articles-endpoints">
+<h1>Articles Endpoints<a class="headerlink" href="#articles-endpoints" title="Link to this heading"></a></h1>
+<section id="list-articles">
+<h2>List Articles<a class="headerlink" href="#list-articles" title="Link to this heading"></a></h2>
+<p><strong>Endpoint</strong>: <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/articles/</span></code></p>
+<p><strong>Description</strong>: Get a list of articles filtered by user role and subscriptions.</p>
+<p><strong>Authentication</strong>: Required</p>
+<p><strong>Query Parameters</strong>: None</p>
+<p><strong>Response</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Article Title&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;body_preview&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;First 200 characters of article...&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;author_username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;journalist1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;publisher_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tech News&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;is_approved&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;is_approved_display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Approved&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;created_at_formatted&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-01-19 10:30:00&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Filtering Logic</strong>:
+* <strong>Readers</strong>: Articles from subscribed publishers and followed journalists
+* <strong>Journalists/Editors</strong>: All articles</p>
+</section>
+<section id="get-article-details">
+<h2>Get Article Details<a class="headerlink" href="#get-article-details" title="Link to this heading"></a></h2>
+<p><strong>Endpoint</strong>: <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/articles/{id}/</span></code></p>
+<p><strong>Description</strong>: Get detailed information about a specific article.</p>
+<p><strong>Authentication</strong>: Required</p>
+<p><strong>Path Parameters</strong>:
+* <code class="docutils literal notranslate"><span class="pre">id</span></code> (integer): Article ID</p>
+<p><strong>Response</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Article Title&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;body&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Full article content...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;journalist1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;journalist@example.com&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;first_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;last_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;journalist&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;role_display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Journalist&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;publisher&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tech News&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;author_username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;journalist1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;publisher_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tech News&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;is_approved&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;is_approved_display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Approved&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;approved_by&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-01-19T10:30:00Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;created_at_formatted&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-01-19 10:30:00&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Status Codes</strong>:
+* <code class="docutils literal notranslate"><span class="pre">200</span> <span class="pre">OK</span></code> - Article found
+* <code class="docutils literal notranslate"><span class="pre">404</span> <span class="pre">Not</span> <span class="pre">Found</span></code> - Article not found</p>
+</section>
+</section>
+<section id="newsletters-endpoints">
+<h1>Newsletters Endpoints<a class="headerlink" href="#newsletters-endpoints" title="Link to this heading"></a></h1>
+<section id="list-newsletters">
+<h2>List Newsletters<a class="headerlink" href="#list-newsletters" title="Link to this heading"></a></h2>
+<p><strong>Endpoint</strong>: <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/newsletters/</span></code></p>
+<p><strong>Description</strong>: Get a list of newsletters filtered by user role and subscriptions.</p>
+<p><strong>Authentication</strong>: Required</p>
+<p><strong>Response</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;subject&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Newsletter Subject&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;content_preview&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;First 200 characters of content...&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;author_username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;journalist1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;publisher_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tech News&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;created_at_formatted&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-01-19 10:30:00&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="get-newsletter-details">
+<h2>Get Newsletter Details<a class="headerlink" href="#get-newsletter-details" title="Link to this heading"></a></h2>
+<p><strong>Endpoint</strong>: <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/newsletters/{id}/</span></code></p>
+<p><strong>Description</strong>: Get detailed information about a specific newsletter.</p>
+<p><strong>Authentication</strong>: Required</p>
+<p><strong>Path Parameters</strong>:
+* <code class="docutils literal notranslate"><span class="pre">id</span></code> (integer): Newsletter ID</p>
+<p><strong>Response</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;subject&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Newsletter Subject&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Full newsletter content...&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;author&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;journalist1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;journalist@example.com&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;first_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;last_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;journalist&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;role_display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Journalist&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;publisher&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tech News&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;author_username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;journalist1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;publisher_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tech News&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;created_at&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-01-19T10:30:00Z&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;created_at_formatted&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-01-19 10:30:00&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="publishers-endpoints">
+<h1>Publishers Endpoints<a class="headerlink" href="#publishers-endpoints" title="Link to this heading"></a></h1>
+<section id="list-publishers">
+<h2>List Publishers<a class="headerlink" href="#list-publishers" title="Link to this heading"></a></h2>
+<p><strong>Endpoint</strong>: <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/publishers/</span></code></p>
+<p><strong>Description</strong>: Get a list of all publishers.</p>
+<p><strong>Authentication</strong>: Required</p>
+<p><strong>Response</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tech News&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sports Daily&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="get-publisher-details">
+<h2>Get Publisher Details<a class="headerlink" href="#get-publisher-details" title="Link to this heading"></a></h2>
+<p><strong>Endpoint</strong>: <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/publishers/{id}/</span></code></p>
+<p><strong>Description</strong>: Get detailed information about a specific publisher.</p>
+<p><strong>Authentication</strong>: Required</p>
+<p><strong>Path Parameters</strong>:
+* <code class="docutils literal notranslate"><span class="pre">id</span></code> (integer): Publisher ID</p>
+<p><strong>Response</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tech News&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="journalists-endpoints">
+<h1>Journalists Endpoints<a class="headerlink" href="#journalists-endpoints" title="Link to this heading"></a></h1>
+<section id="list-journalists">
+<h2>List Journalists<a class="headerlink" href="#list-journalists" title="Link to this heading"></a></h2>
+<p><strong>Endpoint</strong>: <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/journalists/</span></code></p>
+<p><strong>Description</strong>: Get a list of all journalists.</p>
+<p><strong>Authentication</strong>: Required</p>
+<p><strong>Response</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;journalist1&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;journalist@example.com&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;first_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;last_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;journalist&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;role_display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Journalist&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;affiliated_publisher&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="subscriptions-endpoints">
+<h1>Subscriptions Endpoints<a class="headerlink" href="#subscriptions-endpoints" title="Link to this heading"></a></h1>
+<section id="get-user-subscriptions">
+<h2>Get User Subscriptions<a class="headerlink" href="#get-user-subscriptions" title="Link to this heading"></a></h2>
+<p><strong>Endpoint</strong>: <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/subscriptions/</span></code></p>
+<p><strong>Description</strong>: Get the current user’s subscriptions to publishers and journalists.</p>
+<p><strong>Authentication</strong>: Required</p>
+<p><strong>Response</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;subscribed_publishers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tech News&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;followed_journalists&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;journalist1&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;journalist@example.com&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;first_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;last_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;journalist&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;role_display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Journalist&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="add-subscription">
+<h2>Add Subscription<a class="headerlink" href="#add-subscription" title="Link to this heading"></a></h2>
+<p><strong>Endpoint</strong>: <code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/subscriptions/</span></code></p>
+<p><strong>Description</strong>: Add a subscription to a publisher or follow a journalist.</p>
+<p><strong>Authentication</strong>: Required</p>
+<p><strong>Request Body</strong> (Publisher):</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;publisher_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Request Body</strong> (Journalist):</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;journalist_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Response</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Now subscribed to Tech News&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Status Codes</strong>:
+* <code class="docutils literal notranslate"><span class="pre">201</span> <span class="pre">Created</span></code> - Subscription added successfully
+* <code class="docutils literal notranslate"><span class="pre">400</span> <span class="pre">Bad</span> <span class="pre">Request</span></code> - Invalid request data
+* <code class="docutils literal notranslate"><span class="pre">404</span> <span class="pre">Not</span> <span class="pre">Found</span></code> - Publisher or journalist not found</p>
+</section>
+<section id="remove-subscription">
+<h2>Remove Subscription<a class="headerlink" href="#remove-subscription" title="Link to this heading"></a></h2>
+<p><strong>Endpoint</strong>: <code class="docutils literal notranslate"><span class="pre">DELETE</span> <span class="pre">/api/subscriptions/</span></code></p>
+<p><strong>Description</strong>: Remove a subscription to a publisher or unfollow a journalist.</p>
+<p><strong>Authentication</strong>: Required</p>
+<p><strong>Request Body</strong>: Same format as POST</p>
+<p><strong>Response</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Unsubscribed from Tech News&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Status Codes</strong>:
+* <code class="docutils literal notranslate"><span class="pre">200</span> <span class="pre">OK</span></code> - Subscription removed successfully
+* <code class="docutils literal notranslate"><span class="pre">400</span> <span class="pre">Bad</span> <span class="pre">Request</span></code> - Invalid request data
+* <code class="docutils literal notranslate"><span class="pre">404</span> <span class="pre">Not</span> <span class="pre">Found</span></code> - Publisher or journalist not found</p>
+</section>
+</section>
+<section id="feed-endpoints">
+<h1>Feed Endpoints<a class="headerlink" href="#feed-endpoints" title="Link to this heading"></a></h1>
+<section id="get-combined-feed">
+<h2>Get Combined Feed<a class="headerlink" href="#get-combined-feed" title="Link to this heading"></a></h2>
+<p><strong>Endpoint</strong>: <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/feed/</span></code></p>
+<p><strong>Description</strong>: Get a combined feed of articles and newsletters based on user subscriptions.</p>
+<p><strong>Authentication</strong>: Required</p>
+<p><strong>Response</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;articles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Article Title&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;body_preview&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Article preview...&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;author_username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;journalist1&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;publisher_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tech News&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;is_approved&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;is_approved_display&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Approved&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;created_at_formatted&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-01-19 10:30:00&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;newsletters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;subject&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Newsletter Subject&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;content_preview&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Newsletter preview...&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;author_username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;journalist1&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;publisher_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Tech News&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;created_at_formatted&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-01-19 10:30:00&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;total_articles&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;total_newsletters&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Note</strong>: Returns the latest 10 items of each type.</p>
+</section>
+</section>
+<section id="utility-endpoints">
+<h1>Utility Endpoints<a class="headerlink" href="#utility-endpoints" title="Link to this heading"></a></h1>
+<section id="get-api-information">
+<h2>Get API Information<a class="headerlink" href="#get-api-information" title="Link to this heading"></a></h2>
+<p><strong>Endpoint</strong>: <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/info/</span></code></p>
+<p><strong>Description</strong>: Get information about the API and available endpoints.</p>
+<p><strong>Authentication</strong>: None required</p>
+<p><strong>Response</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;api_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;News Application API&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RESTful API for retrieving articles and newsletters from publishers and journalists&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;endpoints&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;articles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;list&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/api/articles/&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/api/articles/{id}/&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;newsletters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;list&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/api/newsletters/&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/api/newsletters/{id}/&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;publishers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;list&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/api/publishers/&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/api/publishers/{id}/&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;journalists&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;list&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/api/journalists/&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;subscriptions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;manage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/api/subscriptions/&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;feed&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;combined&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/api/feed/&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;authentication&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;methods&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Session&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Token&quot;</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;token_endpoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/api/auth/token/&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;formats&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;JSON&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;XML&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;pagination&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Page-based (20 items per page)&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="error-responses">
+<h1>Error Responses<a class="headerlink" href="#error-responses" title="Link to this heading"></a></h1>
+<p>All endpoints may return the following error responses:</p>
+<section id="authentication-errors">
+<h2>Authentication Errors<a class="headerlink" href="#authentication-errors" title="Link to this heading"></a></h2>
+<p><strong>401 Unauthorized</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Authentication credentials were not provided.&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>403 Forbidden</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;You do not have permission to perform this action.&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="validation-errors">
+<h2>Validation Errors<a class="headerlink" href="#validation-errors" title="Link to this heading"></a></h2>
+<p><strong>400 Bad Request</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;field_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;This field is required.&quot;</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="not-found-errors">
+<h2>Not Found Errors<a class="headerlink" href="#not-found-errors" title="Link to this heading"></a></h2>
+<p><strong>404 Not Found</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Not found.&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="server-errors">
+<h2>Server Errors<a class="headerlink" href="#server-errors" title="Link to this heading"></a></h2>
+<p><strong>500 Internal Server Error</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;detail&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A server error occurred.&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="authentication.html" class="btn btn-neutral float-left" title="API Authentication" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples.html" class="btn btn-neutral float-right" title="API Usage Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, News App Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
