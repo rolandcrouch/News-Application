@@ -1,4 +1,11 @@
 
+"""
+Twitter API integration module for posting tweets with OAuth2 PKCE authentication.
+
+This module provides TwitterAPI class for authenticating with Twitter's API v2
+and posting tweets with optional media attachments.
+"""
+
 import json
 import os
 import time
@@ -61,11 +68,13 @@ def _save_tokens(tokens: dict) -> None:
 
 
 def _save_state(value: str) -> None:
+    """Save OAuth state value to disk for CSRF protection."""
     with open(_STATE_PATH, "w") as f:
         f.write(value)
 
 
 def _load_state() -> Optional[str]:
+    """Load OAuth state value from disk."""
     try:
         with open(_STATE_PATH, "r") as f:
             return f.read().strip()
@@ -74,6 +83,7 @@ def _load_state() -> Optional[str]:
 
 
 def _clear_state():
+    """Remove OAuth state file."""
     try:
         os.remove(_STATE_PATH)
     except Exception:
@@ -81,6 +91,7 @@ def _clear_state():
 
 
 def safe_text(text: str) -> str:
+    """Truncate text to maximum tweet character limit with ellipsis."""
     if len(text) > MAX_TWEET_CHARS:
         return text[:MAX_TWEET_CHARS - 1] + "…"  # trim + ellipsis
     return text
@@ -88,12 +99,15 @@ def safe_text(text: str) -> str:
 
 # --- PKCE helpers ---
 def _make_code_verifier_challenge() -> Tuple[str, str]:
+    """Generate PKCE code verifier and challenge for OAuth2 flow."""
     verifier = base64.urlsafe_b64encode(secrets.token_bytes(64)).decode().rstrip("=")
     challenge = base64.urlsafe_b64encode(hashlib.sha256(verifier.encode()).digest()).decode().rstrip("=")
     return verifier, challenge
 
 
 class TwitterAPI:
+    """Twitter API client with OAuth2 PKCE authentication and tweet posting capabilities."""
+    
     def __init__(self):
         self.client_id = settings.TWITTER_CLIENT_ID
         self.client_secret = settings.TWITTER_CLIENT_SECRET
@@ -111,6 +125,7 @@ class TwitterAPI:
 
 # ---------- OAuth 2.0 PKCE ----------
     def begin_oauth(self) -> str:
+        """Start OAuth2 PKCE flow and return authorization URL."""
         self.code_verifier, code_challenge = _make_code_verifier_challenge()
         self.session = OAuth2Session(
             client_id=self.client_id,
@@ -128,6 +143,7 @@ class TwitterAPI:
         return auth_url
 
     def finish_oauth(self, redirect_response_url: str, expected_state: str | None = None) -> dict:
+        """Complete OAuth2 flow and exchange authorization code for access token."""
         # Recreate the OAuth2Session on this fresh instance if needed
         if self.session is None:
             self.session = OAuth2Session(
@@ -173,6 +189,7 @@ class TwitterAPI:
         return token
 
     def _validate_state(self, redirect_response_url: str, expected_state: Optional[str]):
+        """Validate OAuth state parameter to prevent CSRF attacks."""
         # naive parse to extract state; in Django use request.GET['state']
         from urllib.parse import urlparse, parse_qs
         q = parse_qs(urlparse(redirect_response_url).query)
@@ -201,6 +218,7 @@ class TwitterAPI:
                 )
 
     def _ensure_session(self):
+        """Ensure OAuth session is initialized with valid token."""
         if self.session:
             return
         if not self.token:
@@ -209,11 +227,13 @@ class TwitterAPI:
 
     # Small helper to call requests with timeout
     def _post(self, url, **kwargs):
+        """Make authenticated POST request with timeout."""
         self._ensure_session()
         kwargs.setdefault("timeout", 15)
         return self.session.post(url, **kwargs)
 
     def _get(self, url, **kwargs):
+        """Make authenticated GET request with timeout."""
         self._ensure_session()
         kwargs.setdefault("timeout", 15)
         return self.session.get(url, **kwargs)
@@ -221,6 +241,7 @@ class TwitterAPI:
 
     # ---------- Media handling (v1.1) ----------
     def _reencode_to_jpeg(self, path_or_file) -> str:
+        """Convert image to JPEG format for Twitter upload compatibility."""
         path = path_or_file.path if hasattr(path_or_file, "path") and path_or_file.path else str(path_or_file)
         if not os.path.exists(path):
             raise FileNotFoundError(f"Image file not found: {path}")
@@ -250,6 +271,7 @@ class TwitterAPI:
         return tmp_path
 
     def _check_2xx(resp, label):
+        """Check if HTTP response status is 2xx, raise error if not."""
         if resp.status_code // 100 != 2:
             raise RuntimeError(f"{label} failed: {resp.status_code} {resp.text}")
 
@@ -328,6 +350,7 @@ class TwitterAPI:
     # ---------- Tweet creation ----------
     def post_tweet(self, text: str, media_ids: Optional[List[str]] = None,
                    reply_to_id: Optional[str] = None) -> dict:
+        """Post a tweet with optional media attachments and reply context."""
         self._ensure_session()
         text = safe_text(text)
         payload = {"text": text}
