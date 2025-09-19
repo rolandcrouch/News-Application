@@ -61,6 +61,8 @@ class UserRegistrationForm(UserCreationForm):
     
 
 class ForgotUsernameForm(forms.Form):
+    """Form for users to request their forgotten username via email."""
+    
     email = forms.EmailField(
         label="Email address",
         widget=forms.EmailInput(attrs={
@@ -71,10 +73,13 @@ class ForgotUsernameForm(forms.Form):
 
 
 class PasswordResetRequestForm(forms.Form):
+    """Form for requesting a password reset with username and email verification."""
+    
     username = forms.CharField(max_length=150)
     email = forms.EmailField()
 
     def clean(self):
+        """Validate that the username and email combination exists."""
         cleaned = super().clean()
         username = cleaned.get("username")
         email = cleaned.get("email")
@@ -94,6 +99,8 @@ class PasswordResetRequestForm(forms.Form):
 
 
 class ArticleForm(forms.ModelForm):
+    """Form for creating and editing articles."""
+    
     class Meta:
         model = Article
         # Don’t expose is_approved; editors use approve/unapprove actions
@@ -106,6 +113,8 @@ class ArticleForm(forms.ModelForm):
 
 
 class NewsletterForm(forms.ModelForm):
+    """Form for creating and editing newsletters."""
+    
     class Meta:
         model = Newsletter
         fields = ["subject", "content", "publisher"] 
@@ -142,6 +151,7 @@ class UserProfileForm(forms.ModelForm):
         }
     
     def __init__(self, *args, **kwargs):
+        """Initialize form with role-specific field visibility."""
         super().__init__(*args, **kwargs)
         # Only show affiliated_publisher field for editors and journalists
         if self.instance and self.instance.role not in [User.Roles.EDITOR, User.Roles.JOURNALIST]:
@@ -152,6 +162,7 @@ class UserProfileForm(forms.ModelForm):
             self.fields.pop('new_publisher_name', None)
     
     def clean(self):
+        """Validate new publisher creation and prevent conflicts."""
         cleaned_data = super().clean()
         new_publisher_name = cleaned_data.get('new_publisher_name')
         affiliated_publisher = cleaned_data.get('affiliated_publisher')
@@ -172,6 +183,7 @@ class UserProfileForm(forms.ModelForm):
         return cleaned_data
     
     def save(self, commit=True):
+        """Save user profile and create new publisher if specified."""
         user = super().save(commit=False)
         new_publisher_name = self.cleaned_data.get('new_publisher_name')
         
