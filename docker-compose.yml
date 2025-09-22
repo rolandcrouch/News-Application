@@ -32,7 +32,7 @@ services:
       
       # Django Configuration
       DEBUG: "False"
-      SECRET_KEY: "your-secret-key-change-in-production"
+      SECRET_KEY: "${SECRET_KEY:-your-secret-key-change-in-production}"
       ALLOWED_HOSTS: "localhost,127.0.0.1,0.0.0.0"
       
       # Twitter API (optional - add your credentials)

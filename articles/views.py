@@ -563,7 +563,7 @@ def _send_article_notification_email(article, publisher):
     html_content = render_to_string('articles/email/article_notification.html', {
         'article': article,
         'publisher': publisher,
-        'site_url': 'http://127.0.0.1:8000',  # You might want to make this configurable
+        'site_url': settings.SITE_URL if hasattr(settings, 'SITE_URL') else 'http://127.0.0.1:8000',
     })
     
     # Create plain text version
@@ -576,11 +576,11 @@ Published: {article.created_at.strftime('%B %d, %Y at %I:%M %p')}
 
 {article.body[:200]}{'...' if len(article.body) > 200 else ''}
 
-Read the full article: http://127.0.0.1:8000/articles/{article.pk}/
+Read the full article: {settings.SITE_URL if hasattr(settings, 'SITE_URL') else 'http://127.0.0.1:8000'}/articles/{article.pk}/
 
 ---
 This email was sent because you subscribe to {publisher.name}.
-You can manage your subscriptions at: http://127.0.0.1:8000/subscriptions/
+You can manage your subscriptions at: {settings.SITE_URL if hasattr(settings, 'SITE_URL') else 'http://127.0.0.1:8000'}/subscriptions/
 """
     
     # Send email to each subscriber

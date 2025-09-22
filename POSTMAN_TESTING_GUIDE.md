@@ -5,7 +5,7 @@ This guide provides comprehensive instructions for testing the News Application 
 
 ## Base URL
 ```
-http://127.0.0.1:8002/api/
+http://127.0.0.1:8000/api/
 ```
 
 ## Authentication
@@ -15,7 +15,7 @@ The API supports two authentication methods:
 
 ### Getting an Authentication Token
 1. **Method**: POST
-2. **URL**: `http://127.0.0.1:8002/api/auth/token/`
+2. **URL**: `http://127.0.0.1:8000/api/auth/token/`
 3. **Headers**: 
    - `Content-Type: application/json`
 4. **Body** (JSON):
@@ -40,7 +40,7 @@ Add the token to all subsequent requests:
 
 ### 1. API Information (No Authentication Required)
 - **Method**: GET
-- **URL**: `http://127.0.0.1:8002/api/info/`
+- **URL**: `http://127.0.0.1:8000/api/info/`
 - **Description**: Get API information and available endpoints
 - **Response**: API metadata and endpoint list
 
@@ -48,7 +48,7 @@ Add the token to all subsequent requests:
 
 #### List Articles
 - **Method**: GET
-- **URL**: `http://127.0.0.1:8002/api/articles/`
+- **URL**: `http://127.0.0.1:8000/api/articles/`
 - **Authentication**: Required
 - **Query Parameters**:
   - `page`: Page number (default: 1)
@@ -57,7 +57,7 @@ Add the token to all subsequent requests:
 
 #### Get Article Detail
 - **Method**: GET
-- **URL**: `http://127.0.0.1:8002/api/articles/{id}/`
+- **URL**: `http://127.0.0.1:8000/api/articles/{id}/`
 - **Authentication**: Required
 - **Response**: Detailed article information
 
@@ -65,14 +65,14 @@ Add the token to all subsequent requests:
 
 #### List Newsletters
 - **Method**: GET
-- **URL**: `http://127.0.0.1:8002/api/newsletters/`
+- **URL**: `http://127.0.0.1:8000/api/newsletters/`
 - **Authentication**: Required
 - **Query Parameters**: Same as articles
 - **Response**: Paginated list of newsletters with subscription-based filtering
 
 #### Get Newsletter Detail
 - **Method**: GET
-- **URL**: `http://127.0.0.1:8002/api/newsletters/{id}/`
+- **URL**: `http://127.0.0.1:8000/api/newsletters/{id}/`
 - **Authentication**: Required
 - **Response**: Detailed newsletter information
 
@@ -80,13 +80,13 @@ Add the token to all subsequent requests:
 
 #### List Publishers
 - **Method**: GET
-- **URL**: `http://127.0.0.1:8002/api/publishers/`
+- **URL**: `http://127.0.0.1:8000/api/publishers/`
 - **Authentication**: Required
 - **Response**: List of all publishers
 
 #### Get Publisher Detail
 - **Method**: GET
-- **URL**: `http://127.0.0.1:8002/api/publishers/{id}/`
+- **URL**: `http://127.0.0.1:8000/api/publishers/{id}/`
 - **Authentication**: Required
 - **Response**: Detailed publisher information
 
@@ -94,7 +94,7 @@ Add the token to all subsequent requests:
 
 #### List Journalists
 - **Method**: GET
-- **URL**: `http://127.0.0.1:8002/api/journalists/`
+- **URL**: `http://127.0.0.1:8000/api/journalists/`
 - **Authentication**: Required
 - **Response**: List of all journalists
 
@@ -102,13 +102,13 @@ Add the token to all subsequent requests:
 
 #### Get User Subscriptions
 - **Method**: GET
-- **URL**: `http://127.0.0.1:8002/api/subscriptions/`
+- **URL**: `http://127.0.0.1:8000/api/subscriptions/`
 - **Authentication**: Required
 - **Response**: User's current subscriptions
 
 #### Add Publisher Subscription
 - **Method**: POST
-- **URL**: `http://127.0.0.1:8002/api/subscriptions/`
+- **URL**: `http://127.0.0.1:8000/api/subscriptions/`
 - **Authentication**: Required
 - **Headers**: `Content-Type: application/json`
 - **Body** (JSON):
@@ -120,7 +120,7 @@ Add the token to all subsequent requests:
 
 #### Add Journalist Subscription
 - **Method**: POST
-- **URL**: `http://127.0.0.1:8002/api/subscriptions/`
+- **URL**: `http://127.0.0.1:8000/api/subscriptions/`
 - **Authentication**: Required
 - **Headers**: `Content-Type: application/json`
 - **Body** (JSON):
@@ -132,7 +132,7 @@ Add the token to all subsequent requests:
 
 #### Remove Publisher Subscription
 - **Method**: DELETE
-- **URL**: `http://127.0.0.1:8002/api/subscriptions/`
+- **URL**: `http://127.0.0.1:8000/api/subscriptions/`
 - **Authentication**: Required
 - **Headers**: `Content-Type: application/json`
 - **Body** (JSON):
@@ -144,7 +144,7 @@ Add the token to all subsequent requests:
 
 #### Remove Journalist Subscription
 - **Method**: DELETE
-- **URL**: `http://127.0.0.1:8002/api/subscriptions/`
+- **URL**: `http://127.0.0.1:8000/api/subscriptions/`
 - **Authentication**: Required
 - **Headers**: `Content-Type: application/json`
 - **Body** (JSON):
@@ -158,7 +158,7 @@ Add the token to all subsequent requests:
 
 #### Get Personalized Feed
 - **Method**: GET
-- **URL**: `http://127.0.0.1:8002/api/feed/`
+- **URL**: `http://127.0.0.1:8000/api/feed/`
 - **Authentication**: Required
 - **Description**: Returns combined articles and newsletters based on user subscriptions
 - **Response**: Combined feed with subscription-based filtering
@@ -194,7 +194,7 @@ Add the token to all subsequent requests:
 
 ### Environment Variables
 Create a Postman environment with these variables:
-- `base_url`: `http://127.0.0.1:8002/api`
+- `base_url`: `http://127.0.0.1:8000/api`
 - `auth_token`: (will be set after authentication)
 
 ### Collection Structure
@@ -230,7 +230,7 @@ Create a Postman environment with these variables:
 ```json
 {
     "count": 10,
-    "next": "http://127.0.0.1:8002/api/articles/?page=2",
+    "next": "http://127.0.0.1:8000/api/articles/?page=2",
     "previous": null,
     "results": [
         {

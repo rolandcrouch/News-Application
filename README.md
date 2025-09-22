@@ -57,18 +57,28 @@ git clone https://github.com/rolandcrouch/News-Application.git
 cd "Django News Application 2"
 ```
 
-### 2. Create Virtual Environment
+### 2. Environment Configuration (Optional)
+For local development with custom settings, create a `.env` file:
+```bash
+# Copy the example environment file
+cp env.development.example .env
+
+# Edit the .env file with your settings (optional)
+nano .env
+```
+
+### 3. Create Virtual Environment
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 ```
 
-### 3. Install Dependencies
+### 4. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Environment Configuration
+### 5. Environment Configuration
 Create a `.env` file in the project root:
 ```env
 # Twitter API Credentials
@@ -88,7 +98,7 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 ```
 
-### 5. Database Setup
+### 6. Database Setup
 ```bash
 # Create database
 mysql -u root -p
@@ -101,12 +111,12 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
-### 6. Create Test Users
+### 7. Create Test Users
 ```bash
 python create_test_users.py
 ```
 
-### 7. Run Development Server
+### 8. Run Development Server
 ```bash
 python manage.py runserver
 ```

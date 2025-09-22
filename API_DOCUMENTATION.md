@@ -7,7 +7,7 @@ The News Application API provides RESTful endpoints for retrieving articles and 
 ## Base URL
 
 ```
-http://127.0.0.1:8001/api/
+http://127.0.0.1:8000/api/
 ```
 
 ## Authentication
@@ -21,13 +21,13 @@ The API uses token-based authentication. To access protected endpoints:
 
 ```bash
 # Get token
-curl -X POST http://127.0.0.1:8001/api/auth/token/ \
+curl -X POST http://127.0.0.1:8000/api/auth/token/ \
   -H "Content-Type: application/json" \
   -d '{"username": "your_username", "password": "your_password"}'
 
 # Use token in requests
 curl -H "Authorization: Token <your_token>" \
-  http://127.0.0.1:8001/api/articles/
+  http://127.0.0.1:8000/api/articles/
 ```
 
 ## Endpoints
@@ -68,7 +68,7 @@ Returns a paginated list of articles based on user subscriptions:
 ```json
 {
   "count": 25,
-  "next": "http://127.0.0.1:8001/api/articles/?page=2",
+  "next": "http://127.0.0.1:8000/api/articles/?page=2",
   "previous": null,
   "results": [
     {
@@ -338,27 +338,27 @@ Returns a combined feed of articles and newsletters based on user subscriptions.
 
 ```bash
 # Get API info
-curl http://127.0.0.1:8001/api/info/
+curl http://127.0.0.1:8000/api/info/
 
 # Get token
-TOKEN=$(curl -X POST http://127.0.0.1:8001/api/auth/token/ \
+TOKEN=$(curl -X POST http://127.0.0.1:8000/api/auth/token/ \
   -H "Content-Type: application/json" \
   -d '{"username": "your_username", "password": "your_password"}' \
   | jq -r '.token')
 
 # Get articles
 curl -H "Authorization: Token $TOKEN" \
-  http://127.0.0.1:8001/api/articles/
+  http://127.0.0.1:8000/api/articles/
 
 # Get user feed
 curl -H "Authorization: Token $TOKEN" \
-  http://127.0.0.1:8001/api/feed/
+  http://127.0.0.1:8000/api/feed/
 
 # Follow a journalist
 curl -X POST -H "Authorization: Token $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"journalist_id": 1}' \
-  http://127.0.0.1:8001/api/subscriptions/
+  http://127.0.0.1:8000/api/subscriptions/
 ```
 
 ### Using Python requests
@@ -367,7 +367,7 @@ curl -X POST -H "Authorization: Token $TOKEN" \
 import requests
 
 # Get token
-response = requests.post('http://127.0.0.1:8001/api/auth/token/', 
+response = requests.post('http://127.0.0.1:8000/api/auth/token/', 
                         json={'username': 'your_username', 'password': 'your_password'})
 token = response.json()['token']
 
@@ -375,11 +375,11 @@ token = response.json()['token']
 headers = {'Authorization': f'Token {token}'}
 
 # Get articles
-articles = requests.get('http://127.0.0.1:8001/api/articles/', headers=headers)
+articles = requests.get('http://127.0.0.1:8000/api/articles/', headers=headers)
 print(articles.json())
 
 # Get user feed
-feed = requests.get('http://127.0.0.1:8001/api/feed/', headers=headers)
+feed = requests.get('http://127.0.0.1:8000/api/feed/', headers=headers)
 print(feed.json())
 ```
 
