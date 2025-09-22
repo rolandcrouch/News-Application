@@ -53,8 +53,8 @@ A comprehensive news management system built with Django 5.2.6, featuring role-b
 
 ### 1. Clone the Repository
 ```bash
-git clone <repository-url>
-cd news_app
+git clone https://github.com/rolandcrouch/News-Application.git
+cd "Django News Application 2"
 ```
 
 ### 2. Create Virtual Environment
@@ -416,8 +416,8 @@ The application includes comprehensive Docker support with management scripts fo
 
 ```bash
 # Clone and navigate to project
-git clone <repository-url>
-cd django-news-application
+git clone https://github.com/rolandcrouch/News-Application.git
+cd "Django News Application 2"
 
 # Start development environment (one command setup!)
 ./scripts/docker-dev.sh start
