@@ -11,6 +11,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         build-essential \
         default-libmysqlclient-dev \
+        libpq-dev \
         pkg-config \
         git \
     && rm -rf /var/lib/apt/lists/*

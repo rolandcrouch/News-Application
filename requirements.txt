@@ -5,7 +5,7 @@ django-cors-headers==4.3.1
 
 # Database
 mysqlclient==2.2.4
-psycopg2-binary==2.9.9
+psycopg2-binary==2.9.10
 dj-database-url==2.1.0
 
 # Environment and Configuration
