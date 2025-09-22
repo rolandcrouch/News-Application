@@ -6,3 +6,4 @@ USE newapp_db;
 GRANT ALL PRIVILEGES ON newapp_db.* TO 'newsapp_user'@'%';
 FLUSH PRIVILEGES;
 
+
