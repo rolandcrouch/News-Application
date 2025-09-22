@@ -27,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7@g=k+@tyjc(2%iy*$@9jm4#^al9)f+314-z=9j6v9$!wghm0('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True').lower() == 'true'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 LOGIN_REDIRECT_URL = "/accounts/articles/"
 LOGOUT_REDIRECT_URL = "login"
@@ -99,26 +99,26 @@ WSGI_APPLICATION = 'news_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-"""
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Use PostgreSQL in production (Docker), MySQL in development
+if os.environ.get('DATABASE_URL'):
+    # Production database configuration (Docker)
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-}
-"""
-
-DATABASES = {
-  "default": {
-    "ENGINE": "django.db.backends.mysql",
-    "NAME": "newapp_db",
-    "USER": "rolandcrouch",
-    "PASSWORD": "Oriel@2008",
-    "HOST": "127.0.0.1",
-    "PORT": "3306",
-    "OPTIONS": {"charset": "utf8mb4"},
-  }
-}
+else:
+    # Development database configuration
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": "newapp_db",
+            "USER": "rolandcrouch",
+            "PASSWORD": "Oriel@2008",
+            "HOST": "127.0.0.1",
+            "PORT": "3306",
+            "OPTIONS": {"charset": "utf8mb4"},
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -154,7 +154,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Media files (user uploads)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

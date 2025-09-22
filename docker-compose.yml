@@ -28,11 +28,7 @@ services:
     restart: unless-stopped
     environment:
       # Database Configuration
-      DB_NAME: newapp_db
-      DB_USER: newsapp_user
-      DB_PASSWORD: newsapp_password
-      DB_HOST: db
-      DB_PORT: 3306
+      DATABASE_URL: "mysql://newsapp_user:newsapp_password@db:3306/newapp_db"
       
       # Django Configuration
       DEBUG: "False"
@@ -69,4 +65,5 @@ volumes:
   mysql_data:
   static_volume:
   media_volume:
+
 
